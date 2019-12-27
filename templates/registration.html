@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<form class="col s12" method="POST" action="{{ url_for('register_user') }}">
+
+    <label for="username">Username</label>
+    <input id="username" id="username" name="username"></input>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"></input>
+
+    <label for="dob">Date of Birth</label>
+    <input id="dob" id="dob" name="dob"></input>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email"></input>
+
+    <input type="submit"></input>
+
+</form>
+
+{% endblock %}
