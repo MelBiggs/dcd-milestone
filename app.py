@@ -10,10 +10,8 @@ if path.exists("env.py"):
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'recipesDB'
-
-# MONGODB_NAME = os.environ.get('MONGODB_NAME')
-app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
+app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 mongo = PyMongo(app)
 
@@ -21,11 +19,11 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_users')
 def get_users():
-    return render_template("users.html", tasks=mongo.db.users.find())
+    return render_template("users.html", users=mongo.db.users.find())
+
 
 # execute app__init__.py
 if __name__ == '__main__':
-
 
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
