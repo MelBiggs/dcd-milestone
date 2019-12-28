@@ -1,0 +1,21 @@
+    <label for="name">Name</label>
+    <input id="name" name="name" value="{{recipe.name}}"></input>
+     <label for="calories">Calories</label>
+    <input id="calories" name="calories" value="{{recipe.calories}}"></input>
+     <label for="Serving">Serving</label>
+    <input id="serving" name="serving" value="{{recipe.serving}}"></input>
+
+    <div class="input-field col s12">
+      <select id="category" name="category">
+            <option value="" disabled selected>Choose your option</option>
+
+            {% for category in categories %}
+                {% if(recipe.category_name == category.name) %}
+                    <option value="{{category.name}}" selected>{{category.name}}</option>
+                {% else %}
+                    <option value="{{category.name}}">{{category.name}}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+    </div>
+    <input type="submit"></input>

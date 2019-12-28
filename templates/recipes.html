@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <a href="{{url_for('create_recipe')}}">Add a new Recipe</a>
+        <table>
+
+        <thead>
+            <th>Name</th>
+            <th>Calories</th>
+            <th>Serving</th>
+            <th>Category</th>
+            <th>Ingredients</th>
+            <th>Steps</th>
+            <th>Actions</th>
+        </thead>
+        {% for recipe in recipes %}
+        <tr>
+            <td>{{recipe.name}}</td>
+            <td>{{recipe.calories}}</td>
+            <td>{{recipe.serving}}</td>
+            <td>{{recipe.category_name}}</td>
+
+            <td>
+            {% for ingredient in recipe.ingredients %}
+                {{ingredient.name}}: {{ingredient.amount}},&nbsp;
+            {% endfor %}
+            </td>
+
+            <td>
+            <ol>
+            {% for step in recipe.steps %}
+                 <li>{{step}}</li>
+            {% endfor %}
+            </ol>
+            </td>
+
+
+            <td>
+                <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small red">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </table>
+{% endblock %}
