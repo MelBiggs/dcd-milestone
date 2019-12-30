@@ -21,6 +21,9 @@ mongo = PyMongo(app)
 def get_users():
     return render_template("users.html", users=mongo.db.users.find())
 
+
+# Log in / Log Out / Register
+
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -70,7 +73,8 @@ def register_user():
         return redirect("get_users")
     return render_template("registration.html")
 
-# Recipes
+
+# Recipes CRUD
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
@@ -118,6 +122,7 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     return redirect(url_for("get_recipes"))
+
 
 # Categories
 
