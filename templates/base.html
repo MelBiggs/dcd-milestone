@@ -1,52 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    </head>
-    <body>
 
-  <!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
-  <li class="divider"></li>
-  <li><a href="{{url_for('login')}}">Log In</a></li>
-  <li><a href="{{url_for('register_user')}}">Register</a></li>
-</ul>
-<nav>
-  <div class="nav-wrapper">
-    <a href="#!" class="brand-logo center">Recipe Site</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-      <!-- Dropdown Trigger -->
-      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
-  </div>
-</nav>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+	<title>The Constant Kitchen</title>
+</head>
 
-        {% if session["user"] %}
-            Hi {{session["user"]}}, <a href="{{url_for('logout')}}">click here to log out!</a>
-        {% else %}
-        <a href="{{url_for('login')}}">Login</a>
+<body>
 
-        {% endif %}
-<br>
-        {% block content %}
-        {% endblock %}
-        
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<section class="title-section">
+		<div class="row">
+			<div class="col s1 offset-s11"><span class="flow-text">
 
-    
-    {% block js %}
-    {% endblock %}
+		{% if session["user"] %}
+		Hi {{session["user"]}}, <a href="{{url_for('logout')}}">click here to log out!</a>
+		{% else %}
+		<a href="{{url_for('login')}}">Login</a>
 
-    <script>
-     $(".dropdown-trigger").dropdown();
+		{% endif %}
+        </span></div>
+		</div>
+	</section>
+
+	<section class="HeaderSection">
+		<div class="HeaderArea">
+			<div class="header-area">
+				<div class="container">
+					<div class="header-text text center">
+						<div class="header-area ">
+							<h1 class="title-name text-center">THE CONSTANT KITCHEN</h1>
+							<p class="slogan text-center">
+								<h4>The cookbook that constantly grows...</h4>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Dropdown Structure -->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('login')}}">Log In</a></li>
+		<li><a href="{{url_for('register_user')}}">Register</a></li>
+	</ul>
+	<nav>
+		<div class="nav-wrapper">
+			<ul class="hide-on-med-and-down">
+				<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+				<!-- Dropdown Trigger -->
+				<li><a class="dropdown-trigger" href="#!"
+						data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<section>
+		{% block content %}
+		{% endblock %}
+
+	</section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+	{% block js %}
+	{% endblock %}
+
+	<script>
+		$(".dropdown-trigger").dropdown();
 
         $(document).ready(function(){
     $('select').formSelect();
   });
-    </script>
-    </body>
+	</script>
+</body>
+
 </html>

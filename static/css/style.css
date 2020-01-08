@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Oswald:400,500,600,700&display=swap');
+
+.HeaderSection {
+    background-image: url('static/img/background-img.jpg');
+}
+
+.flow-text{
+    font-size: 1em;
+    text-align: center;
+    padding-right: 0em;
+    color: black;
+}
+
+h1 {
+    font-size: 8em;
+    font-family:  'Amatic SC', sans-serif;
+}
+
+h4 {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 2em;
+    padding-bottom: .5em
+}
+
+
+
+
+
+

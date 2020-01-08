@@ -43,6 +43,7 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/logout", methods=["GET"])
 def logout():
     username = session["user"]
@@ -50,13 +51,14 @@ def logout():
     session.pop("user")
     return redirect("get_users")
 
+
 @app.route('/register', methods=["GET", "POST"])
 def register_user():
     if request.method == "POST":
         username = request.form.get("username")
         email = request.form.get("email")
         dob = request.form.get("dob")
-        
+
         if (mongo.db.users.find_one({"username": username})):
             return "existing user"
 
@@ -64,9 +66,10 @@ def register_user():
             return "existing email"
 
         password = generate_password_hash(request.form.get("password"))
-        
-        mongo.db.users.insert_one({"username": username, "email":email, "password":password, "dob":dob})
-        
+
+        mongo.db.users.insert_one(
+            {"username": username, "email": email, "password": password, "dob": dob})
+
         # Creates a cookie to store logged in user
         session["user"] = username
 
@@ -79,6 +82,7 @@ def register_user():
 def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
+
 @app.route('/recipes/create', methods=['GET', 'POST'])
 def create_recipe():
     if request.method == "POST":
@@ -86,14 +90,16 @@ def create_recipe():
         calories = request.form.get("calories")
         serving = request.form.get("serving")
         category_name = request.form.get("category")
-        
+
         if (mongo.db.recipes.find_one({"name": name})):
             return "Existing recipe"
 
-        mongo.db.recipes.insert_one({"name": name, "calories": calories, "serving": serving, "category_name":category_name})
+        mongo.db.recipes.insert_one(
+            {"name": name, "calories": calories, "serving": serving, "category_name": category_name})
         return redirect(url_for("get_recipes"))
     categories = mongo.db.categories.find()
     return render_template("create_recipes.html", recipe={}, categories=categories)
+
 
 @app.route('/recipes/edit/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
@@ -105,18 +111,19 @@ def edit_recipe(recipe_id):
 
         recipes = mongo.db.recipes
 
-        recipes.update({"_id": ObjectId(recipe_id)}, 
-            {   "name": name, 
-                "calories": calories, 
-                "serving": serving, 
-                "category_name":category_name,
-                "ingredients": [{"name": "beef", "amount": "450g"}, {"name": "Onion", "amount": "1"}],
-                "steps": ["Fry the beef", "saute the onion"]
-            })
-    
+        recipes.update({"_id": ObjectId(recipe_id)},
+                       {"name": name,
+                        "calories": calories,
+                        "serving": serving,
+                        "category_name": category_name,
+                        "ingredients": [{"name": "beef", "amount": "450g"}, {"name": "Onion", "amount": "1"}],
+                        "steps": ["Fry the beef", "saute the onion"]
+                        })
+
         return redirect(url_for("get_recipes"))
     categories = mongo.db.categories.find()
     return render_template("edit_recipes.html", categories=categories, recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+
 
 @app.route("/recipes/delete/<recipe_id>", methods=['GET'])
 def delete_recipe(recipe_id):
@@ -130,14 +137,15 @@ def delete_recipe(recipe_id):
 def get_categories():
     return render_template("categories.html", categories=mongo.db.categories.find())
 
+
 @app.route('/categories/create', methods=["GET", "POST"])
 def create_category():
     if request.method == "POST":
         name = request.form.get("name")
-        
+
         if (mongo.db.categories.find_one({"name": name})):
             return "existing category"
-    
+
         mongo.db.categories.insert_one({"name": name})
         return redirect(url_for("get_categories"))
 
@@ -154,7 +162,7 @@ def edit_category(category_id):
 
         categories = mongo.db.categories
         categories.update({"_id": ObjectId(category_id)}, {"name": name})
-    
+
         return redirect(url_for("get_categories"))
 
     return render_template("edit_categories.html", category=mongo.db.categories.find_one({"_id": ObjectId(category_id)}))
@@ -164,7 +172,6 @@ def edit_category(category_id):
 def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     return redirect(url_for("get_categories"))
-
 
 
 # execute app__init__.py
