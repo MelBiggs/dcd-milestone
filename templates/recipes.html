@@ -1,65 +1,81 @@
 {% extends 'base.html' %}
 {% block content %}
 
-        <table>
 
-        <thead>
-            <th>Name</th>
-            <th>Calories</th>
-            <th>Serving</th>
-            <th>Category</th>
-            <th>Ingredients</th>
-            <th>Steps</th>
-            <th>Actions</th>
-        </thead>
-        {% for recipe in recipes %}
-        <tr>
-            <td>{{recipe.name}}</td>
-            <td>{{recipe.calories}}</td>
-            <td>{{recipe.serving}}</td>
-            <td>{{recipe.category_name}}</td>
+<div class="page_heading">Find the right recipe for you</div>
 
-            <td>
-            {% for ingredient in recipe.ingredients %}
-                {{ingredient.name}}: {{ingredient.amount}},&nbsp;
-            {% endfor %}
-            </td>
+<form>
+	<div class="input-field" id="recipe-search">
+		<input id="search" type="search" required>
+		<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+		<i class="material-icons">close</i>
+	</div>
+</form>
 
-            <td>
-            <ol>
-            {% for step in recipe.steps %}
-                 <li>{{step}}</li>
-            {% endfor %}
-            </ol>
-            </td>
+<table class="striped">
+
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Calories</th>
+			<th>Serving</th>
+			<th>Category</th>
+			<th>Ingredients</th>
+			<th>Steps</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for recipe in recipes %}
+		<tr>
+			<td>{{recipe.name}}</td>
+			<td>{{recipe.calories}}</td>
+			<td>{{recipe.serving}}</td>
+			<td>{{recipe.category_name}}</td>
+
+			<td>
+				{% for ingredient in recipe.ingredients %}
+				{{ingredient.name}}: {{ingredient.amount}},&nbsp;
+				{% endfor %}
+			</td>
+
+			<td>
+				<ol>
+					{% for step in recipe.steps %}
+					<li>{{step}}</li>
+					{% endfor %}
+				</ol>
+			</td>
 
 
-            <td>
-                <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                <!-- Modal Trigger -->
-                <button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red modal-trigger" href="#delete_modal">Delete</a></button>            
-        
-            </td>
-        </tr>
-        {% endfor %}
+			<td>
+				<a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}"
+					id="edit-btn" class="waves-effect waves-light btn btn_small light-blue darken-1"c>Edit</a>
+				<!-- Modal Trigger -->
+				<button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</a></button>
 
-        </table>
+			</td>
+		</tr>
+		{% endfor %}
+
+	</tbody>
+</table>
 
 
-        <div id="delete_modal" class="modal">
-            <div class="modal-content">
-                <h6>Are you sure you want to delete this recipe?</h6>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
-                <a id="delete-link" href="" class="modal-close waves-effect waves-green btn-flat modal-close">Delete</a>
-            </div>
-        </div>
+<div id="delete_modal" class="modal">
+	<div class="modal-content">
+		<h6>Are you sure you want to delete this recipe?</h6>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+		<a id="delete-link" href="" class="modal-close waves-effect waves-green btn-flat modal-close">Delete</a>
+	</div>
+</div>
 {% endblock %}
 
 {% block js %}
 <script>
-    $(document).ready(function(){
+	$(document).ready(function(){
         $('.modal').modal({
             onOpenStart: function(modal, trigger) {
                 $('#delete-link').attr("href", trigger.dataset.recipeDeleteUrl);

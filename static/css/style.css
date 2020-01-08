@@ -110,6 +110,8 @@ nav ul a {
 form {
     font-family: 'Oswald', sans-serif;
     font-size: .6em;
+    margin: 3em;
+    padding: 1em;
 }
 
 form label {
@@ -120,3 +122,18 @@ button, input, optgroup, select, textarea {
     font-size: 1.2rem;
     font-family: 'Oswald', sans-serif;
 }
+
+/*                                                     RECIPES SEARCH PAGE */
+
+/* .input-field input[type=search] { 
+   line-height: 0;
+   padding: .2em; 
+} */
+
+table{
+    margin-left: 3em;
+    padding-bottom: 2em;
+    width: 90%;
+    border-collapse: unset;
+}
+
