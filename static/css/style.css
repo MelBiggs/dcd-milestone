@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Oswald:400,500,600,700&display=swap');
 
-.HeaderSection {
-    background-image: url('static/img/background-img.jpg');
-}
+/* .HeaderSection {
+    background-image: 
+} */
 
-.flow-text{
-    font-size: 1em;
+.flow-text a{
+    font-size: .8em;
     text-align: center;
     padding-right: 0em;
-    color: black;
+    color: rgb(175, 206, 163);
+    font-family: 'Oswald', sans-serif;
 }
 
 h1 {
