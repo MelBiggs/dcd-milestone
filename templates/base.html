@@ -2,23 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Constant Kitchen</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>The Constant Cookbook</title>
 
-    <link rel="shortcut icon" type="image/png" href="static/img/favicon-32x32.png" />
+	<link rel="shortcut icon" type="image/png" href="static/img/favicon-32x32.png" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-	
+
 </head>
 
 <body>
+	<header>
 
-	<section>
-		<div class="row">
-			<div class="col s1 offset-s11"><span class="flow-text">
+		<!-- Log In Button  -->
+
+		<section>
+			<div class="row">
+				<div class="col s1 offset-s11"><span class="flow-text">
 
 		{% if session["user"] %}
 		Hi {{session["user"]}}, <a href="{{url_for('logout')}}">click here to log out!</a>
@@ -27,65 +32,104 @@
 
 		{% endif %}
         </span></div>
-		</div>
-	</section>
+			</div>
+		</section>
 
-	<section class="HeaderSection">
-		<div class="HeaderArea">
-			<div class="header-area">
-				<div class="container">
-					<div class="header-text text center">
-						<div class="header-area ">
-							<h1 class="title-name text-center">THE CONSTANT KITCHEN</h1>
-							<p class="slogan text-center">
-								<h4>The cookbook that constantly grows...</h4>
-							</p>
+		<!-- Title Section  -->
+
+		<section class="HeaderSection">
+			<div class="HeaderArea">
+				<div class="header-area">
+					<div class="container">
+						<div class="header-text text center">
+							<div class="header-area ">
+								<h1 class="title-name text-center">THE CONSTANT COOKBOOK</h1>
+								<p class="slogan text-center">
+									<h4>The cookbook that constantly grows...</h4>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</section>
+
+		<!-- Navbar  -->
+
+		<!-- Dropdown Structure -->
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+			<li class="divider"></li>
+			<li><a href="{{url_for('login')}}">Log In</a></li>
+			<li><a href="{{url_for('register_user')}}">Register</a></li>
+		</ul>
+		<nav>
+			<div class="nav-wrapper">
+				<ul class="right hide-on-med-and-down">
+					<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+					<!-- Dropdown Trigger -->
+					<li><a class="dropdown-trigger" href="#!"
+							data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<!-- Main Content  -->
+
+	<main>
+		<section>
+			{% block content %}
+			{% endblock %}
+
+		</section>
+	</main>
+</body>
+
+<!-- Footer -->
+
+<section class="footer">
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<ul class="social-links">
+						<li><a target="_blank"
+								href="#"><i class="fab fa-facebook-square" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
+						</li>
+						<li><a target="_blank"
+								href="#"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+						</li>
+						<li><a target="_blank"
+								href="#"><i class="fab fa-twitter-square" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</section>
-
-
-	<!-- Dropdown Structure -->
-	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('login')}}">Log In</a></li>
-		<li><a href="{{url_for('register_user')}}">Register</a></li>
-	</ul>
-	<nav>
-		<div class="nav-wrapper">
-			<ul class="hide-on-med-and-down">
-				<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-				<!-- Dropdown Trigger -->
-				<li><a class="dropdown-trigger" href="#!"
-						data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
-			</ul>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2020 The Constant Cookbook
+			</div>
 		</div>
-	</nav>
+	</footer>
+</section>
 
-	<section>
-		{% block content %}
-		{% endblock %}
-
-	</section>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-	{% block js %}
-	{% endblock %}
+{% block js %}
+{% endblock %}
 
-	<script>
-		$(".dropdown-trigger").dropdown();
+<script>
+	$(".dropdown-trigger").dropdown();
 
         $(document).ready(function(){
     $('select').formSelect();
   });
-	</script>
+</script>
 </body>
 
 </html>

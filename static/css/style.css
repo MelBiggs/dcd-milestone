@@ -1,20 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Oswald:400,500,600,700&display=swap');
 
+
+/*                                                     BASE PAGE  */
+
 /* .HeaderSection {
-    background-image: 
+    background-image: url('static/img/background-img.png');
 } */
 
+/* Log In Button  */
 .flow-text a{
     font-size: .8em;
     text-align: center;
     padding-right: 0em;
     color: rgb(175, 206, 163);
     font-family: 'Oswald', sans-serif;
+    font-weight: 500;
 }
 
+.flow-text a:hover {
+    color: #627A8E;
+}
+
+/* Title */
 h1 {
     font-size: 8em;
     font-family:  'Amatic SC', sans-serif;
+    font-weight: 800;
 }
 
 h4 {
@@ -23,8 +34,89 @@ h4 {
     padding-bottom: .5em
 }
 
+/* Navbar */
+nav {
+    background-color: rgb(175, 206, 163);
+}
 
+nav ul a {
+    font-size: 1.4em !important;
+    padding-right: 1em;
+    padding-left: 1em;
+    font-family: 'Oswald', sans-serif;
+}
 
+/* Footer */
 
+.page-footer {
+    background-color: rgb(175, 206, 163);
+    padding: 0em;
+    font-family: 'Oswald', sans-serif;
+}
+.social-links {
+    list-style: none;
+    text-align: center;
+    padding-left: 0em;
+}
 
+.social-links li {
+    padding-left: 2em;
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 1em;
+    padding-right: 9px;
+}
 
+.social-links a {
+    display: inline-block;
+    color: #fff;
+}
+
+.social-links li a:hover {
+    color: #627A8E;
+}
+
+.social-links li a i {
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.footer-copyright {
+    text-align: center;
+}
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+/*                                                     REUSEABLE CSS */
+
+.page_heading {
+    font-size: 5em;
+    font-family:  'Amatic SC', sans-serif;
+    text-align: center;
+    padding-top: .3em;
+    font-weight: 500;
+}
+
+form {
+    font-family: 'Oswald', sans-serif;
+    font-size: .6em;
+}
+
+form label {
+    font-size: 1.2rem;
+}
+
+button, input, optgroup, select, textarea {
+    font-size: 1.2rem;
+    font-family: 'Oswald', sans-serif;
+}

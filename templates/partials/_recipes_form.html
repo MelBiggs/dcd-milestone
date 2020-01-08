@@ -1,19 +1,21 @@
 <html>
-    <head>
-    </head>
+
+<head>
+</head>
     <body>
-        <label for="name">Name</label>
+     <div class="container recipe_form">
+        <label for="name">Recipe Name</label>
         <input id="name" name="name" value="{{recipe.name}}"></input>
 
         <label for="calories">Calories</label>
         <input id="calories" name="calories" value="{{recipe.calories}}"></input>
 
-        <label for="Serving">Serving</label>
+        <label for="Serving">Serves:</label>
         <input id="serving" name="serving" value="{{recipe.serving}}"></input>
 
-    <div class="input-field col s12">
+    <div class="input-field">
       <select id="category" name="category">
-            <option value="" disabled selected>Choose your option</option>
+            <option value="" disabled selected>What kind of meal is this?</option>
             {% for category in categories %}
                 {% if(recipe.category_name == category.name) %}
                     <option value="{{category.name}}" selected>{{category.name}}</option>
@@ -22,9 +24,11 @@
                 {% endif %}
             {% endfor %}
             </select>
-    </div>
-    
+    </div> 
     <input type="submit"></input>
-
+</div>
+<br></br>
     </body>
+
+
 </html>
