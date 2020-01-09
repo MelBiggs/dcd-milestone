@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Create a Category</h1>
+<div class="page_heading">Create a Category</div>
 
     <form class="col s12" method="POST" action="{{ url_for('create_category') }}">
     {% include "partials/_category_form.html" %}

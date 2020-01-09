@@ -150,3 +150,21 @@ table{
 .register-button .btn:hover{
     background-color: #627A8E;
 }
+
+/*                                                  CREATE CATEGORY PAGE */
+
+
+.create-category-button {
+    text-align: center;
+    padding-top: 1em;
+}
+
+.create-category-button .btn{
+    background-color: #59C1D7;
+}
+
+.create-category-button .btn:hover{
+    background-color: #627A8E;
+}
+
+}
