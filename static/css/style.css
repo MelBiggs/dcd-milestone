@@ -137,3 +137,16 @@ table{
     border-collapse: unset;
 }
 
+/*                                                     LOG IN PAGE */
+
+.register-button {
+    text-align: center;
+}
+
+.register-button .btn{
+    background-color: #59C1D7;
+}
+
+.register-button .btn:hover{
+    background-color: #627A8E;
+}
