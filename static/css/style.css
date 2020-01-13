@@ -1,12 +1,38 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Oswald:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Oswald:400,500,600,700|Monoton&display=swap');
 
 
 /*                                                     BASE PAGE  */
 
-.HeaderSection {
-  background-image: 
+/* Title */
 
+.HeaderArea {
+    height:70vh;
 }
+a {
+    color: inherit;
+}
+.header-text {
+  background-image: url("../img/background-header.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width:100%; 
+  height:500px; 
+}
+
+h1 {
+    font-size: 5.3em;
+    font-family: 'Monoton', cursive;
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+h4 {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 2em;
+    padding-bottom: .5em
+}
+
 
 /* Log In Button  */
 .flow-text a{
@@ -20,19 +46,6 @@
 
 .flow-text a:hover {
     color: #627A8E;
-}
-
-/* Title */
-h1 {
-    font-size: 8em;
-    font-family:  'Amatic SC', sans-serif;
-    font-weight: 800;
-}
-
-h4 {
-    font-family: 'Amatic SC', sans-serif;
-    font-size: 2em;
-    padding-bottom: .5em
 }
 
 /* Navbar */

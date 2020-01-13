@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    """ Home page with sample of 8 random recipes in a Carousel. """
+    """ Home page with recipe of the day """
     return render_template("index.html")
 
 
@@ -184,6 +184,13 @@ def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     return redirect(url_for("get_categories"))
 
+
+#About Page
+
+@app.route('/about')
+def about():
+    """ About page with links, infor and social media"""
+    return render_template("about.html")
 
 # execute app__init__.py
 if __name__ == '__main__':
