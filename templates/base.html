@@ -21,9 +21,9 @@
 
 		<!-- Log In Button  -->
 
-		<section>
-			<div class="row">
-				<div class="col s1 offset-s11"><span class="flow-text">
+
+		<div class="row">
+			<div class="col s1 offset-s11"><span class="flow-text">
 
 		{% if session["user"] %}
 		Hi {{session["user"]}}, <a href="{{url_for('logout')}}">click here to log out!</a>
@@ -32,8 +32,7 @@
 
 		{% endif %}
         </span></div>
-			</div>
-		</section>
+		</div>
 
 		<!-- Title Section  -->
 
@@ -42,16 +41,11 @@
 				<div class="header-area">
 					<div class="container">
 						<div class="header-text text center">
-							<div class="header-area ">
-								<h1 class="title-name text-center">THE CONSTANT COOKBOOK</h1>
-								<p class="slogan text-center">
-									<h4>The cookbook that constantly grows...</h4>
-								</p>
-							</div>
+							<img src="{{url_for('static', filename='img/logo-background.jpg')}}"style="width:100%; height:500px;">
+						</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		</section>
 
 		<!-- Navbar  -->

@@ -1,5 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import (
+    Flask, render_template, redirect, 
+    request, flash, url_for, session, 
+    Markup)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -17,6 +20,11 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+def home():
+    """ Home page with sample of 8 random recipes in a Carousel. """
+    return render_template("index.html")
+
+
 @app.route('/get_users')
 def get_users():
     return render_template("users.html", users=mongo.db.users.find())
@@ -61,6 +69,9 @@ def register_user():
 
         if (mongo.db.users.find_one({"username": username})):
             return "existing user"
+            flash(Markup("<h4>\
+            {request.form.get('username')}\
+            is already taken! Please try again.</h4>"))
 
         if (mongo.db.users.find_one({"email": email})):
             return "existing email"
