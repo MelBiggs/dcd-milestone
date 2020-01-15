@@ -64,6 +64,7 @@ h4 {
 .link-card {
     padding-top: 3em;
     font-family: 'Oswald', sans-serif;
+    border: 3px groove #59C1D7;
 }
 
 .quick-links {
@@ -72,6 +73,7 @@ h4 {
 
 .quick-links a {
     margin: .5em;
+    background-color: #59C1D7;
 }
 
 /* Recipe of the Day Card */
@@ -79,6 +81,11 @@ h4 {
 .daily-recipe-card {
     padding-top: 2em;
 }
+
+/* .recipe-card {
+    border: 3px groove #59C1D7;
+
+} */
 
 .card-title {
     color: black!important;
@@ -199,6 +206,10 @@ button, input, optgroup, select, textarea {
 }
 
 /*                                                     RECIPES SEARCH PAGE */
+
+.label-icon :active {
+    padding-bottom: 1em;
+}
 
 /* .input-field input[type=search] { 
    line-height: 0;
