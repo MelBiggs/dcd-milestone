@@ -55,6 +55,25 @@ h4 {
 
 }
 
+/* Links Landing Page Card */
+
+.landing-page-container {
+    margin: 1em;
+}
+
+.link-card {
+    padding-top: 3em;
+    font-family: 'Oswald', sans-serif;
+}
+
+.quick-links {
+    padding-bottom: 1em;
+}
+
+.quick-links a {
+    margin: .5em;
+}
+
 /* Recipe of the Day Card */
 
 .daily-recipe-card {

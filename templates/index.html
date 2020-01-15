@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<!-- <div class="container-95">
 	<div class="row">
-		<div class="col s6">
+        <div class="col s12 l8 card index white">
 			<div class="card-header">Recipe of the Day</div>
 			<div class="daily-recipe-card">
 				<div class="card large">
@@ -19,23 +19,80 @@
 				</div>
 			</div>
 		</div>
-		<div class="col s6">
-        <div class="index-cta">
-			<div class="card">
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information.
-							I am convenient because I require little markup to use effectively.</p>
+		<div class="col s12 l4 offset-l1 card index-cta white">
+<header>
+                <h1 class="center-align">The Constant Kitchen</h1>
+            </header>
+             dividers 
+            <div class="divider pink lighten-2"></div>
+            <div class="divider yellow"></div>
+            <div class="divider green"></div>
+            <div class="divider pink"></div>
+
+             Quick Links
+            <div class="center-align quick-links">
+                <h5 class="bold purple-text font-special upper">Quick Links</h5>
+                <a href="/desserts" class="btn bold purple white-text text-shadow-2">
+                    <i class="fas fa-search material-icons left" aria-hidden="true"></i> Search
+                </a>
+                only if user in session
+                
+                <a href="/login" class="btn bold pink lighten-2 white-text text-shadow-2">
+                    <i class="fas fa-user-plus material-icons left" aria-hidden="true"></i> Log In | Register
+                </a>
+                
+            </div>
+			</div>
+		</div>
+	</div> -->
+
+<div class="landing-page-container">
+<div class="container-95">
+
+	<div class="row">
+		<div class="col s12 l6 card landing-page recipe-card white">
+			<div class="card-header">Recipe of the Day</div>
+			<div class="daily-recipe-card">
+				<div class="card large">
+					<div class="card-image">
+						<img src= "{{url_for('static', filename='img/background-header.jpg')}}" class="responsive">
+						<span class="card-title">Recipe Name</span>
 					</div>
-					<div class="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
+					<div class="card-content left">
+						<p>This is the Recipe Description</p>
+					</div>
+					<div class="card-action center">
+						<a href="#">Go to Recipe</a>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div class="col s12 l5 offset-l1 center-align white card link-card">
+			<h6 class=" upper text-shadow-1">The Constant Cookbook</h6>
+			<!-- Links -->
+			<div class="center-align quick-links">
+				<a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
+                    <i class="fas fa-search" aria-hidden="true"></i> Search
+                </a>
+                	<a href="{{url_for('login')}}" class="btn bold white-text text-shadow-2">
+                    <i class="fas fa-search left" aria-hidden="true"></i> Log In/Register
+                </a>
+                	<a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
+                    <i class="fas fa-plus left" aria-hidden="true"></i> Add Recipe
+                </a>
+
+		
+				<!-- use the random recipe from above -->
+
+
+			</div>
+		</div>
+
 	</div>
 </div>
+</div>
+
 
 
 {% endblock %}
