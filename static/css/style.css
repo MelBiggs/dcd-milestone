@@ -48,6 +48,48 @@ h4 {
     color: #627A8E;
 }
 
+.index-cta {
+    padding-top: 2em;
+      margin: 0;
+  position: absolute;
+
+}
+
+/* Recipe of the Day Card */
+
+.daily-recipe-card {
+    padding-top: 2em;
+}
+
+.card-title {
+    color: black!important;
+    text-align: center!important;
+    size: 1em;
+    font-family: 'Oswald', sans-serif!important;
+}
+
+.card-header {
+    color: black;
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Oswald', sans-serif!important;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+}
+
+.responsive {
+  width: 50%;
+  height: auto;
+}
+
+.card-image {
+    max-height: 75%!important;
+}
+
+.card-content {
+    padding: 1em!important;
+}
+
 /* Navbar */
 nav {
     background-color: rgb(175, 206, 163);
