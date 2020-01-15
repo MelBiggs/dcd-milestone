@@ -1,7 +1,7 @@
 import os
 from flask import (
-    Flask, render_template, redirect, 
-    request, flash, url_for, session, 
+    Flask, render_template, redirect,
+    request, flash, url_for, session,
     Markup)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
