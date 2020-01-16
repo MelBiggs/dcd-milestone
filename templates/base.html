@@ -17,20 +17,18 @@
 </head>
 
 <body>
+
 	<header>
 
 		<!-- Log In Button  -->
-
-
 		<!-- Title Section  -->
 
 		<section class="HeaderSection">
 			<div class="HeaderArea">
 				<div class="header-area">
-					<div class="container">
-
-						<div class="row">
-							<div class="col s1 offset-s11"><span class="flow-text">
+					<div class="container slidingHeader">
+							<div class="row">
+								<div class="col s1 offset-s11"><span class="flow-text">
 
 		{% if session["user"] %}
 		Hi {{session["user"]}}, <a href="{{url_for('logout')}}">click here to log out!</a>
@@ -39,39 +37,56 @@
 
 		{% endif %}
         </span></div>
-						</div>
-						<div class="header-text text center"><a href="{{url_for('home')}}">
-								<h1>THE CONSTANT COOKBOOK</h1>
-							</a>
-							<p class="slogan text-center">
-								<h4>The cookbook that constantly grows...</h4>
-							</p>
+							</div>
+							<div class="header-text text center"><a href="{{url_for('home')}}">
+									<h1>THE CONSTANT COOKBOOK</h1>
+								</a>
+								<p class="slogan text-center">
+									<h4>The cookbook that constantly grows...</h4>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		</section>
-        	</header>
+	</header>
+    <section class="sections">
 
-		<!-- Navbar  -->
-		<!-- Dropdown Structure -->
-		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
-			<li class="divider"></li>
-			<li><a href="{{url_for('login')}}">Log In</a></li>
-			<li><a href="{{url_for('register_user')}}">Register</a></li>
-		</ul>
+	<!-- Navbar  -->
+	<!-- Dropdown Structure -->
 
-		<nav>
-			<div class="nav-wrapper">
-				<ul class="right hide-on-med-and-down sticky-top">
-					<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-					<!-- Dropdown Trigger -->
-					<li><a class="dropdown-trigger" href="#!"
-							data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
-				</ul>
-			</div>
-		</nav>
+ <nav>
+    <div class="nav-wrapper">
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+	<ul class="right hide-on-med-and-down">
+		<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('login')}}">Log In</a></li>
+		<li><a href="{{url_for('register_user')}}">Register</a></li>
+        <li><a href="{{url_for('about')}}">About</a></li>
+	</ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="{{url_for('login')}}">Log In</a></li>
+   <li><a href="{{url_for('register_user')}}">Register</a></li>
+    <li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+  </ul>
+
+
+
+<!-- 
+	<nav>
+		<div class="nav-wrapper">
+			<ul class="right hide-on-med-and-down sticky-top">
+				<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+				 Dropdown Trigger -->
+				<!-- <li><a class="dropdown-trigger" href="#!"
+						data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
+		</div> -->
+	<!-- </nav> --> 
 	<!-- Main Content  -->
 
 	<main>
@@ -82,6 +97,8 @@
 		</section>
 	</main>
 </body>
+
+</section>
 
 <!-- Footer -->
 
@@ -125,6 +142,12 @@
 
         $(document).ready(function(){
     $('select').formSelect();
+  });
+
+  <!-- Hamburger Menu  -->
+
+   $(document).ready(function(){
+    $('.sidenav').sidenav();
   });
 </script>
 </body>

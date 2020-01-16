@@ -123,7 +123,7 @@ I used Gifox to record the website demo for my README file. I recorded it off th
 
 * As a user of an older age, I want it to be as easily navigated as possible and attractive on a desktop or tablet. 
 
-There was a bug with XXXX 
+There was a bug with deploying to Heroku. Despite deploying successfully it would not create the application and gave an error stating it could not bind to the PORT. With the help of tutor support, we changed the Procfile to web: gunicorn app:app from python3 app.py. This allowed the application to display then on Heroku. 
 
 ### Code Validation
 

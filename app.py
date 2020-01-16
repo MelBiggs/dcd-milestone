@@ -192,6 +192,7 @@ def about():
     """ About page with links, infor and social media"""
     return render_template("about.html")
 
+
 # execute app__init__.py
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), port=(os.environ.get('PORT')), debug=True)

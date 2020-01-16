@@ -5,8 +5,18 @@
 
 /* Title */
 
+
 .HeaderArea {
-    height:70vh;
+    height:90vh;
+}
+
+.slidingHeader {
+    position:sticky; 
+    top:0px; 
+}
+
+.sections {
+    position: relative;
 }
 a {
     color: inherit;
@@ -21,7 +31,7 @@ a {
 }
 
 h1 {
-    font-size: 5.3em;
+
     font-family: 'Monoton', cursive;
     padding-top: 2em;
     padding-bottom: 1em;
@@ -253,4 +263,5 @@ table{
     background-color: #627A8E;
 }
 
-}
+
+
