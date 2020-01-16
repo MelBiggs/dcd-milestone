@@ -233,6 +233,10 @@ table{
     border-collapse: unset;
 }
 
+#delete_modal {
+    font-family: 'Oswald', sans-serif;
+}
+
 /*                                                     LOG IN PAGE */
 
 .register-button {
@@ -298,3 +302,5 @@ table{
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
 }
+
+
