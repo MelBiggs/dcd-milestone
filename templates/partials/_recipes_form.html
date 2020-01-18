@@ -39,9 +39,28 @@
         <h3> Steps: </h3>
         <div id="step-list">
 
+        {% if recipe.steps %}
+
+            {% for step in recipe.steps %}
+
+                <div class="step-list-item">
+                    <input id="steps" class="steps" name="steps[]" type="text" value="{{step}}"/>
+                    {% if loop.index > 1 %}
+                        <a class="remove-btn">remove</a>
+                    {% endif %}
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
             <div class="step-list-item">
                 <input id="steps" class="steps" name="steps[]" type="text"/>
             </div>
+
+        {% endif %}
+
+        
         </div>
 
         <button id="add-step">Add</button>
