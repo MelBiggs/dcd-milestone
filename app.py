@@ -1,4 +1,5 @@
 import os
+import urllib
 from flask import (
     Flask, render_template, redirect,
     request, flash, url_for, session,
@@ -54,38 +55,41 @@ def login():
 
 @app.route("/logout", methods=["GET"])
 def logout():
-    username = session["user"]
-    user = mongo.db.users.find_one({"username": username})
-    session.pop("user")
-    return redirect("get_users")
+    if(session['user']):
+        session.pop("user")
+    return redirect("home")
 
 
 @app.route('/register', methods=["GET", "POST"])
 def register_user():
-    if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        dob = request.form.get("dob")
+    # only allow users through if they are not logged in
+    if not session["user"]:
 
-        if (mongo.db.users.find_one({"username": username})):
-            return "existing user"
-            flash(Markup("<h4>\
-            {request.form.get('username')}\
-            is already taken! Please try again.</h4>"))
+        if request.method == "POST":
+            username = request.form.get("username")
+            email = request.form.get("email")
+            dob = request.form.get("dob")
 
-        if (mongo.db.users.find_one({"email": email})):
-            return "existing email"
+            if (mongo.db.users.find_one({"username": username})):
+                return "existing user"
+                flash(Markup("<h4>\
+                {request.form.get('username')}\
+                is already taken! Please try again.</h4>"))
 
-        password = generate_password_hash(request.form.get("password"))
+            if (mongo.db.users.find_one({"email": email})):
+                return "existing email"
 
-        mongo.db.users.insert_one(
-            {"username": username, "email": email, "password": password, "dob": dob})
+            password = generate_password_hash(request.form.get("password"))
 
-        # Creates a cookie to store logged in user
-        session["user"] = username
+            mongo.db.users.insert_one(
+                {"username": username, "email": email, "password": password, "dob": dob})
 
-        return redirect("get_users")
-    return render_template("registration.html")
+            # Creates a cookie to store logged in user
+            session["user"] = username
+
+            return redirect("get_users")
+        return render_template("registration.html")
+    return redirect("home")
 
 
 # Recipes CRUD
@@ -94,40 +98,67 @@ def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
 
-@app.route('/recipes/<recipe_id>', methods=['GET'])
-def view_recipe(recipe_id):
+@app.route('/recipes/<slug>', methods=['GET'])
+def view_recipe(slug):
     return render_template("show_recipe.html",
         categories=mongo.db.categories.find(),
-        recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})) 
+        recipe=mongo.db.recipes.find_one({"slug": slug})) 
+
 
 @app.route('/recipes/create', methods=['GET', 'POST'])
 def create_recipe():
-    if request.method == "POST":
+    # User must be logged in to create a recipe 
+    if session["user"]:
+        if request.method == "POST":
 
-        data = request.form.to_dict()
+            data = request.form.to_dict()
 
-        if (mongo.db.recipes.find_one({"name": data['name']})):
-            return "Existing recipe"
+            # Assign the logged in user to the new recipe
+            data['user'] = session['user']
 
-            # Getting the list of ingredients and delete the incorrect data placeholder
-        data.update({'ingredients': request.form.getlist('ingredients[]')})
-        del data['ingredients[]']
+            data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
 
-        data.update({'steps': request.form.getlist('steps[]')})
-        del data['steps[]']
-        
-        mongo.db.recipes.insert_one(data)
-        return redirect(url_for("get_recipes"))
-        
-    categories = mongo.db.categories.find()
-    return render_template("create_recipes.html", recipe={}, categories=categories)
+            if (mongo.db.recipes.find_one({"name": data['name']})):
+                return "Existing recipe"
 
+            if (mongo.db.recipes.find_one({"slug": data['slug']})):
+                return "Existing slug"
+
+                # Getting the list of ingredients and delete the incorrect data placeholder
+            data.update({'ingredients': request.form.getlist('ingredients[]')})
+            del data['ingredients[]']
+
+            data.update({'steps': request.form.getlist('steps[]')})
+            del data['steps[]']
+            
+            mongo.db.recipes.insert_one(data)
+            return redirect(url_for("get_recipes"))
+            
+        categories = mongo.db.categories.find()
+        return render_template("create_recipes.html", recipe={}, categories=categories)
+    return redirect("login")
 
 @app.route('/recipes/edit/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     if request.method == "POST":
+
         recipes = mongo.db.recipes
         data = request.form.to_dict()
+
+        # Make the slug url safe and replace spaces with underscores
+        data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
+
+        # If slug has been changed, make sure it is not already being used by another recipe
+        if(data['slug'] != recipe['slug']):
+            if (recipes.find_one({"slug": data['slug']})):
+                return "Existing slug"
+
+        # If name has been changed, make sure it is not already being used by another recipe
+        if(data['name'] != recipe['name']):
+            if (recipes.find_one({"name": data['name']})):
+                return "Existing recipe name"
+
         data.update({'ingredients': request.form.getlist('ingredients[]')})
         del data['ingredients[]']
 
@@ -138,7 +169,7 @@ def edit_recipe(recipe_id):
 
         return redirect(url_for("get_recipes"))
     categories = mongo.db.categories.find()
-    return render_template("edit_recipes.html", categories=categories, recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+    return render_template("edit_recipes.html", categories=categories, recipe=recipe)
 
 
 @app.route("/recipes/delete/<recipe_id>", methods=['GET'])
