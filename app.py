@@ -94,6 +94,12 @@ def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
 
+@app.route('/recipes/<recipe_id>', methods=['GET'])
+def view_recipe(recipe_id):
+    return render_template("show_recipe.html",
+        categories=mongo.db.categories.find(),
+        recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})) 
+
 @app.route('/recipes/create', methods=['GET', 'POST'])
 def create_recipe():
     if request.method == "POST":
@@ -120,21 +126,15 @@ def create_recipe():
 @app.route('/recipes/edit/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
-        name = request.form.get("name")
-        calories = request.form.get("calories")
-        serving = request.form.get("serving")
-        category_name = request.form.get("category")
-
         recipes = mongo.db.recipes
+        data = request.form.to_dict()
+        data.update({'ingredients': request.form.getlist('ingredients[]')})
+        del data['ingredients[]']
 
-        recipes.update({"_id": ObjectId(recipe_id)},
-                       {"name": name,
-                        "calories": calories,
-                        "serving": serving,
-                        "category_name": category_name,
-                        "ingredients": [{"name": "beef", "amount": "450g"}, {"name": "Onion", "amount": "1"}],
-                        "steps": ["Fry the beef", "saute the onion"]
-                        })
+        data.update({'steps': request.form.getlist('steps[]')})
+        del data['steps[]']
+
+        recipes.update({"_id": ObjectId(recipe_id)}, data)
 
         return redirect(url_for("get_recipes"))
     categories = mongo.db.categories.find()

@@ -2,6 +2,12 @@
 		<label for="name">Recipe Name</label>
 		<input id="name" name="name" value="{{recipe.name}}"/>
 
+        <label for="image">Recipe Photo</label>
+		<input id="image" name="image_url" value="{{recipe.image_url}}"/>
+
+        <label for="description">Description</label>
+		<textarea name="description">{{recipe.description}}</textarea>
+
 		<label for="calories">Calories</label>
 		<input id="calories" name="calories" value="{{recipe.calories}}"/>
 
@@ -78,6 +84,13 @@
             {% endfor %}
             </select>
 				</div>
-				<input type="submit"/>
-</div>
+
+                {% if recipe %}
+				<input type="submit" value="Save"/>
+
+                {% else %}
+
+				<input type="submit" value="Submit"/>
+                {% endif %}
+ </div>
 				<br/>

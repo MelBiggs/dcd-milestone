@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+<p>{{recipe.name}}</p>
+<p>{{recipe.description}}</p>
+<img src='{{recipe.image_url}}'/>
+<p>{{recipe.calories}}</p>
+<p>{{recipe.serving}}</p>
+
+<ul>
+{% for ingredient in recipe.ingredients %}
+<li>
+{{ingredient}}
+</li>
+
+{% endfor %}
+</ul>
+
+<ol>
+{% for step in recipe.steps %}
+<li>
+{{step}}
+</li>
+
+{% endfor %}
+</ol>
+
+</div>
+
+{% endblock %}
