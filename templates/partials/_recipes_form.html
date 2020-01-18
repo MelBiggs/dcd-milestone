@@ -1,26 +1,37 @@
- <form class="col s12" id ='form' method="POST" action="{{ url_for('create_recipe') }}">
-     <div class="container recipe_form">
-        <label for="name">Recipe Name</label>
-        <input id="name" name="name" value="{{recipe.name}}"/>
+<form class="col s12" id='form' method="POST" action="{{ url_for('create_recipe') }}">
+	<div class="container recipe_form">
+		<label for="name">Recipe Name</label>
+		<input id="name" name="name" value="{{recipe.name}}"/>
 
-        <label for="calories">Calories</label>
-        <input id="calories" name="calories" value="{{recipe.calories}}"/>
+		<label for="calories">Calories</label>
+		<input id="calories" name="calories" value="{{recipe.calories}}"/>
 
-        <label for="serving">Serves:</label>
-        <input id="serving" name="serving" value="{{recipe.serving}}"/>
+		<label for="serving">Serves:</label>
+		<input id="serving" name="serving" value="{{recipe.serving}}"/>
 
-        <h3> Ingredients: </h3>
-        <div id="ingredient-list">
+		<h3> Ingredients: </h3>
+		<div id="ingredient-list">
 
-            <div class="ingredient-list-item">
-                <input id="ingredients" class="ingredients" name="ingredients[]" type="text"/>  
+			<div class="ingredient-list-item">
+				<input id="ingredients" class="ingredients" name="ingredients[]" type="text"/>
+            </div>
+		</div>
+
+		<button id="add-ingredient">Add</button>
+
+        <h3> Steps: </h3>
+        <div id="step-list">
+
+            <div class="step-list-item">
+                <input id="steps" class="steps" name="step[]" type="text"/>
             </div>
         </div>
 
-        <button id="add-ingredient">Add</button>
+        <button id="add-step">Add</button>
 
-    <div class="input-field">
-      <select id="category" name="category">
+
+				<div class="input-field">
+					<select id="category" name="category">
             <option value="" disabled selected>What kind of meal is this?</option>
             {% for category in categories %}
                 {% if(recipe.category_name == category.name) %}
@@ -30,8 +41,8 @@
                 {% endif %}
             {% endfor %}
             </select>
-    </div> 
-    <input type="submit"/>
+				</div>
+				<input type="submit"/>
 </div>
-<br/>
+				<br/>
  </form>
