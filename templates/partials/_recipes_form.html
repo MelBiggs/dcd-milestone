@@ -1,20 +1,20 @@
-
+ <form class="col s12" id ='form' method="POST" action="{{ url_for('create_recipe') }}">
      <div class="container recipe_form">
         <label for="name">Recipe Name</label>
-        <input id="name" name="name" value="{{recipe.name}}"></input>
+        <input id="name" name="name" value="{{recipe.name}}"/>
 
         <label for="calories">Calories</label>
-        <input id="calories" name="calories" value="{{recipe.calories}}"></input>
+        <input id="calories" name="calories" value="{{recipe.calories}}"/>
 
-        <label for="Serving">Serves:</label>
-        <input id="serving" name="serving" value="{{recipe.serving}}"></input>
+        <label for="serving">Serves:</label>
+        <input id="serving" name="serving" value="{{recipe.serving}}"/>
 
         <h3> Ingredients: </h3>
         <div id="ingredient-list">
 
             <div class="ingredient-list-item">
-                <input id="ingredients" class="ingredients" name="ingredients[]" type="text"></input>        
-                <button class="remove-ingredient">Remove</button>
+                <input id="ingredients" class="ingredients" name="ingredients[]" type="text"/>   
+                <a class="remove-ingredients-btn">remove</a>     
             </div>
         </div>
 
@@ -32,6 +32,7 @@
             {% endfor %}
             </select>
     </div> 
-    <input type="submit"></input>
+    <input type="submit"/>
 </div>
-<br></br>
+<br/>
+ </form>
