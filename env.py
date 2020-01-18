@@ -6,4 +6,4 @@ os.environ["MONGO_URI"] = "mongodb+srv://melb:MongoKay1@myfirstcluster-ujsmz.mon
 
 os.environ["IP"] = "0.0.0.0"
 os.environ["PORT"] = "5000"
-SECRET_KEY = "MELISSAMILESTONE"
+os.environ["SECRET_KEY"] = "MELISSAMILESTONE"

@@ -17,6 +17,8 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
+
 mongo = PyMongo(app)
 
 
@@ -55,7 +57,7 @@ def login():
 
 @app.route("/logout", methods=["GET"])
 def logout():
-    if(session['user']):
+    if(session.get('user')):
         session.pop("user")
     return redirect("home")
 
@@ -63,7 +65,7 @@ def logout():
 @app.route('/register', methods=["GET", "POST"])
 def register_user():
     # only allow users through if they are not logged in
-    if not session["user"]:
+    if not session.get('user'):
 
         if request.method == "POST":
             username = request.form.get("username")
@@ -89,7 +91,7 @@ def register_user():
 
             return redirect("get_users")
         return render_template("registration.html")
-    return redirect("home")
+    return redirect(url_for("home"))
 
 
 # Recipes CRUD
@@ -108,7 +110,7 @@ def view_recipe(slug):
 @app.route('/recipes/create', methods=['GET', 'POST'])
 def create_recipe():
     # User must be logged in to create a recipe 
-    if session["user"]:
+    if session.get('user'):
         if request.method == "POST":
 
             data = request.form.to_dict()
@@ -136,40 +138,49 @@ def create_recipe():
             
         categories = mongo.db.categories.find()
         return render_template("create_recipes.html", recipe={}, categories=categories)
-    return redirect("login")
+    return redirect(url_for("login"))
+
 
 @app.route('/recipes/edit/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    if request.method == "POST":
 
-        recipes = mongo.db.recipes
-        data = request.form.to_dict()
+    if(session.get('user')):
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
-        # Make the slug url safe and replace spaces with underscores
-        data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
+        # If a user tries to edit another users recipe, redirect them to the home page
+        if recipe['user'] != session['user']:
+            return redirect(url_for("home"))
 
-        # If slug has been changed, make sure it is not already being used by another recipe
-        if(data['slug'] != recipe['slug']):
-            if (recipes.find_one({"slug": data['slug']})):
-                return "Existing slug"
+        if request.method == "POST":
 
-        # If name has been changed, make sure it is not already being used by another recipe
-        if(data['name'] != recipe['name']):
-            if (recipes.find_one({"name": data['name']})):
-                return "Existing recipe name"
+            recipes = mongo.db.recipes
+            data = request.form.to_dict()
 
-        data.update({'ingredients': request.form.getlist('ingredients[]')})
-        del data['ingredients[]']
+            # Make the slug url safe and replace spaces with underscores
+            data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
 
-        data.update({'steps': request.form.getlist('steps[]')})
-        del data['steps[]']
+            # If slug has been changed, make sure it is not already being used by another recipe
+            if(data['slug'] != recipe['slug']):
+                if (recipes.find_one({"slug": data['slug']})):
+                    return "Existing slug"
 
-        recipes.update({"_id": ObjectId(recipe_id)}, data)
+            # If name has been changed, make sure it is not already being used by another recipe
+            if(data['name'] != recipe['name']):
+                if (recipes.find_one({"name": data['name']})):
+                    return "Existing recipe name"
 
-        return redirect(url_for("get_recipes"))
-    categories = mongo.db.categories.find()
-    return render_template("edit_recipes.html", categories=categories, recipe=recipe)
+            data.update({'ingredients': request.form.getlist('ingredients[]')})
+            del data['ingredients[]']
+
+            data.update({'steps': request.form.getlist('steps[]')})
+            del data['steps[]']
+
+            recipes.update({"_id": ObjectId(recipe_id)}, data)
+
+            return redirect(url_for("get_recipes"))
+        categories = mongo.db.categories.find()
+        return render_template("edit_recipes.html", categories=categories, recipe=recipe)
+    return redirect(url_for("login"))
 
 
 @app.route("/recipes/delete/<recipe_id>", methods=['GET'])
