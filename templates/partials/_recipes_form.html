@@ -1,8 +1,4 @@
-<html>
 
-<head>
-</head>
-    <body>
      <div class="container recipe_form">
         <label for="name">Recipe Name</label>
         <input id="name" name="name" value="{{recipe.name}}"></input>
@@ -12,6 +8,17 @@
 
         <label for="Serving">Serves:</label>
         <input id="serving" name="serving" value="{{recipe.serving}}"></input>
+
+        <h3> Ingredients: </h3>
+        <div id="ingredient-list">
+
+            <div class="ingredient-list-item">
+                <input id="ingredients" class="ingredients" name="ingredients[]" type="text"></input>        
+                <button class="remove-ingredient">Remove</button>
+            </div>
+        </div>
+
+        <button id="add-ingredient">Add</button>
 
     <div class="input-field">
       <select id="category" name="category">
@@ -28,7 +35,3 @@
     <input type="submit"></input>
 </div>
 <br></br>
-    </body>
-
-
-</html>
