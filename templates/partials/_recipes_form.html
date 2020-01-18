@@ -1,4 +1,3 @@
-<form class="col s12" id='form' method="POST" action="{{ url_for('create_recipe') }}">
 	<div class="container recipe_form">
 		<label for="name">Recipe Name</label>
 		<input id="name" name="name" value="{{recipe.name}}"/>
@@ -12,9 +11,27 @@
 		<h3> Ingredients: </h3>
 		<div id="ingredient-list">
 
+            {% if recipe.ingredients %}
+
+                {% for ingredient in recipe.ingredients %}
+
+                    <div class="ingredient-list-item">
+				        <input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>
+                        {% if loop.index > 1 %}
+                        <a class="remove-btn">remove</a>
+                        {% endif %}
+                    </div>
+                    
+                {% endfor %}
+
+            {% else %}
+
 			<div class="ingredient-list-item">
 				<input id="ingredients" class="ingredients" name="ingredients[]" type="text"/>
             </div>
+            
+            {% endif %}
+
 		</div>
 
 		<button id="add-ingredient">Add</button>
@@ -23,7 +40,7 @@
         <div id="step-list">
 
             <div class="step-list-item">
-                <input id="steps" class="steps" name="step[]" type="text"/>
+                <input id="steps" class="steps" name="steps[]" type="text"/>
             </div>
         </div>
 
@@ -31,7 +48,7 @@
 
 
 				<div class="input-field">
-					<select id="category" name="category">
+					<select id="category" name="category_name">
             <option value="" disabled selected>What kind of meal is this?</option>
             {% for category in categories %}
                 {% if(recipe.category_name == category.name) %}
@@ -45,4 +62,3 @@
 				<input type="submit"/>
 </div>
 				<br/>
- </form>

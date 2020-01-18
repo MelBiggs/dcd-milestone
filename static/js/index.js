@@ -9,24 +9,26 @@ $(document).ready(function(){
         // Prevent Default stops the form being submitted after this button is clicked 
         e.preventDefault();  
         
-        var newthing = $(".ingredient-list-item:first").clone();      
-        newthing.insertBefore(this)
-        newthing.find("input").val("");
-        $("<a>").insertAfter(newthing.find("input")).attr("class","remove-btn").text("remove");
-    });
-
-    $(document).on("click", ".remove-btn", function (e) {
-        e.preventDefault();  
-        this.closest("div").remove();
+        var newIngredient = $(".ingredient-list-item:first").clone();      
+        newIngredient.insertBefore(this)
+        newIngredient.find("input").val("");
+        $("<a>").insertAfter(newIngredient.find("input")).attr("class","remove-btn").text("remove");
     });
 
     $("#add-step").on("click", function (e) {
         // Prevent Default stops the form being submitted after this button is clicked 
         e.preventDefault();  
         
-        var newthing = $(".step-list-item:first").clone();      
-        newthing.insertBefore(this)
-        newthing.find("input").val("");
-        $("<a>").insertAfter(newthing.find("input")).attr("class","remove-btn").text("remove");
+        var newStep = $(".step-list-item:first").clone();      
+        newStep.insertBefore(this)
+        newStep.find("input").val("");
+        $("<a>").insertAfter(newStep.find("input")).attr("class","remove-btn").text("remove");
+    });
+
+    // Remove button for forms 
+
+    $(document).on("click", ".remove-btn", function (e) {
+        e.preventDefault();  
+        this.closest("div").remove();
     });
 });

@@ -97,17 +97,22 @@ def get_recipes():
 @app.route('/recipes/create', methods=['GET', 'POST'])
 def create_recipe():
     if request.method == "POST":
-        name = request.form.get("name")
-        calories = request.form.get("calories")
-        serving = request.form.get("serving")
-        category_name = request.form.get("category")
 
-        if (mongo.db.recipes.find_one({"name": name})):
+        data = request.form.to_dict()
+
+        if (mongo.db.recipes.find_one({"name": data['name']})):
             return "Existing recipe"
 
-        mongo.db.recipes.insert_one(
-            {"name": name, "calories": calories, "serving": serving, "category_name": category_name})
+            # Getting the list of ingredients and delete the incorrect data placeholder
+        data.update({'ingredients': request.form.getlist('ingredients[]')})
+        del data['ingredients[]']
+
+        data.update({'steps': request.form.getlist('steps[]')})
+        del data['steps[]']
+        
+        mongo.db.recipes.insert_one(data)
         return redirect(url_for("get_recipes"))
+        
     categories = mongo.db.categories.find()
     return render_template("create_recipes.html", recipe={}, categories=categories)
 
