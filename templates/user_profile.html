@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
  
+ <p>{{user.username}}</p>
+ <p>{{user.email}}</p>
+ <p>{{user.dob}}</p>
+
+ <h4>Your Recipes</h4>
+
+{% for recipe in recipes %}
+<p>{{recipe.name}}</p>
+<p>{{recipe.description}}</p>
+
+{% endfor %}
+ <p>
  
+ </p>
 
 {% endblock %}
