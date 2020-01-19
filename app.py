@@ -194,6 +194,16 @@ def delete_recipe(recipe_id):
 
     return redirect(url_for('get_recipes'))
 
+@app.route('/users/<username>', methods=["GET"])
+def user_profile(username):
+
+    user = mongo.db.users.find_one({"username": username})
+
+    return render_template("user_profile.html", 
+        categories=mongo.db.categories.find(),
+        user=user,
+        recipes=mongo.db.recipes.find({"user": user['username']}))
+
 
 # Categories
 
