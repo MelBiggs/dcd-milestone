@@ -1,5 +1,6 @@
 import os
 import urllib
+import random
 from flask import (
     Flask, render_template, redirect,
     request, flash, url_for, session,
@@ -25,7 +26,8 @@ mongo = PyMongo(app)
 @app.route('/')
 def home():
     """ Home page with recipe of the day """
-    return render_template("index.html")
+    recipes = ([recipe for recipe in mongo.db.recipes.aggregate([{"$sample": {"size": 1}}])])
+    return render_template("index.html", recipe=recipes[0])
 
 
 @app.route('/get_users')
@@ -203,6 +205,43 @@ def user_profile(username):
         categories=mongo.db.categories.find(),
         user=user,
         recipes=mongo.db.recipes.find({"user": user['username']}))
+
+    
+@app.route('/users/<username>/edit', methods=['GET', 'POST'])
+def edit_profile(username):
+    if(session.get('user')):
+        user = mongo.db.users.find_one({"username": username})
+
+        # If the logged in user is trying to edit a different user, send them to home page
+        if user['username'] != session['user']:
+            return redirect(url_for("home"))
+
+        if request.method == "POST":
+            data = request.form.to_dict()
+            # If the current password is incorrect, give error 
+            if (not check_password_hash(user["password"], data['current_password'])):
+                return "incorrect current password details"
+            # If repeated password doesn't match new password, give error
+            if data['repeat_password'] != data['password']:
+                return "passwords dont match"
+            # Delete repeat password and old password from form data
+            del data['repeat_password'] 
+            del data['current_password']  
+            # Add missing username and dob into data object
+            data['dob'] = user['dob']
+            data['username'] = user['username'] 
+            # Replace form data for password with password hash
+            data['password'] = generate_password_hash(data['password'])
+            # Update database
+            mongo.db.users.update({"_id": ObjectId(user['_id'])}, data)
+            return redirect(url_for("user_profile", username=username))
+
+        else:
+            return render_template("edit_profile.html", user=user)
+  
+    return redirect(url_for('user_profile', username=username))
+
+
 
 
 # Categories

@@ -9,8 +9,8 @@
 			<div class="daily-recipe-card">
 				<div class="card large">
 					<div class="card-image">
-						<img src= "{{url_for('static', filename='img/background-header.jpg')}}" class="responsive">
-						<span class="card-title text-centered">Recipe Name</span>
+						<img src= "{{recipe.image_url}}" class="responsive">
+						<span class="card-title text-centered">{{recipe.name}}</span>
 					</div>
 					<div class="card-content left">
 						<p>This is the Recipe Description</p>
