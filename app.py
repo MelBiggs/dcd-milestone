@@ -84,6 +84,9 @@ def register_user():
             if (password != repeat_password):
                 errors.append("passwords do not match")
 
+            if (not password or not username or not email or not dob):
+                errors.append("all fields required")
+
             if (mongo.db.users.find_one({"username": username})):
                 errors.append("existing user")
                 
@@ -109,7 +112,16 @@ def register_user():
 # Recipes CRUD
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
-    return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    return render_template("recipes.html", current_category={},
+        categories=mongo.db.categories.find(), 
+        recipes=mongo.db.recipes.find())
+
+
+@app.route('/category/<category>')
+def view_category(category):
+    return render_template("recipes.html", current_category=category,
+        categories=mongo.db.categories.find(), 
+        recipes=mongo.db.recipes.find({"category_name": category}))
 
 
 @app.route('/search', methods=['POST'])
