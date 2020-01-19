@@ -5,9 +5,9 @@
 
 <div class="page_heading">Find the right recipe for you</div>
 
-<form>
+<form method="POST" action="{{ url_for('search') }}">
 	<div class="input-field" id="recipe-search">
-		<input id="search" type="search" required>
+		<input id="search" type="search" required name='search_term'>
 		<label class="label-icon" for="search"><i class="fas fa-search" aria-hidden="true"></i></label>
 		<i class="material-icons">close</i>
 	</div>

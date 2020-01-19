@@ -21,6 +21,8 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
+# Enable text search for recipe names 
+mongo.db.recipes.create_index([('name','text')])
 
 
 @app.route('/')
@@ -102,6 +104,33 @@ def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
 
+@app.route('/search', methods=['POST'])
+def search():
+    results=mongo.db.recipes.find({"$text":{'$search': request.form.get("search_term")}})
+    print(results)
+
+    return render_template("results.html", results=results)
+
+
+@app.route('/like/<recipe_id>', methods=['GET'])
+def like_recipe(recipe_id):
+    if session.get('user'):
+        user = session.get('user')
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        # Gets list of likes for recipe
+        likes = recipe['likes']
+        # Check if user has already liked it, if so, remove the like. If not, add the like
+        if(user in likes):
+            likes.remove(user)
+        else:
+            likes.append(user)
+        
+        recipe['likes'] = likes
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, recipe)
+
+    return redirect(url_for('view_recipe', slug=recipe['slug']))
+
+
 @app.route('/recipes/<slug>', methods=['GET'])
 def view_recipe(slug):
     return render_template("show_recipe.html",
@@ -134,6 +163,8 @@ def create_recipe():
 
             data.update({'steps': request.form.getlist('steps[]')})
             del data['steps[]']
+
+            data['likes'] = []
             
             mongo.db.recipes.insert_one(data)
             return redirect(url_for("get_recipes"))
@@ -176,6 +207,8 @@ def edit_recipe(recipe_id):
 
             data.update({'steps': request.form.getlist('steps[]')})
             del data['steps[]']
+
+            data['likes'] = recipe['likes']
 
             recipes.update({"_id": ObjectId(recipe_id)}, data)
 

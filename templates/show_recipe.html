@@ -26,6 +26,19 @@
 {% endfor %}
 </ol>
 
+{% if session['user'] %}
+<a href="{{ url_for('like_recipe', recipe_id=recipe._id) }}">
+
+<!-- If someone likes the recipe, have a filled in heart. Unliked heart is empty -->
+    {% if session['user'] in recipe.likes %}
+    <i class="fas fa-heart" aria-hidden="true"></i>
+    {% else %}
+        <i class="far fa-heart" aria-hidden="true"></i>
+    {% endif %}
+</a>
+
+{%endif%}
+
 </div>
 
 {% endblock %}
