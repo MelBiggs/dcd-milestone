@@ -1,18 +1,27 @@
 {% extends 'base.html' %} {% block content %}
 
+{% if errors|length > 0 %}
+    {% for error in errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+{% endif %}
+
 <form class="col s12" method="POST" action="{{ url_for('register_user') }}">
 
     <label for="username">Username</label>
-    <input id="username" id="username" name="username"></input>
+    <input id="username" id="username" name="username" value="{{data.username}}"></input>
 
     <label for="password">Password</label>
     <input type="password" id="password" name="password"></input>
 
+    <label for="repeat_password">Repeat Password</label>
+    <input type="password" id="repeat_password" name="repeat_password"></input>
+
     <label for="dob">Date of Birth</label>
-    <input id="dob" id="dob" name="dob"></input>
+    <input id="dob" id="dob" name="dob" value="{{data.dob}}"></input>
 
     <label for="email">Email</label>
-    <input type="email" id="email" name="email"></input>
+    <input type="email" id="email" name="email" value="{{data.email}}"></input>
 
     <input type="submit"></input>
 

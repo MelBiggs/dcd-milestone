@@ -54,7 +54,8 @@ def login():
 
         session["user"] = user["username"]
 
-        return redirect("get_users")
+        flash('Hi ' + user["username"] + "!")
+        return redirect(url_for("home"))
 
     return render_template("login.html")
 
@@ -73,19 +74,26 @@ def register_user():
 
         if request.method == "POST":
             username = request.form.get("username")
+            password = request.form.get("password")
+            repeat_password = request.form.get("repeat_password")
             email = request.form.get("email")
             dob = request.form.get("dob")
 
+            errors=[]
+
+            if (password != repeat_password):
+                errors.append("passwords do not match")
+
             if (mongo.db.users.find_one({"username": username})):
-                return "existing user"
-                flash(Markup("<h4>\
-                {request.form.get('username')}\
-                is already taken! Please try again.</h4>"))
-
+                errors.append("existing user")
+                
             if (mongo.db.users.find_one({"email": email})):
-                return "existing email"
+                errors.append("existing email")
 
-            password = generate_password_hash(request.form.get("password"))
+            if(len(errors) > 0):
+                return render_template("registration.html", data=request.form.to_dict(), errors=errors)
+
+            password = generate_password_hash(password)
 
             mongo.db.users.insert_one(
                 {"username": username, "email": email, "password": password, "dob": dob})
@@ -94,7 +102,7 @@ def register_user():
             session["user"] = username
 
             return redirect("get_users")
-        return render_template("registration.html")
+        return render_template("registration.html", data={})
     return redirect(url_for("home"))
 
 
