@@ -185,8 +185,14 @@ def edit_recipe(recipe_id):
 
 @app.route("/recipes/delete/<recipe_id>", methods=['GET'])
 def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    return redirect(url_for("get_recipes"))
+    if(session.get('user')):
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        if recipe['user'] != session['user']:
+            return redirect(url_for("get_recipes"))
+    
+        mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+
+    return redirect(url_for('get_recipes'))
 
 
 # Categories

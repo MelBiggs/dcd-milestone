@@ -34,7 +34,7 @@
 		{% if session["user"] %}
 		
         <div class="flow-text">Hi {{session["user"]|capitalize}}
-        <p><a class ="btn logout-btn" href="{{url_for('logout')}}">Log Out</a></p></div>
+        <p class="logout-btn"><a class ="btn" href="{{url_for('logout')}}">Log Out</a></p></div>
 		{% else %}
 		<div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
 </div>
@@ -45,7 +45,7 @@
         <div class="container landing-header">
         <div class="col s12">
 						
-		<img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"><a href="{{url_for('home')}}">
+		<a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
 									
 							</div>
 						</div>

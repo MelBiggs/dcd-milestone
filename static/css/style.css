@@ -67,8 +67,10 @@ h4 {
     color: #627A8E;
     background-color: rgb(175, 206, 163);
 }
-
-.logout-btn{
+.logout-btn {
+    margin: 0;
+}
+.logout-btn a{
     background-color: rgb(175, 206, 163);
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
