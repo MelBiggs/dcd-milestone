@@ -28,30 +28,34 @@
 				<div class="header-area">
 					<div class="container slidingHeader">
 							<div class="row">
-								<div class="col s1 offset-s11"><span class="flow-text">
+								<div class="col s2 offset-s12 greeting">
+            
 
 		{% if session["user"] %}
-		Hi {{session["user"]}}, <a href="{{url_for('logout')}}">click here to log out!</a>
+		
+        <div class="flow-text">Hi {{session["user"]|capitalize}}
+        <p><a class ="btn logout-btn" href="{{url_for('logout')}}">Log Out</a></p></div>
 		{% else %}
-		<a href="{{url_for('login')}}">Login</a>
-
+		<div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
+</div>
 		{% endif %}
-        </span></div>
-							</div>
-							<div class="header-text text center"><a href="{{url_for('home')}}">
-									<h1>THE CONSTANT COOKBOOK</h1>
-								</a>
-								<div class="slogan text-center">
-									<h4>The cookbook that constantly grows...</h4>
-								</div>
+        
+        </div>
+
+        <div class="container landing-header">
+        <div class="col s12">
+						
+		<img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"><a href="{{url_for('home')}}">
+									
 							</div>
 						</div>
 					</div>
 				</div>
+                </div>
 		</section>
 	</header>
 
-
+<section class="sections">
 	<!-- Navbar  -->
 	<!-- Dropdown Structure -->
 
@@ -116,6 +120,8 @@
 			</div>
 		</div>
 	</footer>
+</section>
+
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"

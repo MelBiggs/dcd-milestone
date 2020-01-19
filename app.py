@@ -59,7 +59,7 @@ def login():
 def logout():
     if(session.get('user')):
         session.pop("user")
-    return redirect("home")
+    return redirect(url_for("home"))
 
 
 @app.route('/register', methods=["GET", "POST"])

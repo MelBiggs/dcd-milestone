@@ -7,12 +7,7 @@
 
 
 .HeaderArea {
-    height:90vh;
-}
-
-.slidingHeader {
-    position:sticky; 
-    top:0px; 
+    height:80vh;
 }
 
 .sections {
@@ -21,13 +16,23 @@
 a {
     color: inherit;
 }
-.header-text {
-  background-image: url("../img/background-header.jpg");
+/* .header-text {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width:100%; 
   height:500px; 
+} */
+
+
+.landing-img{
+    max-width:90%;
+    max-height:90%;
+    text-align: center;
+}
+
+.landing-header {
+    text-align: center;
 }
 
 h1 {
@@ -45,18 +50,30 @@ h4 {
 
 
 /* Log In Button  */
-.flow-text a{
-    font-size: .8em;
-    text-align: center;
-    padding-right: 0em;
-    color: rgb(175, 206, 163);
+.login-btn a{
+  background-color: rgb(175, 206, 163);
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
 }
 
+.greeting {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    color: rgb(175, 206, 163);
+    text-align: center;
+}
+
 .flow-text a:hover {
     color: #627A8E;
+    background-color: rgb(175, 206, 163);
 }
+
+.logout-btn{
+    background-color: rgb(175, 206, 163);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+}
+
 
 .index-cta {
     padding-top: 2em;
