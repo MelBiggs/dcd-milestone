@@ -157,6 +157,7 @@ nav ul a {
     background-color: rgb(175, 206, 163);
     padding: 0em;
     font-family: 'Oswald', sans-serif;
+    margin-top:auto; 
 }
 .social-links {
     list-style: none;
@@ -194,8 +195,9 @@ nav ul a {
 
   body {
     display: flex;
-    min-height: 100vh;
+    min-height: 100%;
     flex-direction: column;
+    position: relative;
   }
 
   main {
@@ -235,7 +237,7 @@ button, input, optgroup, select, textarea {
 }
 
 .search-recipe-card .card-content {
-    height: 150px;
+    height: 120px;
 }
 
 .search-recipe-card .card .card-image img {
@@ -245,8 +247,16 @@ button, input, optgroup, select, textarea {
   height: 150px;
 }
 
-.search-recipe-card .card-content {
+
+.results-recipe-card .card .card-image img {
+  display: block;
+  position: relative;
+  width: 100%;
   height: 150px;
+}
+
+.results-recipe-card .card-content {
+  height: 100px;
 }
 
 .card-label {

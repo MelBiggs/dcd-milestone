@@ -35,9 +35,11 @@
 
 <div class="landing-page-container">
     <div class="container-90">
-
+<!-- Flash message toast -->
         {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-        <p>{{message}}</p>
+
+        <a onclick="M.toast({html: '{{message}}'})" class="btn">Toast!</a>
+        
         {% endfor %} {% endif %} {% endwith %}
 
         <div class="row">
@@ -45,14 +47,14 @@
                 <div class="card">
                     <div class="card-header">Recipe Generator</div>
                     <div class="divider pink"></div>
-                    <br /> 
+                    <br />
                     <div class="daily-recipe-card">
                         <div class="card-image waves-effect waves-block waves-light recipe-generator-img">
                             <img src="{{recipe.image_url|title}}" class="responsive">
                             <span class="card-title text-centered">{{recipe.name}}</span>
                         </div>
-                              <br /> 
-                     <div class="divider pink"></div>
+                        <br />
+                        <div class="divider pink"></div>
                         <div class="card-action center">
                             <a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a>
                         </div>
