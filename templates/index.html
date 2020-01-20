@@ -35,11 +35,9 @@
 
 <div class="landing-page-container">
     <div class="container-90">
-<!-- Flash message toast -->
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
-        <a onclick="M.toast({html: '{{message}}'})" class="btn">Toast!</a>
-        
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+        <p>{{message}}</p>
         {% endfor %} {% endif %} {% endwith %}
 
         <div class="row">

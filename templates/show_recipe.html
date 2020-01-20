@@ -1,37 +1,105 @@
 {% extends 'base.html' %} {%block title %}| {{recipe.name }}{% endblock %} {% block content %}
-<div>
-    <p>{{recipe.name}}</p>
-    <p>{{recipe.description}}</p>
-    <img src='{{recipe.image_url}}' />
-    <p>{{recipe.calories}}</p>
-    <p>{{recipe.serving}}</p>
 
-    <ul>
-        {% for ingredient in recipe.ingredients %}
-        <li>
-            {{ingredient}}
-        </li>
+<section class="view-recipe">
+    <div class="container recipe-view">
+        <div class="row card view-recipe-card">
+            <div class="col s8 l3 center-align card-image recipe-img">
+            {% if recipe.image_url %}
+                <img height="400" width="375" src="{{recipe.image_url}}" alt="recipe image" class="responsive-img materialboxed"> 
+             {% else %}
+              <img height="400" width="375" src="{{ url_for('static', filename='img/default-recipe-img.jpg') }}" alt="recipe image" class="responsive-img materialboxed">
+            {% endif %}
 
-        {% endfor %}
-    </ul>
-
-    <ol>
-        {% for step in recipe.steps %}
-        <li>
-            {{step}}
-        </li>
-
-        {% endfor %}
-    </ol>
-
-    {% if session['user'] %}
+            {% if session['user'] %}
     <a href="{{ url_for('like_recipe', recipe_id=recipe._id) }}">
 
         <!-- If someone likes the recipe, have a filled in heart. Unliked heart is empty -->
         {% if session['user'] in recipe.likes %}
-        <i class="fas fa-heart" aria-hidden="true"></i> {% else %}
+        <i class="fas fa-heart" aria-hidden="true"></i> 
+        {% else %}
         <i class="far fa-heart" aria-hidden="true"></i> {% endif %}
     </a>
+            </div>
+
+        <div class="col s12 l8 left-align">
+                <div class="recipe-header center-align">
+                    <h4 style="text-transform:capitalize;">{{ recipe.name }}</h4>
+                </div>
+
+        <div class="row">
+            <div class="col s10 offset-s2 m5 offset-m1 author">
+                <p>Recipe by <span style="text-transform:capitalize;">{{ recipe.user }}</span></p>
+            </div>
+
+          <div class="col s10 offset-s2 m5 view-category">
+                        <p>Type: <span class="icon-color">{{ recipe.category_name }}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10 offset-s2 m5 offset-m1 center-align">
+                        <div>
+                            <p> <i class="fas fa-clock icon-color"></i> Cooking Time: 
+                            <span>{{recipe.cooking_time}}</span> min
+                            </p>
+                        </div>
+                        <div>
+                            <p> <i class="fas fa-users icon-color"></i> Serves:
+                                <span class="">{{recipe.serving}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s11 offset-s1 recipe-description">
+                        <p><span>{{ recipe.description }}</span></p>
+                    </div>
+                     </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section id="Ingredients-and-prep">
+    <div class="container">
+        <div class="row">
+            <!-- Ingredients -->
+            <div class="col s12 m4 offset-s1 view-ingredients">
+                <div class="row">
+                    <div class="col s12 view-ingredients">
+                        <h5>Ingredients</h5>
+                        <br>
+                        <ul>
+                            {% for ingredient in recipe.ingredients %}
+                            <li><i class="fas fa-square fa-sm square" aria-hidden="true"></i>
+                                {{ ingredient }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Recipe Steps -->
+            <div class="col s12 offset-m1  m7 recipe-steps z-depth-1">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="center">Preparation</h5>
+                        <br>
+                        <ol id="prep-list">
+                            {% for step in recipe.steps %}
+                            <li>
+                                {{ step }}
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
 
     {%endif%}
 

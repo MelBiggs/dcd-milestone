@@ -68,7 +68,7 @@ h4 {
 
 .landing-page-container {
     margin: 1em;
-    padding-left: 3em;
+    padding: 1em;
 }
 
 /* Links Landing Page Card */
@@ -287,21 +287,38 @@ margin: 0 auto 0;
     margin: .5em;   
 }
 
-
-/* .input-field input[type=search] { 
-   line-height: 0;
-   padding: .2em; 
-} */
-
-/* table{
-    margin-left: 3em;
-    padding-bottom: 2em;
-    width: 90%;
-    border-collapse: unset;
-} */
-
 #delete_modal {
     font-family: 'Oswald', sans-serif;
+}
+
+/*                                                     VIEW RECIPE PAGE */
+
+.view-recipe-card .recipe-img{
+  padding-top:1em;
+}
+
+.icon-color {
+  color: black;
+}
+
+.recipe-view .card {
+  background-color: #E0E5E7;
+}
+
+.view-ingredients ul li {
+  padding: 0px 15px 15px 5px;
+  font-size: 1em;
+}
+.square{
+  padding:5px;
+  color: rgb(175, 206, 163);
+}
+#prep-list {
+ 
+}
+
+#prep-list li {
+    padding: 1em 0;
 }
 
 /*                                                     LOG IN PAGE */
