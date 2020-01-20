@@ -111,11 +111,6 @@ h4 {
     padding-top: 2em;
 }
 
-/* .recipe-card {
-    border: 3px groove #59C1D7;
-
-} */
-
 .card-title {
     color: black!important;
     text-align: center!important;
@@ -240,17 +235,49 @@ button, input, optgroup, select, textarea {
     padding-bottom: 1em;
 }
 
+.recipe-card .card-content {
+    height: 150px;
+}
+
+.recipe-card .card .card-image img {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 150px;
+}
+
+.recipe-card .card-content {
+  height: 150px;
+}
+
+.card-label {
+  position: absolute;
+  font-size: 0.8rem;
+  top:10px;
+  right: 10px;
+  margin-top: 7px;
+  padding: 2px 8px;
+  border: 1px;
+  color: white !important;
+  background-color: #59C1D7 ;
+  text-transform: uppercase;
+  z-index: 1;
+}
+.calorie-text{
+   display: block;
+}
+
 /* .input-field input[type=search] { 
    line-height: 0;
    padding: .2em; 
 } */
 
-table{
+/* table{
     margin-left: 3em;
     padding-bottom: 2em;
     width: 90%;
     border-collapse: unset;
-}
+} */
 
 #delete_modal {
     font-family: 'Oswald', sans-serif;
