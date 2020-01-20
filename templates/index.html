@@ -45,13 +45,12 @@
                 <div class="card">
                     <div class="card-header">Recipe Generator</div>
                     <div class="divider pink"></div>
+                    <br /> 
                     <div class="daily-recipe-card">
                         <div class="card-image waves-effect waves-block waves-light">
                             <img src="{{recipe.image_url|title}}" class="responsive">
+                    <br /> 
                             <span class="card-title text-centered">{{recipe.name}}</span>
-                        </div>
-                        <div class="card-content left">
-                            <p>{{recipe.description}}</p>
                         </div>
                         <div class="card-action center">
                             <a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a>
