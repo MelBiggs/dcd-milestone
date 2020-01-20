@@ -1,5 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
+	<header>
+
+		<!-- Log In Button  -->
+		<!-- Title Section  -->
+
+		<section class="HeaderSection">
+			<div class="HeaderArea">
+				<div class="header-area">
+					<div class="container slidingHeader">
+							<div class="row">
+								<div class="col s2 offset-s12 greeting">
+            
+
+		{% if session["user"] %}
+		
+        <div class="flow-text">Hi {{session["user"]|capitalize}}
+        <p class="logout-btn"><a class ="btn" href="{{url_for('logout')}}">Log Out</a></p></div>
+		{% else %}
+		<div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
+</div>
+		{% endif %}
+        
+        </div>
+
+        <div class="container landing-header">
+        <div class="col s12">
+						
+		<a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
+									
+							</div>
+						</div>
+					</div>
+				</div>
+                </div>
+		</section>
+	</header>
+    
 <div class="landing-page-container">
 <div class="container-95">
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Oswald:400,500,600,700|Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500,600,700|Montserrat:400,500&display=swap');
 
 
 /*                                                     BASE PAGE  */
@@ -37,13 +37,12 @@ a {
 
 h1 {
 
-    font-family: 'Monoton', cursive;
     padding-top: 2em;
     padding-bottom: 1em;
 }
 
 h4 {
-    font-family: 'Amatic SC', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     padding-bottom: .5em
 }
@@ -57,8 +56,9 @@ h4 {
 }
 
 .greeting {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
     color: rgb(175, 206, 163);
     text-align: center;
 }
@@ -113,9 +113,8 @@ h4 {
 
 .card-title {
     color: black!important;
-    text-align: center!important;
     size: 1em;
-    font-family: 'Oswald', sans-serif!important;
+    font-family: 'Montserrat', sans-serif!important;
 }
 
 .card-header {
@@ -138,6 +137,7 @@ h4 {
 
 .card-content {
     padding: 1em!important;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Navbar */
@@ -149,7 +149,12 @@ nav ul a {
     font-size: 1.4em !important;
     padding-right: 1em;
     padding-left: 1em;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.brand-logo {
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 /* Footer */
@@ -206,10 +211,10 @@ nav ul a {
 /*                                                     REUSEABLE CSS */
 
 .page_heading {
-    font-size: 5em;
-    font-family:  'Amatic SC', sans-serif;
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
-    padding-top: .3em;
+    margin-top: .9em;
     font-weight: 500;
 }
 
@@ -263,9 +268,21 @@ button, input, optgroup, select, textarea {
   text-transform: uppercase;
   z-index: 1;
 }
-.calorie-text{
+.cooking-text{
    display: block;
 }
+
+.category_filters{
+text-align: center;
+width: 80%;
+margin: 0 auto 0;
+}
+
+#category-btn {
+    background-color: #59C1D7;
+    margin: .5em;   
+}
+
 
 /* .input-field input[type=search] { 
    line-height: 0;
