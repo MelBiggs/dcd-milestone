@@ -1,119 +1,85 @@
+<header>
 <section class="HeaderSection">
-			<div class="HeaderArea">
-				<div class="header-area">
-					<div class="container">
-							<div class="row">
-								<div class="col s2 offset-s12 greeting">
-            
+    <div class="HeaderArea">
+        <div class="header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col s2 offset-s12 greeting">
 
-		{% if session["user"] %}
-		
-        <div class="flow-text">Hi {{session["user"]|capitalize}}
-        <p class="logout-btn"><a class ="btn" href="{{url_for('logout')}}">Log Out</a></p></div>
-		{% else %}
-		<div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
-</div>
-		{% endif %}
-        
-        </div>
+                        {% if session["user"] %}
 
-        <div class="container landing-header">
-        <div class="col s12">
-						
-		<a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
-									
-							</div>
-						</div>
-					</div>
-				</div>
+                        <div class="flow-text hi">Hi {{session["user"]|capitalize}}
+                            <p class="logout-btn"><a class="btn" href="{{url_for('logout')}}">Log Out</a></p>
+                        </div>
+                        {% else %}
+                        <div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
+                    </div>
+                    {% endif %}
+
                 </div>
-		</section>
-	</header>
 
+                <div class="container landing-header">
+                    <div class="col s12">
 
-{% extends "base.html" %}
-{% block content %}
+                        <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</header>
+
+{% extends "base.html" %} {% block content %}
 
 <div class="landing-page-container">
-<div class="container-90">
+    <div class="container-90">
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{message}}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %} {% endif %} {% endwith %}
 
+        <div class="row">
+            <div class="col s12 l5 card landing-page recipe-card white">
+                <div class="card">
+                    <div class="card-header">Recipe Generator</div>
+                    <div class="divider pink"></div>
+                    <div class="daily-recipe-card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="{{recipe.image_url|title}}" class="responsive">
+                            <span class="card-title text-centered">{{recipe.name}}</span>
+                        </div>
+                        <div class="card-content left">
+                            <p>{{recipe.description}}</p>
+                        </div>
+                        <div class="card-action center">
+                            <a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	<!-- <div class="row">
-		<div class="col s12 l5 card landing-page recipe-card white">
-			<div class="card-header">Recipe Generator</div>
-            <div class="divider pink"></div>
-			<div class="daily-recipe-card">
-				<div class="card medium">
-					<div class="card-image">
-						<img src= "{{recipe.image_url}}" class="responsive">
-						<span class="card-title text-centered">{{recipe.name}}</span>
-					</div>
-					<div class="card-content left">
-						<p>This is the Recipe Description</p>
-					</div>
-					<div class="card-action center">
-						<a href="#">Go to Recipe</a>
-					</div>
-				</div>
-			</div>
-		</div> -->
+            <div class="col s12 l5 offset-l1 center-align white card link-card">
+                <h5>The Constant Cookbook</h5>
+                <div class="divider pink"></div>
+                <h6><p>Text about the website.</p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h6>
+                <!-- Links -->
+                <div class="quick-links">
+                    <a href="{{ url_for('get_recipes') }}" class="btn">
+                        <i class="fas fa-search" aria-hidden="true"></i> Search
+                    </a>
+                    <a href="{{url_for('login')}}" class="btn bold white-text text-shadow-2">
+                        <i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Log In/Register
+                    </a>
+                    <a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
+                        <i class="fas fa-plus left" aria-hidden="true"></i> Add Recipe
+                    </a>
 
-
-
-<div class="row">
-		<div class="col s12 l5 card landing-page recipe-card white">
-  <div class="card">
-  <div class="card-header">Recipe Generator</div>
-            <div class="divider pink"></div>
-			<div class="daily-recipe-card">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src= "{{recipe.image_url|title}}" class="responsive">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">{{recipe.name}}<i class="material-icons right">more_vert</i></span>
-      <p><a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a></p>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">{{recipe.name}}<i class="material-icons right">close</i></span>
-      <p>{{recipe.description}}</p>
-    </div>
-  </div>
-  </div>
-  </div>
-
-
-
-
-		<div class="col s12 l5 offset-l1 center-align white card link-card">
-			<h5>The Constant Cookbook</h5>
-            <div class="divider pink"></div>
-            <h6><p>Text about the website.</p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h6>
-			<!-- Links -->
-			<div class="quick-links">
-				<a href="{{ url_for('get_recipes') }}" class="btn">
-                    <i class="fas fa-search" aria-hidden="true"></i> Search
-                </a>
-                	<a href="{{url_for('login')}}" class="btn bold white-text text-shadow-2">
-                    <i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Log In/Register
-                </a>
-                	<a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
-                    <i class="fas fa-plus left" aria-hidden="true"></i> Add Recipe
-                </a>
-
-			</div>
-		</div>
-	</div>
 </div>
-</div>
-
-
 
 {% endblock %}
