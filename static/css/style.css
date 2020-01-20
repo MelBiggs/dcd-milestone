@@ -301,6 +301,10 @@ margin: 0 auto 0;
   color: black;
 }
 
+.like-button{
+    font-size: 2em;
+    padding-top: .5em;
+}
 .recipe-view .card {
   background-color: #E0E5E7;
 }
