@@ -47,11 +47,12 @@
                     <div class="divider pink"></div>
                     <br /> 
                     <div class="daily-recipe-card">
-                        <div class="card-image waves-effect waves-block waves-light">
+                        <div class="card-image waves-effect waves-block waves-light recipe-generator-img">
                             <img src="{{recipe.image_url|title}}" class="responsive">
-                    <br /> 
                             <span class="card-title text-centered">{{recipe.name}}</span>
                         </div>
+                              <br /> 
+                     <div class="divider pink"></div>
                         <div class="card-action center">
                             <a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a>
                         </div>
@@ -60,11 +61,12 @@
             </div>
 
             <div class="col s12 l5 offset-l1 center-align white card link-card">
-                <h5>The Constant Cookbook</h5>
+                <h5><b>The Constant Cookbook</b></h5>
                 <div class="divider pink"></div>
                 <h6><p><b>How does it work?</b>
                 </p>Do you have a signature dish? Is there a recipe that everyone asks you for?</p>
-                <p>The Constant Cookbook wants to know! <b>Add</b> those special recipes and share your creations with the world! You'll have full control over your recipes, being able to edit or delete them if need be.</p>
+                <p>The Constant Cookbook wants to know!</p>
+                </p><b>Add</b> those special recipes and share your creations with the world! You'll have full control over your recipes, being able to edit or delete them if need be.</p>
                 <p>Looking for some inspiration?</p>
                 <p>Check out our list of recipes from people all over the world! <b>Search</b> through our recipes and like your favourites.</p>
                 </h6>

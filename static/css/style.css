@@ -98,6 +98,7 @@ h4 {
     padding-top: 2em;
     font-family: 'Montserrat', sans-serif!important;
     width: 3em;
+    border: #59C1D7;
 }
 
 .card-title {
@@ -118,12 +119,14 @@ h4 {
   height: auto;
 }
 
-.card-image {
+.recipe-generator-img {
     max-height: 75%!important;
     width: 60%;
-     margin-left: auto;
-  margin-right: auto;
-  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: relative;
+    height: 150px;
 }
 
 .card-content {
@@ -231,18 +234,18 @@ button, input, optgroup, select, textarea {
     padding-bottom: 1em;
 }
 
-.recipe-card .card-content {
+.search-recipe-card .card-content {
     height: 150px;
 }
 
-.recipe-card .card .card-image img {
+.search-recipe-card .card .card-image img {
   display: block;
   position: relative;
   width: 100%;
   height: 150px;
 }
 
-.recipe-card .card-content {
+.search-recipe-card .card-content {
   height: 150px;
 }
 
