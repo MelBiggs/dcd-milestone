@@ -26,7 +26,7 @@ h4 {
 
 
 /* Log In Button  */
-.login-btn a{
+.login-btn {
   background-color: rgb(175, 206, 163);
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
@@ -64,6 +64,7 @@ h4 {
 
 .landing-page-container {
     margin: 1em;
+    padding-left: 3em;
 }
 
 /* Links Landing Page Card */
@@ -89,23 +90,23 @@ h4 {
 
 /* Recipe of the Day Card */
 
-.daily-recipe-card {
+.recipe-card {
     padding-top: 2em;
+    font-family: 'Montserrat', sans-serif!important;
+    width: 3em;
 }
 
 .card-title {
-    color: black!important;
     size: 1em;
-    font-family: 'Montserrat', sans-serif!important;
 }
 
 .card-header {
     color: black;
     text-align: center;
     font-size: 3em;
-    font-family: 'Oswald', sans-serif!important;
-    padding-top: 1.5em;
-    padding-bottom: 1em;
+    font-family: 'Montserrat', sans-serif!important;
+    padding-top: .9em;
+    padding-bottom: .5em;
 }
 
 .responsive {
@@ -136,7 +137,7 @@ nav ul a {
 
 .brand-logo {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.1em!important;
+    font-size: 1.2em!important;
 }
 
 /* Footer */
