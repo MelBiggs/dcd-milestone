@@ -1,29 +1,29 @@
 {% extends 'base.html' %} {% block content %}
 
 <section>
-	<form class="col s12" method="POST" action="{{ url_for('login') }}">
+    <form class="col s12" method="POST" action="{{ url_for('login') }}">
 
-		<label for="email">Email</label>
-		<input id="email" name="email"></input>
+        <label for="email">Email</label>
+        <input id="email" name="email"></input>
 
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password"></input>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"></input>
 
-		<button class="btn waves-effect waves-light btn-small" type="submit" name="action">Submit
-    <i class="material-icons right">send</i>
-    </button>
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
 
-	</form>
+    </form>
 
 </section>
 
 <div class="container">
-	<div class="row">
-		<div class="register-button">
-			<div class="col s12">
-				<a class="waves-effect btn" href="{{url_for('register_user')}}">Click here to register</a>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="register-button">
+            <div class="col s12">
+                <a class="waves-effect btn" href="{{url_for('register_user')}}">Click here to register</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

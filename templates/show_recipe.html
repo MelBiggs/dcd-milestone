@@ -1,43 +1,39 @@
-{% extends 'base.html' %} 
-{%block title %}| {{recipe.name }}{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {%block title %}| {{recipe.name }}{% endblock %} {% block content %}
 <div>
-<p>{{recipe.name}}</p>
-<p>{{recipe.description}}</p>
-<img src='{{recipe.image_url}}'/>
-<p>{{recipe.calories}}</p>
-<p>{{recipe.serving}}</p>
+    <p>{{recipe.name}}</p>
+    <p>{{recipe.description}}</p>
+    <img src='{{recipe.image_url}}' />
+    <p>{{recipe.calories}}</p>
+    <p>{{recipe.serving}}</p>
 
-<ul>
-{% for ingredient in recipe.ingredients %}
-<li>
-{{ingredient}}
-</li>
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+        <li>
+            {{ingredient}}
+        </li>
 
-{% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
-<ol>
-{% for step in recipe.steps %}
-<li>
-{{step}}
-</li>
+    <ol>
+        {% for step in recipe.steps %}
+        <li>
+            {{step}}
+        </li>
 
-{% endfor %}
-</ol>
+        {% endfor %}
+    </ol>
 
-{% if session['user'] %}
-<a href="{{ url_for('like_recipe', recipe_id=recipe._id) }}">
+    {% if session['user'] %}
+    <a href="{{ url_for('like_recipe', recipe_id=recipe._id) }}">
 
-<!-- If someone likes the recipe, have a filled in heart. Unliked heart is empty -->
-    {% if session['user'] in recipe.likes %}
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    {% else %}
-        <i class="far fa-heart" aria-hidden="true"></i>
-    {% endif %}
-</a>
+        <!-- If someone likes the recipe, have a filled in heart. Unliked heart is empty -->
+        {% if session['user'] in recipe.likes %}
+        <i class="fas fa-heart" aria-hidden="true"></i> {% else %}
+        <i class="far fa-heart" aria-hidden="true"></i> {% endif %}
+    </a>
 
-{%endif%}
+    {%endif%}
 
 </div>
 

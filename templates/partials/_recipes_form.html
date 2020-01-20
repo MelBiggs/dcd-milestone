@@ -1,99 +1,80 @@
-	<div class="container recipe_form">
-		<label for="name">Recipe Name</label>
-		<input id="name" name="name" value="{{recipe.name}}"/>
+<div class="container recipe_form">
+    <label for="name">Recipe Name</label>
+    <input id="name" name="name" value="{{recipe.name}}" />
 
-        <label for="image">Recipe Photo</label>
-		<input id="image" name="image_url" value="{{recipe.image_url}}"/>
+    <label for="image">Recipe Photo</label>
+    <input id="image" name="image_url" value="{{recipe.image_url}}" />
 
-        <label for="slug">Url Slug</label>
-		<input id="slug" name="slug" value="{{recipe.slug}}"/>
+    <label for="slug">Url Slug</label>
+    <input id="slug" name="slug" value="{{recipe.slug}}" />
 
-        <label for="description">Description</label>
-		<textarea name="description">{{recipe.description}}</textarea>
+    <label for="description">Description</label>
+    <textarea name="description">{{recipe.description}}</textarea>
 
-		<label for="cooking_time">Cooking Time (in minutes) </label>
-		<input id="cooking_time" name="cooking_time" value="{{recipe.cooking_time}}"/>
+    <label for="cooking_time">Cooking Time (in minutes) </label>
+    <input id="cooking_time" name="cooking_time" value="{{recipe.cooking_time}}" />
 
-		<label for="serving">Serves:</label>
-		<input id="serving" name="serving" value="{{recipe.serving}}"/>
+    <label for="serving">Serves:</label>
+    <input id="serving" name="serving" value="{{recipe.serving}}" />
 
-		<h3> Ingredients: </h3>
-		<div id="ingredient-list">
+    <h3> Ingredients: </h3>
+    <div id="ingredient-list">
 
-            {% if recipe.ingredients %}
+        {% if recipe.ingredients %} {% for ingredient in recipe.ingredients %}
 
-                {% for ingredient in recipe.ingredients %}
+        <div class="ingredient-list-item">
+            <input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}" /> {% if loop.index > 1 %}
+            <a class="remove-btn">remove</a> {% endif %}
+        </div>
 
-                    <div class="ingredient-list-item">
-				        <input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>
-                        {% if loop.index > 1 %}
-                        <a class="remove-btn">remove</a>
-                        {% endif %}
-                    </div>
-                    
-                {% endfor %}
+        {% endfor %} {% else %}
 
-            {% else %}
-
-			<div class="ingredient-list-item">
-				<input id="ingredients" class="ingredients" name="ingredients[]" type="text"/>
-            </div>
-            
-            {% endif %}
-
-		</div>
-
-		<button id="add-ingredient">Add</button>
-
-        <h3> Steps: </h3>
-        <div id="step-list">
-
-        {% if recipe.steps %}
-
-            {% for step in recipe.steps %}
-
-                <div class="step-list-item">
-                    <input id="steps" class="steps" name="steps[]" type="text" value="{{step}}"/>
-                    {% if loop.index > 1 %}
-                        <a class="remove-btn">remove</a>
-                    {% endif %}
-                </div>
-
-            {% endfor %}
-
-        {% else %}
-
-            <div class="step-list-item">
-                <input id="steps" class="steps" name="steps[]" type="text"/>
-            </div>
+        <div class="ingredient-list-item">
+            <input id="ingredients" class="ingredients" name="ingredients[]" type="text" />
+        </div>
 
         {% endif %}
 
-        
+    </div>
+
+    <button id="add-ingredient">Add</button>
+
+    <h3> Steps: </h3>
+    <div id="step-list">
+
+        {% if recipe.steps %} {% for step in recipe.steps %}
+
+        <div class="step-list-item">
+            <input id="steps" class="steps" name="steps[]" type="text" value="{{step}}" /> {% if loop.index > 1 %}
+            <a class="remove-btn">remove</a> {% endif %}
         </div>
 
-        <button id="add-step">Add</button>
+        {% endfor %} {% else %}
 
+        <div class="step-list-item">
+            <input id="steps" class="steps" name="steps[]" type="text" />
+        </div>
 
-				<div class="input-field">
-					<select id="category" name="category_name">
+        {% endif %}
+
+    </div>
+
+    <button id="add-step">Add</button>
+
+    <div class="input-field">
+        <select id="category" name="category_name">
             <option value="" disabled selected>What kind of meal is this?</option>
-            {% for category in categories %}
-                {% if(recipe.category_name == category.name) %}
-                    <option value="{{category.name}}" selected>{{category.name}}</option>
-                {% else %}
-                    <option value="{{category.name}}">{{category.name}}</option>
-                {% endif %}
-            {% endfor %}
-            </select>
-				</div>
+            {% for category in categories %} {% if(recipe.category_name == category.name) %}
+            <option value="{{category.name}}" selected>{{category.name}}</option>
+            {% else %}
+            <option value="{{category.name}}">{{category.name}}</option>
+            {% endif %} {% endfor %}
+        </select>
+    </div>
 
-                {% if recipe %}
-				<input type="submit" value="Save"/>
+    {% if recipe %}
+    <input type="submit" value="Save" /> {% else %}
 
-                {% else %}
-
-				<input type="submit" value="Submit"/>
-                {% endif %}
- </div>
-				<br/>
+    <input type="submit" value="Submit" /> {% endif %}
+</div>
+<br/>

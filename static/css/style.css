@@ -5,34 +5,11 @@
 
 /* Title */
 
-
-.HeaderArea {
-    height:80vh;
-}
-
 .sections {
     position: relative;
 }
 a {
     color: inherit;
-}
-/* .header-text {
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width:100%; 
-  height:500px; 
-} */
-
-
-.landing-img{
-    max-width:90%;
-    max-height:90%;
-    text-align: center;
-}
-
-.landing-header {
-    text-align: center;
 }
 
 h1 {
@@ -81,19 +58,24 @@ h4 {
     padding-top: 2em;
       margin: 0;
   position: absolute;
-
 }
 
-/* Links Landing Page Card */
+/*                                                     LANDING PAGE  */
 
 .landing-page-container {
     margin: 1em;
 }
 
+/* Links Landing Page Card */
+.landing-img{
+    max-width:90%;
+    max-height:90%;
+    text-align: center;
+}
+
 .link-card {
     padding-top: 3em;
-    font-family: 'Oswald', sans-serif;
-    border: 3px groove #59C1D7;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .quick-links {
@@ -146,7 +128,7 @@ nav {
 }
 
 nav ul a {
-    font-size: 1.4em !important;
+    font-size: 1.2em !important;
     padding-right: 1em;
     padding-left: 1em;
     font-family: 'Montserrat', sans-serif;
@@ -154,7 +136,7 @@ nav ul a {
 
 .brand-logo {
     font-family: 'Montserrat', sans-serif;
-
+    font-size: 1.1em!important;
 }
 
 /* Footer */
