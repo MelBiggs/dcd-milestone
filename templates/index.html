@@ -1,34 +1,34 @@
 <header>
-<section class="HeaderSection">
-    <div class="HeaderArea">
-        <div class="header-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col s2 offset-s12 greeting">
+    <section class="HeaderSection">
+        <div class="HeaderArea">
+            <div class="header-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s2 offset-s12 greeting">
 
-                        {% if session["user"] %}
+                            {% if session["user"] %}
 
-                        <div class="flow-text hi">Hi {{session["user"]|capitalize}}
-                            <p class="logout-btn"><a class="btn" href="{{url_for('logout')}}">Log Out</a></p>
+                            <div class="flow-text hi">Hi {{session["user"]|capitalize}}
+                                <p class="logout-btn"><a class="btn" href="{{url_for('logout')}}">Log Out</a></p>
+                            </div>
+                            {% else %}
+                            <div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
                         </div>
-                        {% else %}
-                        <div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
+                        {% endif %}
+
                     </div>
-                    {% endif %}
 
-                </div>
+                    <div class="container landing-header">
+                        <div class="col s12">
 
-                <div class="container landing-header">
-                    <div class="col s12">
+                            <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
 
-                        <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </header>
 
 {% extends "base.html" %} {% block content %}
@@ -63,9 +63,16 @@
             <div class="col s12 l5 offset-l1 center-align white card link-card">
                 <h5>The Constant Cookbook</h5>
                 <div class="divider pink"></div>
-                <h6><p>Text about the website.</p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h6>
+                <h6><p><b>How does it work?</b>
+                </p>Do you have a signature dish? Is there a recipe that everyone asks you for?</p>
+                <p>The Constant Cookbook wants to know! <b>Add</b> those special recipes and share your creations with the world! You'll have full control over your recipes, being able to edit or delete them if need be.</p>
+                <p>Looking for some inspiration?</p>
+                <p>Check out our list of recipes from people all over the world! <b>Search</b> through our recipes and like your favourites.</p>
+                </h6>
+                <div class="divider pink"></div>
                 <!-- Links -->
                 <div class="quick-links">
+                    {% if session["user"] %}
                     <a href="{{ url_for('get_recipes') }}" class="btn">
                         <i class="fas fa-search" aria-hidden="true"></i> Search
                     </a>
@@ -75,7 +82,14 @@
                     <a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
                         <i class="fas fa-plus left" aria-hidden="true"></i> Add Recipe
                     </a>
-
+                    {%else%}
+                    <a href="{{ url_for('get_recipes') }}" class="btn">
+                        <i class="fas fa-search" aria-hidden="true"></i> Search
+                    </a>
+                    <a href="{{url_for('login')}}" class="btn bold white-text text-shadow-2">
+                        <i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Log In/Register
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
