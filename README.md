@@ -1,74 +1,83 @@
 [Link to Deployed Website]( link )
 
 # Code Institute Milestone Project 
-## Recipe Blog 
+## Recipe App - The Constant Cookbook 
 
-The objective of this project was to build a MongoDB-backed Flask project for a recipe website. 
+The objective of this project was to build a MongoDB-backed Flask project for a recipe website. The purpose of this project is to "Create a web application that allows users to store and easily access cooking recipes", allowing users to **create**, **update**, and **delete** for their own recipes and to **read** those of others.
 
-This project consists of a  
+The Home page shows a logo header, with a navbar. Following that there are two cards. One generates a random recipe, while the other highlights the function of the website and gives some quick links. The navbar displays a link to the recipe page, login, registration, about and logout. If the user is logged in, it will also display a link to their profile and to the Create a Recipe page, and the login button will be removed. 
 
-The Home page shows 
+Clicking onto the Recipes page will bring them to a list of the recipes on cards. They can also filter by category e.g. dinner or dessert and search the database for a particular dish. Here they can click into individual recipes and view them by one. 
 
-It leads on to the Recipes page which contain 
+If they wish to create a recipe, following the link will bring them to a form they can enter to complete this. They can add fields to the ingredients and steps to facilitate a dish of any length. A user profile is available for them to see the dishes they have created.
 
-There is also a page to add a recipe and an About page. The user can log in or register also.
+The user can log in or register also and can view an About page to know more about the project. 
 
 Social media links are included. 
 
 
-
 ## UX
 
-The main goal in the design of this project 
+The main goal in the design of this project was to build a recipe website that visualised the database information in an easily navigable way. 
 
-I wanted to implement a colour palette which XXXX . 
+I wanted to implement a colour palette which was light and gave a fresh feeling to the user.
 
-With this dashboard, the target audience consists of all age groups who have an interest in cooking and food. 
+With this website, the target audience consists of all age groups who have an interest in cooking and food. 
 
-[Here is a link to my UXD document] ()
+[Here is a link to my UXD document] (UXD/UXD .pdf)
+[Here is a link to my second UXD document] (UXD/UXD-dcd.pdf)
+
 
 ### User Stories
 
-* As an individual interested in cooking, 
+* As an individual interested in cooking, I want to view the recipes from any device and find particular recipes with ease. I want to see recipes from other users to get inspiration. I don't want to have to be logged in to view the recipes. I believe this is achieved through the layout of the recipe page along with the searching capabilities. 
 
-* As a user who wishes to know what dishes are popular, 
+* As a user who wants to share a recipe, I want to be able to login and add my recipes. I want to be able to edit and delete these recipes as I choose. The user is able to do this when using the Constant Cookbook. 
 
 * As a user who may be of an older demographic, I want a website which is easily navigated so that I can move through the webpage with ease.
 
 * As a user who may be of a young demographic, I want the information to be laid out in a way that is understandable in order to make the most of the information present. 
 
-* As a user I would prefer the option to reset the chosen filters to avoid having to individually remove each of the filters myself. 
-
 ## Wireframes
 
-[Here is a link to my wireframe]( )
+[Here is a link to my wireframe](UXD/Wireframe-dcd.pdf)
 
 
 ## Features
 ### Existing Features
 My website consists of the following features: 
+* **Decorative header**: The landing page of the website includes a header to introduce the name of the website. 
 
-* **Navbar**: The navbar contains XXX
+* **Navbar**:  The navbar displays a link to the recipe page, login, registration, about and logout. If the user is logged in, it will also display a link to their profile and to the Create a Recipe page, and the login button will be removed. 
 
-* **Search**: This feature allows the user to search for a particular recipe in the database. 
+* **Flash Messages**: flash messages communicate to the user regarding their interactions. 
 
-* **Recipe filter**: This feature allows the user to filter the data according to a specific artist.
+* **Registration**: While a user is free to use the site as a guest, some features are not available unless logged in.I have built-in authentication to check certain criteria is met before an account is validated. All passwords are hashed for security purposes.
 
-* **Reset Button**: This feature that enables users to reset their selection.
+* **Log-in/Logout**:The login page has an input form where the users can enter their username and password. If the password is incorrect an error message will appear. New users can click on the link "Register here" to get redirected to the register page. Clicking the logout button will log the user out of the account. 
 
-* **Footer**: A footer at the end contains a link to the dataset and a link to Spotify’s main page. 
+* **Recipes Page**: On this page, the user can view all recipes on this page, and can go to a particular meal type if they click on the category buttons. They can also search through the recipes on this page. 
 
-* **Responsive**: This dashboard has been made responsive so it allows the user to access this page through their mobile, tablet or desktop and have a pleasant user experience each time.
+* **Search**: Using the search bar, a user can check for a particular recipe that they have in mind. 
+
+* **Add a Recipe**: A logged-in user can add a recipe using a form which allows them to add fields to steps and ingredients. They can choose selective fields from the dropdowns. 
+
+* **Individual Recipe Page - Editing, Deleting & Liking**: Any user can view a recipe, while a logged-in user can 'like' a recipe by clicking the heart icon. If the logged-in user is the one who created that recipe, they have the option to edit or delete the recipe. 
+
+* **Category buttons**: This feature allows the user to filter the recipes according to their desired meal type e.g. Dinner, Breakfast. 
+
+* **Footer**: A footer at the end contains social media links. 
+
+* **Profile Page**: Each registered user will get their own profile page where they can see the recipes they have created and edit their information. 
+
 
 ### Features Left to Implement
 
 In the future, I would like to add more features to this website, such as:
 
-XXXX 
+Offering users the chance to 'Favourite' a recipe and having that added to their profile page for their ease. 
+I would like the recipe images to be uploaded from the users PC rather than through a URL. While it worked fine for this project, I would like to add that ability as I feel it is more professional. 
 
-### Another feature idea
-
-XXXXX
 
 ## Technologies Used
 
@@ -83,20 +92,26 @@ Cascading Style Sheets are used to describe the appearance of a website and I us
 [Javascript]( https://www.javascript.com/) - 
 Javascript was used to introduce the interactive elements to the project. 
 
-[Python]( https://www.python.org/) - 
-XXXX
+[Python3]( https://www.python.org/) - 
+Python is often used as a “scripting language” for web applications. This means that it can automate specific series of tasks, making it more efficient. It was used to run the backend application.
 
-### Database
+### Tools
+
+[Gitpod](https://www.gitpod.io/) - 
+Gitpod is the code editor I used to write the application.
 
 [MongoDB]( https://www.mongodb.com/) - 
-XXXX
+MongoDB Atlas was used to store my database
+
+[Gitpod](https://www.gitpod.io/) - 
+Gitpod is the code editor I used to write the application.
 
 ### Frameworks 
 
 [Flask]( https://www.palletsprojects.com/p/flask/) - 
 XXXX
 
-[Bootstrap 4.0](https://getbootstrap.com/) - 
+[Materialize](https://materializecss.com/) - 
 Bootstrap is a very useful CSS Framework. You can save time writing code by using the Bootstrap predefined design templates. It has a great grid system and is responsive to different screen resolutions.
 
 ### Libraries 
@@ -104,19 +119,20 @@ Bootstrap is a very useful CSS Framework. You can save time writing code by usin
 [JQuery](https://jquery.com/) - 
 The project uses JQuery to simplify DOM manipulation.
 
-[Gitpod](https://www.gitpod.io/) - 
-Gitpod is the code editor I used to write the HTML and CSS.
-
 [FontAwesome](https://fontawesome.com/) - 
 Font Awesome is a great library of icons. I used this library for my link icons.
 
 [Google Fonts](https://fonts.google.com/) - 
 There is a great selection of fonts in the Google Fonts library, some of which I used in my project. 
 
+[Materialize](https://materializecss.com/) - 
+Materialize is a CSS Framework.
+
 ### Also
 
 [Gifox](https://gifox.io/) - 
-I used Gifox to record the website demo for my README file. I recorded it off the website [Am I Responsive](http://ami.responsivedesign.is/?url=https%3A%2F%2Fmelbiggs.github.io%2Fifd-milestoneproject%2F#)
+I used Gifox to record the website demo for my README file. I recorded it off the website 
+[Am I Responsive](http://ami.responsivedesign.is/)
 
 ## Testing
 * As an individual interested in finding recipes, I believe XXX.
