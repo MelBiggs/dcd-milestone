@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% if errors|length > 0 %} {% for error in errors %}
+{% extends 'base.html' %} {%block title %}| Register{% endblock %}{% block content %} {% if errors|length > 0 %} {% for error in errors %}
 <p>{{error}}</p>
 {% endfor %} {% endif %}
 
