@@ -100,14 +100,21 @@
 	</div>
 </section>
 
+
+
 <section class="recipe_buttons text center">
+{% if recipe.user == session['user']%}
 
 	<a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" id="edit-btn"
 		class="waves-effect waves-light btn btn_small light-blue darken-1">Edit</a>
+{% endif %}
+{% if recipe.user == session['user'] or session['user'] == 'Admin' %}
+
 
 	<!-- Delete Modal -->
 	<button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</a>
 	    </button>
+{% endif %}
 </section>
 
 
@@ -120,6 +127,8 @@
 		<a id="delete-link" href="" class="modal-close waves-effect waves-green btn-flat modal-close">Delete</a>
 	</div>
 </div>
+
+
 {% endblock %}
 
 
