@@ -12,7 +12,7 @@ $(document).ready(function(){
         var newIngredient = $(".ingredient-list-item:first").clone();      
         newIngredient.insertBefore(this)
         newIngredient.find("input").val("");
-        $("<a>").insertAfter(newIngredient.find("input")).attr("class","remove-btn").text("remove");
+        $("<a>").insertAfter(newIngredient.find("input")).attr("class","remove-btn").text("Remove Line");
     });
 
     $("#add-step").on("click", function (e) {
@@ -22,7 +22,7 @@ $(document).ready(function(){
         var newStep = $(".step-list-item:first").clone();      
         newStep.insertBefore(this)
         newStep.find("input").val("");
-        $("<a>").insertAfter(newStep.find("input")).attr("class","remove-btn").text("remove");
+        $("<a>").insertAfter(newStep.find("input")).attr("class","remove-btn").text("Remove Line");
     });
 
     // Remove button for forms 

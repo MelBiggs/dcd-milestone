@@ -1,68 +1,68 @@
 <div class="container recipe_form">
-    <label for="name">Recipe Name</label>
-    <input id="name" name="name" value="{{recipe.name}}" required />
+	<label for="name">Recipe Name</label>
+	<input id="name" name="name" value="{{recipe.name}}" placeholder="e.g Chilli Con Carne" required />
 
-    <label for="image">Recipe Photo</label>
-    <input id="image" name="image_url" value="{{recipe.image_url}}" required />
+	<label for="image">Recipe Photo Url</label>
+	<input id="image" name="image_url" value="{{recipe.image_url}}" placeholder="https://images.mummypages.ie/images/1209/60/3/1_15/chilli-con-carne.jpg"required />
 
-    <label for="slug">Url Slug</label>
-    <input id="slug" name="slug" value="{{recipe.slug}}" required/>
+	<label for="slug">Url Slug</label>
+	<input id="slug" name="slug" value="{{recipe.slug}}" placeholder="chilli_con_carne" required/>
 
-    <label for="description">Description</label>
-    <textarea name="description">{{recipe.description}}</textarea>
+	<label for="description">Description</label>
+	<textarea name="description">{{recipe.description}}</textarea>
 
-    <label for="cooking_time">Cooking Time (in minutes) </label>
-    <input id="cooking_time" name="cooking_time" value="{{recipe.cooking_time}}" required/>
+	<label for="cooking_time">Cooking Time (in minutes) </label>
+	<input id="cooking_time" name="cooking_time" value="{{recipe.cooking_time}}" placeholder="40" required/>
 
-    <label for="serving">Serves:</label>
-    <input id="serving" name="serving" value="{{recipe.serving}}" required />
+	<label for="serving">Serves:</label>
+	<input id="serving" name="serving" value="{{recipe.serving}}" required />
 
-    <h3> Ingredients: </h3>
-    <div id="ingredient-list">
+	<!-- Ingredients -->
 
-        {% if recipe.ingredients %} {% for ingredient in recipe.ingredients %}
+	<div class="create-header"> Ingredients: </div>
+	<div id="ingredient-list">
+		{% if recipe.ingredients %} {% for ingredient in recipe.ingredients %}
+		<input id="ingredients" placeholder="1 large onion, diced"
+        class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>
+        {% if loop.index > 1 %}
+		<div class="remove-btn"></div>
+		{% endif %}
+		{% endfor %}
+		{% else %}
+		<div class="ingredient-list-item">
+			<input id="ingredients" class="ingredients" name="ingredients[]" type="text" />
+        </div>
+			{% endif %}
+		</div>
 
-        <div class="ingredient-list-item">
-            <input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}" /> {% if loop.index > 1 %}
-            <a class="remove-btn">remove</a> {% endif %}
+		<a class="waves-effect waves-light btn" id="add-ingredient">Add Line</a>
+
+		<!-- Steps -->
+
+		<div class="create-header"> Steps: </div>
+		<div id="step-list">
+
+			{% if recipe.steps %} {% for step in recipe.steps %}
+
+			<div class="step-list-item">
+				<input id="steps" class="steps" name="steps[]" type="text" value="{{step}}" /> {% if loop.index > 1 %}
+				<div class="remove-btn"></a> {% endif %}
+				</div>
+
+				{% endfor %} {% else %}
+
+				<div class="step-list-item">
+					<input id="steps" class="steps" name="steps[]" type="text" />
         </div>
 
-        {% endfor %} {% else %}
+					{% endif %}
 
-        <div class="ingredient-list-item">
-            <input id="ingredients" class="ingredients" name="ingredients[]" type="text" />
-        </div>
+				</div>
 
-        {% endif %}
+				<a class="waves-effect waves-light btn" id="add-step">Add Line</a>
 
-    </div>
-
-    <button id="add-ingredient">Add</button>
-
-    <h3> Steps: </h3>
-    <div id="step-list">
-
-        {% if recipe.steps %} {% for step in recipe.steps %}
-
-        <div class="step-list-item">
-            <input id="steps" class="steps" name="steps[]" type="text" value="{{step}}" /> {% if loop.index > 1 %}
-            <a class="remove-btn">remove</a> {% endif %}
-        </div>
-
-        {% endfor %} {% else %}
-
-        <div class="step-list-item">
-            <input id="steps" class="steps" name="steps[]" type="text" />
-        </div>
-
-        {% endif %}
-
-    </div>
-
-    <button id="add-step">Add</button>
-
-    <div class="input-field">
-        <select id="category" name="category_name">
+				<div class="input-field">
+					<select id="category" name="category_name">
             <option value="" disabled selected>What kind of meal is this?</option>
             {% for category in categories %} {% if(recipe.category_name == category.name) %}
             <option value="{{category.name}}" selected>{{category.name}}</option>
@@ -70,14 +70,18 @@
             <option value="{{category.name}}">{{category.name}}</option>
             {% endif %} {% endfor %}
         </select>
-    </div>
+				</div>
+			</div>
+
+			<!-- If adding new recipe, say Submit. If editing, say Save -->
 
 
-<!-- If adding new recipe, say Submit. If editing, say Save -->
-
-    {% if recipe %}
-    <input type="submit" value="Save" /> {% else %}
-
-    <input type="submit" value="Submit" /> {% endif %}
-</div>
-<br/>
+            <div class="save-recipe-button">
+			{% if recipe %}
+				<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Save
+        </button>
+				{% else %}
+				<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Submit
+        </button>
+			{% endif %}
+            </div>

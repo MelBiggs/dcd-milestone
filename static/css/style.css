@@ -226,6 +226,7 @@ form {
 
 form label {
     font-size: 1.2rem;
+    color: #627A8E;
 }
 
 button, input, optgroup, select, textarea {
@@ -314,6 +315,7 @@ padding-top: 2em!important;
 }
 .likes-count {
     font-size: .6em;
+    color: #59C1D7;
 }
 .recipe-view .card {
   background-color: #E0E5E7;
@@ -335,6 +337,10 @@ background-color:#E0E5E7;
 #prep-list li {
     padding: 1em 0;
     font-size: 1em;
+}
+
+.recipe_buttons{
+    padding: 1em;
 }
 
 /*                                                     LOG IN PAGE */
@@ -368,6 +374,37 @@ background-color:#E0E5E7;
 .register-button .btn:hover{
     background-color: #627A8E;
 }
+
+/*                                                  CREATE RECIPE PAGE */
+
+.create-header{
+    color: #627A8E;
+   font-size: 2.4em;
+   padding-top: 2em;
+}
+
+#add-ingredient {
+    background-color:  #59C1D7;
+}
+
+#add-step {
+    background-color:  #59C1D7;
+}
+
+.remove-btn {
+    font-size: 1.5em;
+    margin: 1em;
+}
+
+.save-recipe-button {
+    margin-top: 4em;
+    text-align: center;
+    }
+
+#recipe-save{
+    background-color:#627A8E!important;
+    text-align: center;
+    }
 
 /*                                                  CREATE CATEGORY PAGE */
 
