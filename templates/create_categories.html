@@ -2,6 +2,26 @@
 <div class="page_heading">Create a Category</div>
 
 <form class="col s12" method="POST" action="{{ url_for('create_category') }}">
-    {% include "partials/_category_form.html" %}
+	{% include "partials/_category_form.html" %}
 </form>
-{% endblock %}
+
+
+<section class="category_filters">
+	<div class="container">
+		<div class="row">
+			{% for category in categories %}
+			<a href="{{url_for('view_category', category=category.name)}}" id="category-btn"
+				class="waves-effect waves-light btn">{{category.name}}</a>
+			{% endfor %}
+
+		</div>
+	</div>
+</section>
+
+<section>
+
+	<a href="{{url_for('edit_category', category_id=category._id)}}" id="edit-btn"
+		class="waves-effect waves-light btn btn_small light-blue darken-1">Edit</a>
+
+	<section>
+		{% endblock %}

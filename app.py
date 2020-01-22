@@ -107,7 +107,7 @@ def register_user():
             # Creates a cookie to store logged in user
             session["user"] = username
 
-            return redirect("get_users")
+            return redirect(url_for("home"))
         return render_template("registration.html", data={})
     return redirect(url_for("home"))
 

@@ -76,7 +76,9 @@ My website consists of the following features:
 In the future, I would like to add more features to this website, such as:
 
 Offering users the chance to 'Favourite' a recipe and having that added to their profile page for their ease. 
+Allowing the users to leave comments on particular recipe pages. 
 I would like the recipe images to be uploaded from the users PC rather than through a URL. While it worked fine for this project, I would like to add that ability as I feel it is more professional. 
+I'd like to include the option to upload a profile picture also
 
 
 ## Technologies Used

@@ -29,14 +29,22 @@
                     {% if session["user"] %}
                     <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
                     <li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
-                    <li class="divider"></li>
+                   <!-- Here put link to Profile Page -->
                     <li><a href="{{url_for('about')}}">About</a></li>
+
+                    <!--  if session.user == session.user('Admin') -->
+                    <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+                    <li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+                    <li><a href="{{url_for('get_users')}}">All Users</a></li>
+                    <li><a href="{{url_for('create_category')}}">Categories</a></li>
+                    
                     {%else%}
                     <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
                     <li><a href="{{url_for('login')}}">Log In</a></li>
                     <li><a href="{{url_for('register_user')}}">Register</a></li>
                     <li><a href="{{url_for('about')}}">About</a></li>
                     {% endif %}
+                    <!--  endif  -->
                 </ul>
             </div>
         </nav>
