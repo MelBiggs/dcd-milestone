@@ -34,7 +34,11 @@ def home():
 
 @app.route('/get_users')
 def get_users():
-    return render_template("users.html", users=mongo.db.users.find())
+    if (session.get('user')):
+        if session['user'] != 'Admin':
+            return redirect(url_for('home'))
+        return render_template("users.html", users=mongo.db.users.find())
+    return redirect(url_for("login"))
 
 
 # Log in / Log Out / Register
@@ -306,43 +310,63 @@ def edit_profile(username):
 
 @app.route('/categories', methods=["GET"])
 def get_categories():
-    return render_template("categories.html", categories=mongo.db.categories.find())
+    if (session.get('user')):
+        if session['user'] != 'Admin':
+            return redirect(url_for('home'))
+        
+        return render_template("categories.html", categories=mongo.db.categories.find())
+    return redirect(url_for("login"))
 
 
 @app.route('/categories/create', methods=["GET", "POST"])
 def create_category():
-    if request.method == "POST":
-        name = request.form.get("name")
+    if (session.get('user')):
+        if session['user'] != 'Admin':
+            return redirect(url_for('home'))
 
-        if (mongo.db.categories.find_one({"name": name})):
-            return "existing category"
+        if request.method == "POST":
+            name = request.form.get("name")
 
-        mongo.db.categories.insert_one({"name": name})
-        return redirect(url_for("get_categories"))
+            if (mongo.db.categories.find_one({"name": name})):
+                return "existing category"
 
-    return render_template("create_categories.html", category={})
+            mongo.db.categories.insert_one({"name": name})
+            return redirect(url_for("get_categories"))
+
+        return render_template("create_categories.html", category={})
+    return redirect(url_for("login"))
 
 
 @app.route('/categories/edit/<category_id>', methods=["GET", "POST"])
 def edit_category(category_id):
-    if request.method == "POST":
-        name = request.form.get("name")
+    if (session.get('user')):
+        if session['user'] != 'Admin':
+            return redirect(url_for('home'))
+        
+        if request.method == "POST":
+            name = request.form.get("name")
 
-        if (mongo.db.categories.find_one({"name": name})):
-            return "existing category"
+            if (mongo.db.categories.find_one({"name": name})):
+                return "existing category"
 
-        categories = mongo.db.categories
-        categories.update({"_id": ObjectId(category_id)}, {"name": name})
+            categories = mongo.db.categories
+            categories.update({"_id": ObjectId(category_id)}, {"name": name})
 
-        return redirect(url_for("get_categories"))
+            return redirect(url_for("get_categories"))
 
-    return render_template("edit_categories.html", category=mongo.db.categories.find_one({"_id": ObjectId(category_id)}))
+        return render_template("edit_categories.html", category=mongo.db.categories.find_one({"_id": ObjectId(category_id)}))
+    return redirect(url_for("login"))
 
 
 @app.route("/categories/delete/<category_id>")
 def delete_category(category_id):
-    mongo.db.categories.remove({"_id": ObjectId(category_id)})
-    return redirect(url_for("get_categories"))
+    if (session.get('user')):
+        if session['user'] != 'Admin':
+            return redirect(url_for('home'))
+        
+        mongo.db.categories.remove({"_id": ObjectId(category_id)})
+        return redirect(url_for("get_categories"))
+    return redirect(url_for("login"))
 
 
 #About Page
