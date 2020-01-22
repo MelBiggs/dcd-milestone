@@ -36,7 +36,7 @@
                     <div class="card-image">
                         <a class="waves-effect waves-light" href="{{url_for('view_recipe', slug=recipe.slug)}}">
           {% if recipe.image_url %}
-			<img src="{{ recipe.image_url }}" class="responsive-img" alt="{{ recipe.name }}">
+			<img src="{{ recipe.image_url }}" class="responsive-img" alt="{{ recipe.name }}" height="400" width="375">
           {% else %}
             <img src="{{ url_for('static', filename='img/default-recipe-img.jpg') }}" alt="{{ recipe.name }}">
           {% endif %}     
@@ -54,41 +54,6 @@
             </div>
             {% endfor %}
 </section>
-
-<!-- <table class="striped">
-
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Calories</th>
-			<th>Serving</th>
-			<th>Category</th>
-			<th>Ingredients</th>
-			<th>Steps</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for recipe in recipes %}
-		<tr>
-			<td>{{recipe.name.title()}}</td>
-			<td>{{recipe.calories}}</td>
-			<td>{{recipe.serving}}</td>
-			<td>{{recipe.category_name}}</td>
-
-			<td>
-				{% for ingredient in recipe.ingredients %}
-				    {{ingredient}}&nbsp;
-				{% endfor %}
-			</td>
-
-			<td>
-				<ol>
-					{% for step in recipe.steps %}
-					<li>{{step}}</li>
-					{% endfor %}
-				</ol>
-			</td> -->
 
 <td>
 
