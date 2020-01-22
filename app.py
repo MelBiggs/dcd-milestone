@@ -27,7 +27,7 @@ mongo.db.recipes.create_index([('name','text')])
 
 @app.route('/')
 def home():
-    """ Home page with recipe of the day """
+    """ Home page with recipe generator """
     recipes = ([recipe for recipe in mongo.db.recipes.aggregate([{"$sample": {"size": 1}}])])
     return render_template("index.html", recipe=recipes[0])
 
@@ -47,10 +47,12 @@ def login():
         user = mongo.db.users.find_one({"email": email})
 
         if (not user):
-            return "incorrect login details"
+            flash('The login details are not correct')
+            return render_template("login.html")
 
         if (not check_password_hash(user["password"], password)):
-            return "incorrect login details"
+            flash('The login details are not correct')
+            return render_template("login.html")
 
         session["user"] = user["username"]
 
@@ -82,18 +84,19 @@ def register_user():
             errors=[]
 
             if (password != repeat_password):
-                errors.append("passwords do not match")
+                errors.append("Passwords do not match")
 
             if (not password or not username or not email or not dob):
-                errors.append("all fields required")
+                errors.append("All fields required")
 
             if (mongo.db.users.find_one({"username": username})):
-                errors.append("existing user")
+                errors.append("Username is taken")
                 
             if (mongo.db.users.find_one({"email": email})):
-                errors.append("existing email")
+                errors.append("Existing email")
 
             if(len(errors) > 0):
+                flash(errors)
                 return render_template("registration.html", data=request.form.to_dict(), errors=errors)
 
             password = generate_password_hash(password)
@@ -172,12 +175,14 @@ def create_recipe():
             data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
 
             if (mongo.db.recipes.find_one({"name": data['name']})):
-                return "Existing recipe"
+                flash("Existing recipe")
+                return render_template("create_recipes.html", recipe={})
 
             if (mongo.db.recipes.find_one({"slug": data['slug']})):
-                return "Existing slug"
+                flash("Existing slug")
+                return render_template("create_recipes.html", recipe={})
 
-                # Getting the list of ingredients and delete the incorrect data placeholder
+            # Getting the list of ingredients and delete the incorrect data placeholder
             data.update({'ingredients': request.form.getlist('ingredients[]')})
             del data['ingredients[]']
 

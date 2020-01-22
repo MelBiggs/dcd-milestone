@@ -4,10 +4,10 @@
     <form class="col s12" method="POST" action="{{ url_for('login') }}">
 
         <label for="email">Email</label>
-        <input id="email" name="email"></input>
+        <input id="email" name="email" required></input>
 
         <label for="password">Password</label>
-        <input type="password" id="password" name="password"></input>
+        <input type="password" id="password" name="password" required></input>
 
         <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Log In
             <i class="material-icons right">send</i>
@@ -16,6 +16,14 @@
     </form>
 
 </section>
+
+    <div class="row center">
+        <!-- if the user login details are incorrect,display an error message  -->
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+        <p class="red-text">{{ message }}</p>
+        {% endfor %} {% endif %} {% endwith %}
+    </div>
 
 <div class="container">
     <div class="row">

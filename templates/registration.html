@@ -1,24 +1,31 @@
-{% extends 'base.html' %} {%block title %}| Register{% endblock %}{% block content %} {% if errors|length > 0 %} {% for error in errors %}
-<p>{{error}}</p>
-{% endfor %} {% endif %}
+{% extends 'base.html' %} {%block title %}| Register{% endblock %}{% block content %} 
+
+    <div class="row center">
+        <!-- if the user registration details are incorrect,display an error message  -->
+        {% with messages = get_flashed_messages() %} 
+        {% if errors|length > 0 %} {% for error in errors %}
+        <p class="red-text">{{error}}</p>
+        {% endfor %} {% endif %} {% endwith %}
+    </div>
+
 
 <section class='register-form'>
 <form class="col s12" method="POST" action="{{ url_for('register_user') }}">
 
     <label for="username">Username</label>
-    <input id="username" id="username" name="username" value="{{data.username}}"></input>
+    <input id="username" id="username" name="username" value="{{data.username}}" required></input>
 
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" value="{{data.email}}"></input>
+    <input type="email" id="email" name="email" value="{{data.email}}" required></input>
 
     <label for="password">Password</label>
-    <input type="password" id="password" name="password"></input>
+    <input type="password" id="password" name="password" required></input>
 
     <label for="repeat_password">Repeat Password</label>
-    <input type="password" id="repeat_password" name="repeat_password"></input>
+    <input type="password" id="repeat_password" name="repeat_password" required></input>
 
     <label for="dob">Date of Birth</label>
-    <input id="dob" id="dob" name="dob" value="{{data.dob}}"></input>
+    <input id="dob" id="dob" name="dob" value="{{data.dob}}" required></input>
 
      <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Register
             <i class="material-icons right">send</i>

@@ -1,21 +1,21 @@
 <div class="container recipe_form">
     <label for="name">Recipe Name</label>
-    <input id="name" name="name" value="{{recipe.name}}" />
+    <input id="name" name="name" value="{{recipe.name}}" required />
 
     <label for="image">Recipe Photo</label>
-    <input id="image" name="image_url" value="{{recipe.image_url}}" />
+    <input id="image" name="image_url" value="{{recipe.image_url}}" required />
 
     <label for="slug">Url Slug</label>
-    <input id="slug" name="slug" value="{{recipe.slug}}" />
+    <input id="slug" name="slug" value="{{recipe.slug}}" required/>
 
     <label for="description">Description</label>
     <textarea name="description">{{recipe.description}}</textarea>
 
     <label for="cooking_time">Cooking Time (in minutes) </label>
-    <input id="cooking_time" name="cooking_time" value="{{recipe.cooking_time}}" />
+    <input id="cooking_time" name="cooking_time" value="{{recipe.cooking_time}}" required/>
 
     <label for="serving">Serves:</label>
-    <input id="serving" name="serving" value="{{recipe.serving}}" />
+    <input id="serving" name="serving" value="{{recipe.serving}}" required />
 
     <h3> Ingredients: </h3>
     <div id="ingredient-list">
@@ -71,6 +71,9 @@
             {% endif %} {% endfor %}
         </select>
     </div>
+
+
+<!-- If adding new recipe, say Submit. If editing, say Save -->
 
     {% if recipe %}
     <input type="submit" value="Save" /> {% else %}

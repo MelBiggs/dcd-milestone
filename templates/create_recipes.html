@@ -1,6 +1,14 @@
 {% extends 'base.html' %}{%block title %}| Create{% endblock %} {% block content %}
 <div class="page_heading">Add a Recipe</div>
 
+    <div class="row center">
+        <!--Display an error message  -->
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+        <p class="red-text">{{ message }}</p>
+        {% endfor %} {% endif %} {% endwith %}
+    </div>
+
 <form class="col s12" id='form' method="POST" action="{{ url_for('create_recipe') }}">
     {% include "partials/_recipes_form.html" %}
 </form>
