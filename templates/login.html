@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {%block title %}| Login{% endblock %} {% block content %}
 
-<section>
+<section class='login-form'>
     <form class="col s12" method="POST" action="{{ url_for('login') }}">
 
         <label for="email">Email</label>
@@ -9,7 +9,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password"></input>
 
-        <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Log In
             <i class="material-icons right">send</i>
         </button>
 

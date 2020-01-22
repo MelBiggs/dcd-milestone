@@ -323,8 +323,27 @@ margin: 0 auto 0;
 
 /*                                                     LOG IN PAGE */
 
+.login-form {
+    margin-right: 3em;
+    margin-left: 1em;
+    padding-top:2em;
+    padding-bottom: 2.5em;
+}
+
+.register-form {
+    margin-right: 3em;
+    margin-left: 1em;
+    padding-top:1.5em;
+    padding-bottom: 2em;
+}
+
+.btn-small {
+    background-color: #59C1D7!important;
+}
+
 .register-button {
     text-align: center;
+    font-family: 'Oswald', sans-serif;
 }
 
 .register-button .btn{
