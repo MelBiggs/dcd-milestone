@@ -73,6 +73,13 @@ h4 {
 
 /*                                                     LANDING PAGE  */
 
+.hello-flash {   
+    color: #59C1D7;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+}
+
 .landing-page-container {
     margin: 1em;
     padding: 1em;

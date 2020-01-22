@@ -56,7 +56,7 @@ def login():
 
         session["user"] = user["username"]
 
-        flash('Hi ' + user["username"] + "!")
+        flash('Good to see you, ' + user["username"] + "!")
         return redirect(url_for("home"))
 
     return render_template("login.html")
