@@ -24,21 +24,12 @@ mongo = PyMongo(app)
 # Enable text search for recipe names 
 mongo.db.recipes.create_index([('name','text')])
 
-
+# Home Page 
 @app.route('/')
 def home():
     """ Home page with recipe generator """
     recipes = ([recipe for recipe in mongo.db.recipes.aggregate([{"$sample": {"size": 1}}])])
     return render_template("index.html", recipe=recipes[0])
-
-
-@app.route('/get_users')
-def get_users():
-    if (session.get('user')):
-        if session['user'] != 'Admin':
-            return redirect(url_for('home'))
-        return render_template("users.html", users=mongo.db.users.find())
-    return redirect(url_for("login"))
 
 
 # Log in / Log Out / Register
@@ -117,54 +108,8 @@ def register_user():
 
 
 # Recipes CRUD
-@app.route('/recipes', methods=['GET'])
-def get_recipes():
-    return render_template("recipes.html", current_category={},
-        categories=mongo.db.categories.find(), 
-        recipes=mongo.db.recipes.find())
 
-
-@app.route('/category/<category>')
-def view_category(category):
-    return render_template("recipes.html", current_category=category,
-        categories=mongo.db.categories.find(), 
-        recipes=mongo.db.recipes.find({"category_name": category}))
-
-
-@app.route('/search', methods=['POST'])
-def search():
-    results=mongo.db.recipes.find({"$text":{'$search': request.form.get("search_term")}})
-    print(results)
-
-    return render_template("results.html", results=results)
-
-
-@app.route('/like/<recipe_id>', methods=['GET'])
-def like_recipe(recipe_id):
-    if session.get('user'):
-        user = session.get('user')
-        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-        # Gets list of likes for recipe
-        likes = recipe['likes']
-        # Check if user has already liked it, if so, remove the like. If not, add the like
-        if(user in likes):
-            likes.remove(user)
-        else:
-            likes.append(user)
-        
-        recipe['likes'] = likes
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, recipe)
-
-    return redirect(url_for('view_recipe', slug=recipe['slug']))
-
-
-@app.route('/recipes/<slug>', methods=['GET'])
-def view_recipe(slug):
-    return render_template("show_recipe.html",
-        categories=mongo.db.categories.find(),
-        recipe=mongo.db.recipes.find_one({"slug": slug})) 
-
-
+# Create Recipe
 @app.route('/recipes/create', methods=['GET', 'POST'])
 def create_recipe():
     # User must be logged in to create a recipe 
@@ -203,6 +148,32 @@ def create_recipe():
     return redirect(url_for("login"))
 
 
+# Read Recipes as Group, Individual, by Search
+
+@app.route('/recipes', methods=['GET'])
+def get_recipes():
+    return render_template("recipes.html", current_category={},
+        categories=mongo.db.categories.find(), 
+        recipes=mongo.db.recipes.find())
+
+
+@app.route('/recipes/<slug>', methods=['GET'])
+def view_recipe(slug):
+    return render_template("show_recipe.html",
+        categories=mongo.db.categories.find(),
+        recipe=mongo.db.recipes.find_one({"slug": slug})) 
+
+
+@app.route('/search', methods=['POST'])
+def search():
+    results=mongo.db.recipes.find({"$text":{'$search': request.form.get("search_term")}})
+    print(results)
+
+    return render_template("results.html", results=results)
+
+
+# Update / Edit Recipe
+
 @app.route('/recipes/edit/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
 
@@ -214,9 +185,12 @@ def edit_recipe(recipe_id):
             return redirect(url_for("home"))
 
         if request.method == "POST":
-
+            
             recipes = mongo.db.recipes
             data = request.form.to_dict()
+
+            # Assign the logged in user to the recipe
+            data['user'] = session['user']
 
             # Make the slug url safe and replace spaces with underscores
             data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
@@ -242,13 +216,14 @@ def edit_recipe(recipe_id):
             data['likes'] = recipe['likes']
 
             recipes.update({"_id": ObjectId(recipe_id)}, data)
-
             return redirect(url_for("get_recipes"))
+
         categories = mongo.db.categories.find()
         return render_template("edit_recipes.html", categories=categories, recipe=recipe)
     return redirect(url_for("login"))
 
 
+# Delete Recipe 
 @app.route("/recipes/delete/<recipe_id>", methods=['GET'])
 def delete_recipe(recipe_id):
     if(session.get('user')):
@@ -260,6 +235,36 @@ def delete_recipe(recipe_id):
 
     return redirect(url_for('get_recipes'))
 
+
+# Like a Recipe
+@app.route('/like/<recipe_id>', methods=['GET'])
+def like_recipe(recipe_id):
+    if session.get('user'):
+        user = session.get('user')
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        # Gets list of likes for recipe
+        likes = recipe['likes']
+        # Check if user has already liked it, if so, remove the like. If not, add the like
+        if(user in likes):
+            likes.remove(user)
+        else:
+            likes.append(user)
+        
+        recipe['likes'] = likes
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, recipe)
+
+    return redirect(url_for('view_recipe', slug=recipe['slug']))
+
+#About Page
+
+@app.route('/about')
+def about():
+    """ About page with links, infor and social media"""
+    return render_template("about.html")
+
+
+# User Profile 
+# Get Profile 
 @app.route('/users/<username>', methods=["GET"])
 def user_profile(username):
 
@@ -270,7 +275,8 @@ def user_profile(username):
         user=user,
         recipes=mongo.db.recipes.find({"user": user['username']}))
 
-    
+
+# Edit Profile 
 @app.route('/users/<username>/edit', methods=['GET', 'POST'])
 def edit_profile(username):
     if(session.get('user')):
@@ -305,15 +311,14 @@ def edit_profile(username):
   
     return redirect(url_for('user_profile', username=username))
 
-# Categories
 
-@app.route('/categories', methods=["GET"])
-def get_categories():
+# Admin Only Pages - Users and Categories CRUD
+@app.route('/get_users')
+def get_users():
     if (session.get('user')):
         if session['user'] != 'Admin':
             return redirect(url_for('home'))
-        
-        return render_template("categories.html", categories=mongo.db.categories.find())
+        return render_template("users.html", users=mongo.db.users.find())
     return redirect(url_for("login"))
 
 
@@ -333,6 +338,23 @@ def create_category():
             return redirect(url_for("get_categories"))
 
         return render_template("create_categories.html", category={})
+    return redirect(url_for("login"))
+
+
+@app.route('/category/<category>')
+def view_category(category):
+    return render_template("recipes.html", current_category=category,
+        categories=mongo.db.categories.find(), 
+        recipes=mongo.db.recipes.find({"category_name": category}))
+
+
+@app.route('/categories', methods=["GET"])
+def get_categories():
+    if (session.get('user')):
+        if session['user'] != 'Admin':
+            return redirect(url_for('home'))
+        
+        return render_template("categories.html", categories=mongo.db.categories.find())
     return redirect(url_for("login"))
 
 
@@ -366,14 +388,6 @@ def delete_category(category_id):
         mongo.db.categories.remove({"_id": ObjectId(category_id)})
         return redirect(url_for("get_categories"))
     return redirect(url_for("login"))
-
-
-#About Page
-
-@app.route('/about')
-def about():
-    """ About page with links, infor and social media"""
-    return render_template("about.html")
 
 
 # execute app__init__.py
