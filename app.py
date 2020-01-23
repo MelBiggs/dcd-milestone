@@ -191,6 +191,7 @@ def edit_recipe(recipe_id):
       
             # Assign the logged in user to the recipe
             data['user'] = session['user']
+            print(data["slug"])
 
             # Make the slug url safe and replace spaces with underscores
             data['slug'] = urllib.parse.quote_plus(data['slug'].replace(" ", "_"))
@@ -255,7 +256,7 @@ def like_recipe(recipe_id):
 
     return redirect(url_for('view_recipe', slug=recipe['slug']))
 
-#About Page
+# About Page
 
 @app.route('/about')
 def about():
@@ -384,7 +385,7 @@ def delete_category(category_id):
     if (session.get('user')):
         if session['user'] != 'Admin':
             return redirect(url_for('home'))
-        
+
         mongo.db.categories.remove({"_id": ObjectId(category_id)})
         return redirect(url_for("get_categories"))
     return redirect(url_for("login"))

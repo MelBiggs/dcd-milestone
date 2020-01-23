@@ -15,6 +15,8 @@ The user can log in or register also and can view an About page to know more abo
 
 Social media links are included. 
 
+I've included an Admin user, who has access to the categories and all user names. In Categories they can add, edit or delete a category. 
+
 
 ## UX
 
@@ -105,18 +107,7 @@ Gitpod is the code editor I used to write the application.
 [MongoDB]( https://www.mongodb.com/) - 
 MongoDB Atlas was used to store my database
 
-[Gitpod](https://www.gitpod.io/) - 
-Gitpod is the code editor I used to write the application.
-
-### Frameworks 
-
-[Flask]( https://www.palletsprojects.com/p/flask/) - 
-XXXX
-
-[Materialize](https://materializecss.com/) - 
-Bootstrap is a very useful CSS Framework. You can save time writing code by using the Bootstrap predefined design templates. It has a great grid system and is responsive to different screen resolutions.
-
-### Libraries 
+### Libraries & Frameworks 
 
 [JQuery](https://jquery.com/) - 
 The project uses JQuery to simplify DOM manipulation.
@@ -130,18 +121,37 @@ There is a great selection of fonts in the Google Fonts library, some of which I
 [Materialize](https://materializecss.com/) - 
 Materialize is a CSS Framework.
 
+[Flask](https://www.palletsprojects.com/p/flask/) - 
+Flask is a lightweight web application framework that runs my application.
+
+[Jinja](https://jinja.palletsprojects.com/en/2.10.x/) - 
+Jinja is a modern and designer-friendly templating language for Python. 
+
+[Pymongo](https://api.mongodb.com/python/current/) - 
+PyMongo allowed me to work with MongoDB.
+
+### Host
+
+[Heroku](http://heroku.com/) - 
+The app is hosted on Heroku
+
 ### Also
 
 [Gifox](https://gifox.io/) - 
-I used Gifox to record the website demo for my README file. I recorded it off the website 
-[Am I Responsive](http://ami.responsivedesign.is/)
+I used Gifox to record the website demo for my README file. I recorded it off the website [Am I Responsive](http://ami.responsivedesign.is/)
 
 ## Testing
-* As an individual interested in finding recipes, I believe XXX.
+* As an individual interested in cooking, I believe they will enjoy my website. I believe it is easy to navigate and they will find recipes easily.
 
-* As a user of an older age, I want it to be as easily navigated as possible and attractive on a desktop or tablet. 
+* As a user interested in sharing their recipes, they can achieve this by registering or logging in and adding a recipe. I have placeholders in the forms to help them with this. 
 
-There was a bug with deploying to Heroku. Despite deploying successfully it would not create the application and gave an error stating it could not bind to the PORT. With the help of tutor support, we changed the Procfile to web: gunicorn app:app from python3 app.py. This allowed the application to display then on Heroku. 
+* As a user of an older age, I want it to be as easily navigated as possible and attractive on a desktop or tablet. I believe it is laid out in a clear way and they will find what they need easily. 
+
+* A younger person who wants to have the information presented in the most understandable way will find the website pleasant to use. A card on the landing page also explains the function of the site. 
+
+I have tested the site throughout development and after to ensure all worked fine and linked to the database correctly. My friends and family were kind enough to also test the site for me on their own devices and were able to move through it with ease. 
+
+However, during development, there was a bug with deploying to Heroku. Despite deploying successfully it would not create the application and gave an error stating it could not bind to the PORT. With the help of tutor support, we changed the Procfile to `web: gunicorn app:app` from `python3 app.py`. This allowed the application to display then on Heroku. 
 
 ### Code Validation
 
@@ -154,33 +164,44 @@ I validated my CSS code using [W3C Markup Validation Service]( https://validator
 #### JavaScript
 The JavaScript code in my project was validated using [JSHint]( https://jshint.com/). This was really useful in identifying any extra semicolons that I may have missed and for cleaning my code. 
 
-### Jasmine
-When researching whether to test my code with Jasmine, I could use Jasmine to test XXX
-
-I created tests for these which can be seen in `<graphSpec.js>` and run by previewing `<tests.html>` or on [Github](https://melbiggs.github.io/ifd-milestoneproject/tests.html). You may need to refresh the page a few times to see an accurate result.
-
 ### Responsiveness
 I tested the responsiveness of the webpage on browsers such as Chrome, Microsoft Edge and Safari and on multiple mobile devices. The page is fully responsive and I am satisfied that it works well on all devices.
 
-### Peer Code Review
-I published my project on the Code Institute's 'Peer Code Review' channel. This channel allows other students to have a look at your code and offer suggestions and comments to improve your project. 
-
-## Deployment
-
 ### Deployment onto Heroku 
+To deploy my app onto Heroku, I completed the following steps from Gitpod, after setting up a repository on Github: 
+
+1. Created a Procfile with the command echo web: python run.py > Procfile.
+2. Created a requirement.txt file with the command sudo pip freeze --local > requirements.txt
+3. I then used `<git add>` to add the files to the staging area before using the `<git commit -m "Description of work done">` command to commit the files.
+4. I could then push my files into GitHub by using `<git push>`
+5. I created my config vars - SECRET_KEY, IP PORT and MONGO_URI - within env.py.
+6. In Heroku after setting up my new application, I entered my config vars to match what I had made them in my env.py file.
+7. On Heroku's dashboard I chose Deploy and chose Github as my deployment method. 
+8. I linked Heroku to the correct Github repository and clicked "Deploy" from the master branch. 
 
 ## Credits
 
 ### Content
 
+I took inspiration from BBC Good Food and sourced the recipes from their site. I also took inspiration from recipe websites mentioned on the About page of my app! 
+
 ### Media
+
 The favicon I used was found on [favicon.io](https://favicon.io/emoji-favicons/)
 
+I used BBC Good Food for most of the images on the website. 
+
 ### Acknowledgements
-I received inspiration for the theme of this project from
 
 I received tips on snippets of my code through [Stack Overflow](https://stackoverflow.com/), [CodePen]( https://codepen.io/) and [W3Schools](https://www.w3schools.com/).
 
-I am very grateful to my mentor **Guido Cecilio** for his help and guidance throughout the project. I would also like to thank my mam and my friends for helping me test the responsiveness of the website. I would also like to thank the Code Institute Slack users for their helpful comments and suggestions on my project. 
+I was able to get help from these links and users:
+
+* <https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search> 
+* <https://stackoverflow.com/questions/7118276/how-to-remove-specific-element-from-an-array-using-python> 
+* <https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/>
+* <https://stackoverflow.com/questions/2570972/css-font-border>
+
+I am grateful to my mentor **Guido Cecilio** for his help and guidance throughout the project. I would also like to thank my mam and my friends for helping me test the responsiveness of the website.  
 
 [Link to Deployed Website

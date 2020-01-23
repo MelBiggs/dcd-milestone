@@ -13,7 +13,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var newIngredient = $(".ingredient-list-item:first").clone();
-        newIngredient.insertBefore(this)
+        newIngredient.insertBefore(this);
         newIngredient.find("input").val("");
         $("<a>").insertAfter(newIngredient.find("input")).attr("class", "remove-btn").text("Remove Line");
     });
@@ -23,7 +23,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var newStep = $(".step-list-item:first").clone();
-        newStep.insertBefore(this)
+        newStep.insertBefore(this);
         newStep.find("input").val("");
         $("<a>").insertAfter(newStep.find("input")).attr("class", "remove-btn").text("Remove Line");
     });
