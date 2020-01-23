@@ -1,107 +1,107 @@
 <header>
-    <section class="HeaderSection">
-        <div class="HeaderArea">
-            <div class="header-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s2 offset-s12 greeting">
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col s2 offset-s12 greeting">
 
-                            {% if session["user"] %}
+					<!-- Log in / out button -->
+					{% if session["user"] %}
 
-                            <div class="flow-text hi">Hi {{session["user"]|capitalize}}
-                                <p class="logout-btn"><a class="btn" href="{{url_for('logout')}}">Log Out</a></p>
-                            </div>
-                            {% else %}
-                            <div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
-                        </div>
-                        {% endif %}
+					<div class="flow-text hi">Hi {{session["user"]|capitalize}}
+						<p class="logout-btn"><a class="btn" href="{{url_for('logout')}}">Log Out</a></p>
+					</div>
+					{% else %}
+					<div class="flow-text"><a class="btn login-btn" href="{{url_for('login')}}">Login</a></div>
+				</div>
+				{% endif %}
 
-                    </div>
+			</div>
 
-                    <div class="container landing-header">
-                        <div class="col s12">
+			<div class="container landing-header">
+				<div class="col s12">
+					<!-- Header Image -->
+					<a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
 
-                            <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+				</div>
+			</div>
+		</div>
+	</section>
 </header>
 
 {% extends "base.html" %} {% block content %}
 
 <div class="landing-page-container">
-    <div class="container-90">
+	<div class="container-90">
 
-        <div class="row">
-        <!-- Hello message after logging in  -->
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-        <p class = "hello-flash">{{message}}</p>
-        {% endfor %} {% endif %} {% endwith %}
-         </div>
+		<div class="row">
+			<!-- Hello message after logging in  -->
+			{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+			<p class="hello-flash">{{message}}</p>
+			{% endfor %} {% endif %} {% endwith %}
+		</div>
 
-         <!-- Recipe Generator Card -->
+		<!-- Recipe Generator Card -->
 
-        <div class="row">
-            <div class="col s12 l5 card landing-page recipe-card white">
-                <div class="card">
-                    <div class="card-header">Recipe Generator</div>
-                    <div class="divider pink"></div>
-                    <br />
-                    <div class="daily-recipe-card">
-                        <div class="card-image waves-effect waves-block waves-light recipe-generator-img">
-                            <img src="{{recipe.image_url}}" height="400" width="375" class="responsive">
-                            <span class="generator-title card-title text-centered">{{recipe.name|title}}</span>
-                        </div>
-                        <br />
-                        <div class="divider pink"></div>
-                        <div class="card-action center">
-                            <a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		<div class="row">
+			<div class="col s12 l5 card landing-page recipe-card white">
+				<div class="card">
+					<div class="card-header">Recipe Generator</div>
+					<div class="divider pink"></div>
+					<br />
+					<div class="daily-recipe-card">
+						<div class="card-image waves-effect waves-block waves-light recipe-generator-img">
+							<img src="{{recipe.image_url}}" height="400" width="375" class="responsive">
+							<span class="generator-title card-title text-centered">{{recipe.name|title}}</span>
+						</div>
+						<br />
+						<div class="divider pink"></div>
+						<div class="card-action center">
+							<a href="{{url_for('view_recipe', slug=recipe.slug)}}">View Recipe</a>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <!-- App Explanation Card with Links -->
+			<!-- App Explanation Card with Links -->
 
-            <div class="col s12 l5 offset-l1 center-align white card link-card">
-                <h5><b>The Constant Cookbook</b></h5>
-                <div class="divider pink"></div>
-                <h6><p><b>How does it work?</b>
-                </p>Do you have a signature dish? Is there a recipe that everyone asks you for?</p>
-                <p>The Constant Cookbook wants to know!</p>
-                </p><b>Add</b> those special recipes and share your creations with the world! You'll have full control over your recipes, being able to edit or delete them if need be.</p>
-                <p>Looking for some inspiration?</p>
-                <p>Check out our list of recipes from people all over the world! <b>Search</b> through our recipes and like your favourites.</p>
-                </h6>
-                <div class="divider pink"></div>
-                <!-- Links -->
-                <div class="quick-links">
-                    {% if session["user"] %}
-                    <a href="{{ url_for('get_recipes') }}" class="btn">
-                        <i class="fas fa-search" aria-hidden="true"></i> Search
-                    </a>
-                    <a href="{{url_for('logout')}}" class="btn bold white-text text-shadow-2">
-                        <i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Logout
-                    </a>
-                    <a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
-                        <i class="fas fa-plus left" aria-hidden="true"></i> Add Recipe
-                    </a>
-                    {%else%}
-                    <a href="{{ url_for('get_recipes') }}" class="btn">
-                        <i class="fas fa-search" aria-hidden="true"></i> Search
-                    </a>
-                    <a href="{{url_for('login')}}" class="btn bold white-text text-shadow-2">
-                        <i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Log In/Register
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
+			<div class="col s12 l5 offset-l1 center-align white card link-card">
+				<h5><b>The Constant Cookbook</b></h5>
+				<div class="divider pink"></div>
+				<h6>
+					<p><b>How does it work?</b>
+					</p>Do you have a signature dish? Is there a recipe that everyone asks you for?</p>
+					<p>The Constant Cookbook wants to know!</p>
+					</p><b>Add</b> those special recipes and share your creations with the world! You'll have full
+					control over your recipes, being able to edit or delete them if need be.</p>
+					<p>Looking for some inspiration?</p>
+					<p>Check out our list of recipes from people all over the world! <b>Search</b> through our recipes
+						and like your favourites.</p>
+				</h6>
+				<div class="divider pink"></div>
+				<!-- Links -->
+				<div class="quick-links">
+					{% if session["user"] %}
+					<a href="{{ url_for('get_recipes') }}" class="btn">
+						<i class="fas fa-search" aria-hidden="true"></i> Search
+					</a>
+					<a href="{{url_for('logout')}}" class="btn bold white-text text-shadow-2">
+						<i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Logout
+					</a>
+					<a href="{{ url_for('get_recipes') }}" class="btn bold white-text text-shadow-2">
+						<i class="fas fa-plus left" aria-hidden="true"></i> Add Recipe
+					</a>
+					{%else%}
+					<a href="{{ url_for('get_recipes') }}" class="btn">
+						<i class="fas fa-search" aria-hidden="true"></i> Search
+					</a>
+					<a href="{{url_for('login')}}" class="btn bold white-text text-shadow-2">
+						<i class="fas fa-sign-in-alt left" aria-hidden="true"></i> Log In/Register
+					</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

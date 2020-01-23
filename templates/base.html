@@ -2,104 +2,118 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Constant Cookbook {%block title %}{% endblock %}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>The Constant Cookbook {%block title %}{% endblock %}</title>
 
-    <link rel="shortcut icon" type="image/png" href="static/img/favicon-32x32.png type=" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+	<!-- Materialize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<!-- Icons  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/png" href="static/img/favicon-32x32.png type=" />
+	<!-- CSS  -->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 
 </head>
 
 <body>
 
-   
-        <!-- Navbar  -->
-        <!-- Dropdown Structure -->
-<header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="{{url_for('home')}}" class="brand-logo"><b>The Constant Cookbook</b></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    {% if session["user"] %}
-                    <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-                    <li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
-                    <li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
-                    <li><a href="{{url_for('about')}}">About</a></li>
 
-                        {% if session['user'] == 'Admin' %}
-                        <!--  if session.user == session.user('Admin') -->
-                        <li><a href="{{url_for('get_users')}}">All Users</a></li>
-                        <li><a href="{{url_for('get_categories')}}">Categories</a></li>
-                        {%endif%}
+	<!-- Navbar  -->
+	<!-- Dropdown Structure -->
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="{{url_for('home')}}" class="brand-logo"><b>The Constant Cookbook</b></a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
 
-                    {%else%}
-                    <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-                    <li><a href="{{url_for('login')}}">Log In</a></li>
-                    <li><a href="{{url_for('register_user')}}">Register</a></li>
-                    <li><a href="{{url_for('about')}}">About</a></li>
-                    {% endif %}
-                    <!--  endif  -->
-                </ul>
-            </div>
-        </nav>
+					<!-- If the user is logged in, show the below -->
+					{% if session["user"] %}
+					<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+					<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+					<li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
+					<li><a href="{{url_for('about')}}">About</a></li>
 
-        <!-- Hamburger Menu for smaller screens -->
+					<!-- If the user is logged in as Admin, show users and categories -->
+					{% if session['user'] == 'Admin' %}
 
-        <ul class="sidenav" id="mobile-demo">
-            {% if session["user"] %}
-            <li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
-            <li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
-            <li><a href="{{url_for('logout')}}">Log Out</a></li>
-            {%else%}
-            <li><a href="{{url_for('login')}}">Log In</a></li>
-            <li><a href="{{url_for('register_user')}}">Register</a></li>
-            {% endif %}
-        </ul>
-        </header>
+					<li><a href="{{url_for('get_users')}}">All Users</a></li>
+					<li><a href="{{url_for('get_categories')}}">Categories</a></li>
+					{%endif%}
 
-        <!-- Main Content -->
+					<!-- Otherwise show the below -->
+					{%else%}
+					<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+					<li><a href="{{url_for('login')}}">Log In</a></li>
+					<li><a href="{{url_for('register_user')}}">Register</a></li>
+					<li><a href="{{url_for('about')}}">About</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
 
-        <main>
-            <section>
-                {% block content %} {% endblock %}
-            </section>
-        </main>
+		<!-- Hamburger Menu for smaller screens -->
 
-        <!-- Footer -->
-        <footer class="page-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12">
-                            <ul class="social-links">
-                                <li><a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-square" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
-                                </li>
-                                <li><a target="_blank" href="https://github.com/MelBiggs"><i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
-                                </li>
-                                <li><a target="_blank" href="https://www.linkedin.com/in/melissa-biggs-81424bb6/"><i class="fab fa-linkedin" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-copyright">
-                    <div class="container">
-                        © 2020 The Constant Cookbook
-                    </div>
-                </div>
- </footer>
+		<ul class="sidenav" id="mobile-demo">
+			{% if session["user"] %}
+			<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
+			<li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
+			<li><a href="{{url_for('logout')}}">Log Out</a></li>
+			{%else%}
+			<li><a href="{{url_for('login')}}">Log In</a></li>
+			<li><a href="{{url_for('register_user')}}">Register</a></li>
+			{% endif %}
+		</ul>
+	</header>
 
+	<!-- Main Content -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+	<main>
+		<section>
+			{% block content %} {% endblock %}
+		</section>
+	</main>
 
-    {% block js %} {% endblock %}
+	<!-- Footer -->
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<ul class="social-links">
+						<li><a target="_blank"
+								href="https://www.facebook.com/"><i class="fab fa-facebook-square" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
+						</li>
+						<li><a target="_blank"
+								href="https://github.com/MelBiggs"><i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+						</li>
+						<li><a target="_blank"
+								href="https://www.linkedin.com/in/melissa-biggs-81424bb6/"><i class="fab fa-linkedin" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2020 The Constant Cookbook
+			</div>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="{{url_for('static', filename='js/index.js')}}"></script>
+
+	{% block js %} {% endblock %}
 </body>
 
 </html>

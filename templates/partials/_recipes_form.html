@@ -1,3 +1,5 @@
+<!-- This is used in create_recipes and edit_recipes,  -->
+
 <div class="container recipe_form">
 	<label for="name">Recipe Name</label>
 	<input id="name" name="name" value="{{recipe.name}}" placeholder="e.g Chilli Con Carne" maxlength="15" required />
@@ -76,12 +78,12 @@
 			<!-- If adding new recipe, say Submit. If editing, say Save -->
 
 
-            <div class="save-recipe-button">
-			{% if recipe %}
+			<div class="save-recipe-button">
+				{% if recipe %}
 				<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Save
         </button>
 				{% else %}
 				<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Submit
         </button>
-			{% endif %}
-            </div>
+				{% endif %}
+			</div>

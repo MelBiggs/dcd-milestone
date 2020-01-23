@@ -1,13 +1,22 @@
-{% extends 'base.html' %} {%block title %}| Edit Recipe{% endblock %}{% block content %}
+{% extends 'base.html' %} {%block title %}| Edit Recipe {% endblock %}{% block content %}
+
+<!-- A user can edit their own recipe here -->
+
+<!-- If a logged in user is trying to edit a different user's profile, they will be sent to home page -->
+
 <div class="page_heading">Edit a Recipe</div>
+
+<div class="row center">
+	<!--Display an error message for existing slug or recipe name. FIX THIS AREA & USERNAME-->
+	{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+	<p class="red-text">{{ message }}</p>
+	{% endfor %} {% endif %} {% endwith %}
+</div>
 
 <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
     {% include "partials/_recipes_form.html" %}
-</form>
+</form> 
 
-    <a href="{{url_for('view_recipe', slug=recipe.slug)}}" id="view-btn" class="waves-effect waves-light btn btn_small blue darken-1">View</a>
-
-    <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" id="edit-btn" class="waves-effect waves-light btn btn_small light-blue darken-1">Edit</a>
     <!-- Modal Trigger -->
     <button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</a>
 </button>
@@ -21,14 +30,4 @@
         <a id="delete-link" href="" class="modal-close waves-effect waves-green btn-flat modal-close">Delete</a>
     </div>
 </div>
-{% endblock %} {% block js %}
-<script>
-    $(document).ready(function() {
-        $('.modal').modal({
-            onOpenStart: function(modal, trigger) {
-                $('#delete-link').attr("href", trigger.dataset.recipeDeleteUrl);
-            }
-        });
-    });
-</script>
-{% endblock %}
+{% endblock %} 

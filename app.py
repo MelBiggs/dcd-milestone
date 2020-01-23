@@ -224,12 +224,14 @@ def edit_recipe(recipe_id):
             # If slug has been changed, make sure it is not already being used by another recipe
             if(data['slug'] != recipe['slug']):
                 if (recipes.find_one({"slug": data['slug']})):
-                    return "Existing slug"
+                    flash("This slug is taken")
+                return render_template("edit_recipes.html", recipe={})
 
             # If name has been changed, make sure it is not already being used by another recipe
             if(data['name'] != recipe['name']):
                 if (recipes.find_one({"name": data['name']})):
-                    return "Existing recipe name"
+                    flash("This recipe name is taken")
+                return render_template("edit_recipes.html", recipe={})
 
             data.update({'ingredients': request.form.getlist('ingredients[]')})
             del data['ingredients[]']
@@ -302,9 +304,6 @@ def edit_profile(username):
             return render_template("edit_profile.html", user=user)
   
     return redirect(url_for('user_profile', username=username))
-
-
-
 
 # Categories
 

@@ -1,20 +1,23 @@
 {% extends 'base.html' %} {%block title %}| Edit Profile{% endblock %}{% block content %}
+<!-- A user can edit there profile here and change their password. They cannot change their username -->
+<!-- If a logged in user is trying to edit a different user's profile, they will be sent to home page -->
+
 <div class="page_heading">Edit Profile</div>
 
 <div class="container recipe_form">
     <form class="col s12" method="POST" action="{{ url_for('edit_profile', username=user.username) }}">
     
 		<label for="email">Email</label>
-		<input id="email" name="email" value="{{user.email}}"/>
+		<input id="email" name="email" value="{{user.email}}" required />
 
         <label for="current_password">Current Password</label>
-		<input id="current_password" name="current_password" type="password"/>
+		<input id="current_password" name="current_password" type="password" required/>
 
-        <label for="password">Password</label>
-		<input id="password" name="password" type="password"/>
+        <label for="password">New Password</label>
+		<input id="password" name="password" type="password" required/>
         
-        <label for="repeat_password">Repeat Password</label>
-		<input id="repeat_password" name="repeat_password" type="password"/>
+        <label for="repeat_password">Repeat New Password</label>
+		<input id="repeat_password" name="repeat_password" type="password" required/>
 
         <input type="submit" value="Save"/>
          </form>

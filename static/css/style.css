@@ -2,8 +2,6 @@
 
 /*                                                     BASE PAGE  */
 
-/* Title */
-
   body {   
     display: flex;
     min-height: 100vh;
@@ -177,7 +175,6 @@ nav ul a {
 }
 
 .card-title {
-    size: 1em;
      color: black!important;
 }
 
@@ -209,6 +206,39 @@ nav ul a {
     padding: 1em!important;
     font-family: 'Montserrat', sans-serif;
 }
+
+/*                                                     LOG IN PAGE */
+
+.login-form {
+    margin-right: 3em;
+    margin-left: 1em;
+    padding-top:2em;
+    padding-bottom: 2.5em;
+}
+
+.register-form {
+    margin-right: 3em;
+    margin-left: 1em;
+    padding-bottom: 2em;
+}
+
+.btn-small {
+    background-color: #59C1D7!important;
+}
+
+.register-button {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+.register-button .btn{
+    background-color: #59C1D7;
+}
+
+.register-button .btn:hover{
+    background-color: #627A8E;
+}
+
 
 /*                                                     REUSEABLE CSS */
 
@@ -244,7 +274,7 @@ button, input, optgroup, select, textarea {
 }
 
 .search-recipe-card .card-content {
-    height: 120px;
+    height: 140px;
 }
 
 .search-recipe-card .card .card-image img {
@@ -253,7 +283,6 @@ button, input, optgroup, select, textarea {
   width: 100%;
   height: 150px;
 }
-
 
 .results-recipe-card .card .card-image img {
   display: block;
@@ -279,6 +308,7 @@ button, input, optgroup, select, textarea {
   text-transform: uppercase;
   z-index: 1;
 }
+
 .cooking-text{
    display: block;
 }
@@ -305,7 +335,7 @@ margin: 0 auto 0;
     text-align: center;
 }
 
-/*                                                     VIEW RECIPE PAGE */
+/*                                                  VIEW INDIVIDUAL RECIPE PAGE */
 
 .view-recipe-card {
   padding-top:1em;
@@ -335,7 +365,7 @@ padding-top: 2em!important;
   padding: 0px 15px 15px 5px;
   font-size: 1.2em;
 }
-.square{
+.square {
   padding:5px;
   color: rgb(175, 206, 163);
 }
@@ -351,38 +381,6 @@ background-color:#E0E5E7;
 
 .recipe_buttons{
     padding: 1em;
-}
-
-/*                                                     LOG IN PAGE */
-
-.login-form {
-    margin-right: 3em;
-    margin-left: 1em;
-    padding-top:2em;
-    padding-bottom: 2.5em;
-}
-
-.register-form {
-    margin-right: 3em;
-    margin-left: 1em;
-    padding-bottom: 2em;
-}
-
-.btn-small {
-    background-color: #59C1D7!important;
-}
-
-.register-button {
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-}
-
-.register-button .btn{
-    background-color: #59C1D7;
-}
-
-.register-button .btn:hover{
-    background-color: #627A8E;
 }
 
 /*                                                  CREATE RECIPE PAGE */

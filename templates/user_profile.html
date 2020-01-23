@@ -12,17 +12,16 @@
 					<p>Username: <span style="text-transform:capitalize;">{{user.username|capitalize}}</span></p>
 					<p>Email: <span class="icon-color">{{ user.email }}</span></p>
 					<p>Date of Birth: <span class="icon-color">{{ user.dob }}</span></p>
-
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<section class="row container profile-recipe-card">
+	<section class="container search-recipe-card">
 		<h4>Your Recipes </h4>
 		<div class="row">
 			{% for recipe in recipes %}
-			<div class="col s5 m5 l3">
+			<div class="col s12 m6 l3">
 				<div class="card">
 					<div class="card-image">
 						<a class="waves-effect waves-light" href="{{url_for('view_recipe', slug=recipe.slug)}}">
@@ -43,8 +42,8 @@
 					</div>
 				</div>
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</section>
 
 	<div class="divider pink"></div>
@@ -56,6 +55,8 @@
 	</div>
 </section>
 </br>
+
+<!-- A user can only edit their own profile -->
 <div class="text center">
 	{% if session['user'] == user.username %}
 	<a href="{{url_for('edit_profile', username=user.username)}}" id="edit-btn"

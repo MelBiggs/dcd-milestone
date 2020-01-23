@@ -1,32 +1,38 @@
 {% extends 'base.html' %} {% block content %}
 
+<!-- Here the Admin user can add a new category field -->
+
 <div class="container">
-    <div class="row">
-        <div class="create-category-button">
-            <div class="col s12">
-                <a class="waves-effect btn" href="{{url_for('create_category')}}">Add a new Category</a>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="create-category-button">
+			<div class="col s12">
+				<a class="waves-effect btn" href="{{url_for('create_category')}}">Add a new Category</a>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="col s6">
-    <table class="striped">
-        <div class="col s6">
+	<table class="striped">
+		<div class="col s6">
 
-            <thead>
-                <th>Name</th>
-                <th>Actions</th>
-            </thead>
-            {% for category in categories %}
-            <tr>
-                <td>{{category.name}}</td>
-                <td>
-                    <a href="{{url_for('edit_category', category_id=category._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                    <a href="{{url_for('delete_category', category_id=category._id)}}" class="waves-effect waves-light btn btn_small red">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-    </table>
-    </div>
-    {% endblock %}
+			<thead>
+				<th>Name</th>
+				<th>Actions</th>
+			</thead>
+			{% for category in categories %}
+			<tr>
+
+				<!-- The Admin can edit and delete categories - Be aware this could break the site if the category is linked to a recipe -->
+				<td>{{category.name}}</td>
+				<td>
+					<a href="{{url_for('edit_category', category_id=category._id)}}"
+						class="waves-effect waves-light btn btn_small blue">Edit</a>
+					<a href="{{url_for('delete_category', category_id=category._id)}}"
+						class="waves-effect waves-light btn btn_small red">Delete</a>
+				</td>
+			</tr>
+			{% endfor %}
+	</table>
+</div>
+{% endblock %}
