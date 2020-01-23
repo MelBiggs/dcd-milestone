@@ -185,10 +185,10 @@ def edit_recipe(recipe_id):
             return redirect(url_for("home"))
 
         if request.method == "POST":
-            
+
             recipes = mongo.db.recipes
             data = request.form.to_dict()
-
+      
             # Assign the logged in user to the recipe
             data['user'] = session['user']
 

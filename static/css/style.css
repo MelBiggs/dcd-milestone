@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,500,600,700|Montserrat:400,500&display=swap');
 
 /*                                                     BASE PAGE  */
+html {
+  overflow-x: hidden;
+}
 
   body {   
     display: flex;
@@ -42,6 +45,7 @@ h4 {
     font-weight: 300;
     color: rgb(175, 206, 163);
     text-align: center;
+    margin-top: .8em;
 }
 
 .hi {
@@ -486,4 +490,24 @@ background-color:#E0E5E7;
     -o-transition: all 0.35s ease-in-out;
 }
 
+/*                                              MEDIA QUERIES */
 
+/* For Mobile  */
+
+@media (max-width: 450px) {
+.card-header {
+    font-size: 1.5em;
+}
+.card-title {
+    font-size: 1em!important;
+}
+.brand-logo{
+    font-size: .8em!important;
+}
+}
+
+/* For Tablet */
+
+@media (max-width:1025px) {
+ 
+}

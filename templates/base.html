@@ -63,10 +63,12 @@
 
 		<ul class="sidenav" id="mobile-demo">
 			{% if session["user"] %}
+            <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
 			<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
 			<li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
 			<li><a href="{{url_for('logout')}}">Log Out</a></li>
 			{%else%}
+            <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
 			<li><a href="{{url_for('login')}}">Log In</a></li>
 			<li><a href="{{url_for('register_user')}}">Register</a></li>
 			{% endif %}

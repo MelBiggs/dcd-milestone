@@ -2,7 +2,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col s2 offset-s12 greeting">
+				<div class="col s2 offset-s10 greeting hide-on-med-and-down">
 
 					<!-- Log in / out button -->
 					{% if session["user"] %}
@@ -20,7 +20,7 @@
 			<div class="container landing-header">
 				<div class="col s12">
 					<!-- Header Image -->
-					<a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img"></a>
+					<a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/logo-header.jpg')}}" class="landing-img responsive-img"></a>
 
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 		<!-- Recipe Generator Card -->
 
 		<div class="row">
-			<div class="col s12 l5 card landing-page recipe-card white">
+			<div class="col s12 m5 l5 card landing-page recipe-card white">
 				<div class="card">
 					<div class="card-header">Recipe Generator</div>
 					<div class="divider pink"></div>
@@ -64,7 +64,7 @@
 
 			<!-- App Explanation Card with Links -->
 
-			<div class="col s12 l5 offset-l1 center-align white card link-card">
+			<div class="col s12 m5 offset-m1 l5 offset-l1 center-align white card link-card">
 				<h5><b>The Constant Cookbook</b></h5>
 				<div class="divider pink"></div>
 				<h6>
