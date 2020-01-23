@@ -200,13 +200,13 @@ def edit_recipe(recipe_id):
             if(data['slug'] != recipe['slug']):
                 if (recipes.find_one({"slug": data['slug']})):
                     flash("This slug is taken")
-                return render_template("edit_recipes.html", recipe={})
+                    return render_template("edit_recipes.html", recipe=data)
 
             # If name has been changed, make sure it is not already being used by another recipe
             if(data['name'] != recipe['name']):
                 if (recipes.find_one({"name": data['name']})):
                     flash("This recipe name is taken")
-                return render_template("edit_recipes.html", recipe={})
+                    return render_template("edit_recipes.html", recipe=data)
 
             data.update({'ingredients': request.form.getlist('ingredients[]')})
             del data['ingredients[]']

@@ -2,7 +2,7 @@
 
 <div class="container recipe_form">
 	<label for="name">Recipe Name</label>
-	<input id="name" name="name" value="{{recipe.name}}" placeholder="e.g Chilli Con Carne" maxlength="15" required />
+	<input id="name" name="name" value="{{recipe.name}}" placeholder="e.g Chilli Con Carne" maxlength="25" required />
 
 	<label for="image">Recipe Photo Url</label>
 	<input id="image" name="image_url" value="{{recipe.image_url}}" placeholder="https://images.mummypages.ie/images/1209/60/3/1_15/chilli-con-carne.jpg" required />
@@ -23,19 +23,21 @@
 
 	<div class="create-header"> Ingredients: </div>
 	<div id="ingredient-list">
+
 		{% if recipe.ingredients %} {% for ingredient in recipe.ingredients %}
-		<input id="ingredients" 
-    class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>
-        {% if loop.index > 1 %}
-		<div class="remove-btn"></div>
-		{% endif %}
-		{% endfor %}
-		{% else %}
+
+     <div class="ingredient-list-item">
+		<input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>{% if loop.index > 1 %}
+		<a class="remove-btn orange-text">Remove Line</a> {% endif %}
+        </div>
+
+		{% endfor %} {% else %}
+
 		<div class="ingredient-list-item">
 			<input id="ingredients" class="ingredients" name="ingredients[]" type="text" placeholder="1 large onion, diced" />
         </div>
 			{% endif %}
-		</div>
+	</div>
 
 		<a class="waves-effect waves-light btn" id="add-ingredient">Add Line</a>
 
@@ -48,7 +50,7 @@
 
 			<div class="step-list-item">
 				<input id="steps" class="steps" name="steps[]" type="text" value="{{step}}" /> {% if loop.index > 1 %}
-				<div class="remove-btn"> {% endif %}
+				<a class="remove-btn orange-text">Remove Line</a> {% endif %}
 				</div>
 
 				{% endfor %} {% else %}

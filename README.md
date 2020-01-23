@@ -202,6 +202,6 @@ I was able to get help from these links and users:
 * <https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/>
 * <https://stackoverflow.com/questions/2570972/css-font-border>
 
-I am grateful to my mentor **Guido Cecilio** for his help and guidance throughout the project. I would also like to thank my mam and my friends for helping me test the responsiveness of the website.  
+I am grateful to my mentor **Guido Cecilio** for his help with this project. I would also like to thank my mam and my friends for helping me test the responsiveness of the website.  
 
 [Link to Deployed Website]( https://dcd-milestone.herokuapp.com/)
