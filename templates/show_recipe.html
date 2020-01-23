@@ -96,8 +96,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
 </section>
 
 <!-- If the user is the recipe creator, allow them to see the Edit and Delete buttons, otherwise hide. Admin user can delete -->
@@ -111,8 +109,7 @@
 {% if recipe.user == session['user'] or session['user'] == 'Admin' %}
 
 	<!-- Delete Modal -->
-	<button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</a>
-	    </button>
+	<button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</button>
 {% endif %}
 </section>
 

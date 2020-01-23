@@ -18,8 +18,7 @@
 </form> 
 
     <!-- Modal Trigger -->
-    <button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" a class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</a>
-</button>
+    <button data-target="delete_modal" data-recipe-delete-url="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small red darken-1 modal-trigger" href="#delete_modal">Delete</button>
 
 <div id="delete_modal" class="modal">
     <div class="modal-content">
