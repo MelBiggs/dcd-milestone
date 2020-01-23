@@ -139,8 +139,8 @@ The app is hosted on Heroku
 
 ### Also
 
-[Gifox](https://gifox.io/) - 
-I used Gifox to record the website demo for my README file. I recorded it off the website [Am I Responsive](http://ami.responsivedesign.is/)
+[Am I Responsive](http://ami.responsivedesign.is/) - 
+I used this to take a screenshot of my project for my README file
 
 ## Testing
 * As an individual interested in cooking, I believe they will enjoy my website. I believe it is easy to navigate and they will find recipes easily.
