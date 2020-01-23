@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,500,600,700|Montserrat:400,500&display=swap');
 
-
 /*                                                     BASE PAGE  */
 
 /* Title */
@@ -20,7 +19,6 @@ a {
 }
 
 h1 {
-
     padding-top: 2em;
     padding-bottom: 1em;
 }
@@ -33,6 +31,7 @@ h4 {
 
 
 /* Log In Button  */
+
 .login-btn {
   background-color: rgb(175, 206, 163);
     font-family: 'Oswald', sans-serif;
@@ -55,101 +54,25 @@ h4 {
     color: #627A8E;
     background-color: rgb(175, 206, 163);
 }
+
 .logout-btn {
     margin: 0;
 }
+
 .logout-btn a{
     background-color: rgb(175, 206, 163);
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
 }
 
-
 .index-cta {
     padding-top: 2em;
-      margin: 0;
-  position: absolute;
-}
-
-/*                                                     LANDING PAGE  */
-
-.hello-flash {   
-    color: #59C1D7;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
-    font-weight: 300;
-}
-
-.landing-page-container {
-    margin: 1em;
-    padding: 1em;
-}
-
-/* Links Landing Page Card */
-.landing-img{
-    max-width:90%;
-    max-height:90%;
-    text-align: center;
-}
-
-.link-card {
-    padding-top: 3em;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.quick-links {
-    padding-bottom: 1em;
-}
-
-.quick-links a {
-    margin: .5em;
-    background-color: #59C1D7;
-}
-
-/* Recipe of the Day Card */
-
-.recipe-card {
-    padding-top: 2em;
-    font-family: 'Montserrat', sans-serif!important;
-    width: 3em;
-    border: #59C1D7;
-}
-
-.card-title {
-    size: 1em;
-     color: black!important;
-}
-
-.card-header {
-    color: black;
-    text-align: center;
-    font-size: 3em;
-    font-family: 'Montserrat', sans-serif!important;
-    padding-top: .9em;
-    padding-bottom: .5em;
-}
-
-.responsive {
-  width: 50%;
-  height: auto;
-}
-
-.recipe-generator-img {
-    max-height: 75%!important;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    position: relative;
-    height: 150px;
-}
-
-.card-content {
-    padding: 1em!important;
-    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    position: absolute;
 }
 
 /* Navbar */
+
 nav {
     background-color: rgb(175, 206, 163);
 }
@@ -208,6 +131,85 @@ nav ul a {
     text-align: center;
 }
 
+/*                                                     LANDING PAGE  */
+
+.hello-flash {   
+    color: #59C1D7;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.landing-page-container {
+    margin: 1em;
+    padding: 1em;
+}
+
+/* Links Landing Page Card */
+
+.landing-img{
+    max-width:90%;
+    max-height:90%;
+    text-align: center;
+}
+
+.link-card {
+    padding-top: 3em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.quick-links {
+    padding-bottom: 1em;
+}
+
+.quick-links a {
+    margin: .5em;
+    background-color: #59C1D7;
+}
+
+/* Recipe Generator Card */
+
+.recipe-card {
+    padding-top: 2em;
+    font-family: 'Montserrat', sans-serif!important;
+    width: 3em;
+    border: #59C1D7;
+}
+
+.card-title {
+    size: 1em;
+     color: black!important;
+}
+
+.card-header {
+    color: black;
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Montserrat', sans-serif!important;
+    padding-top: .9em;
+    padding-bottom: .5em;
+}
+
+.responsive {
+  width: 50%;
+  height: auto;
+}
+
+.recipe-generator-img {
+    max-height: 75%!important;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: relative;
+    height: 150px;
+}
+
+.card-content {
+    padding: 1em!important;
+    font-family: 'Montserrat', sans-serif;
+}
+
 /*                                                     REUSEABLE CSS */
 
 .page_heading {
@@ -215,7 +217,7 @@ nav ul a {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin-top: .9em;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 form {
@@ -294,6 +296,13 @@ margin: 0 auto 0;
 
 #delete_modal {
     font-family: 'Oswald', sans-serif;
+}
+
+.category-searched {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    font-weight: 500;
+    text-align: center;
 }
 
 /*                                                     VIEW RECIPE PAGE */
@@ -441,8 +450,12 @@ background-color:#E0E5E7;
 
 /*                                                  ABOUT PAGE */
 
+
+.about {
+    margin: 4em;
+}
 .about-site-links {
-    text-align: center;
+    margin: 1em 0em 2em;
 }
 
 .about-links-social {
@@ -461,7 +474,7 @@ background-color:#E0E5E7;
 
 .about-links-social a {
     display: inline-block;
-    color: rgb(175, 206, 163);
+    color: black;
 }
 
 .about-links-social li a:hover {

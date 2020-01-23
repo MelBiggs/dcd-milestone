@@ -13,9 +13,6 @@
 
 </section>
 
-{% if current_category %}
-<h3>{{current_category}}</h3> {% endif %}
-
 <section class="category_filters">
     <div class="container">
         <div class="row">
@@ -26,6 +23,10 @@
         </div>
     </div>
 </section>
+
+{% if current_category %}
+<div class="category-searched">{{current_category}}</div> 
+<div class="divider pink"></div>{% endif %}
 
 <section id="card-display" class="container">
     <div class="row">
@@ -51,7 +52,7 @@
                     </div>
                 </div>
             </div>
-    
             {% endfor %}
+    </div>
 </section>
 {% endblock %}
