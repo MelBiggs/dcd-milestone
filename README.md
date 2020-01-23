@@ -1,4 +1,4 @@
-!(static/img/screenshot.png)
+![screenshot](static/img/screenshot.png)
 
 [Link to Deployed Website]( https://dcd-milestone.herokuapp.com/)
 
