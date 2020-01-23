@@ -215,6 +215,7 @@ def edit_recipe(recipe_id):
 
             data['likes'] = recipe['likes']
 
+            
             recipes.update({"_id": ObjectId(recipe_id)}, data)
             return redirect(url_for("get_recipes"))
 

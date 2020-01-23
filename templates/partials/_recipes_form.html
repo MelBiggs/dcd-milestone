@@ -24,15 +24,15 @@
 	<div class="create-header"> Ingredients: </div>
 	<div id="ingredient-list">
 		{% if recipe.ingredients %} {% for ingredient in recipe.ingredients %}
-		<input id="ingredients" placeholder="1 large onion, diced"
-        class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>
+		<input id="ingredients" 
+    class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>
         {% if loop.index > 1 %}
 		<div class="remove-btn"></div>
 		{% endif %}
 		{% endfor %}
 		{% else %}
 		<div class="ingredient-list-item">
-			<input id="ingredients" class="ingredients" name="ingredients[]" type="text" />
+			<input id="ingredients" class="ingredients" name="ingredients[]" type="text" placeholder="1 large onion, diced" />
         </div>
 			{% endif %}
 		</div>
