@@ -1,19 +1,66 @@
 {% extends 'base.html' %} {%block title %}| {{user.username }}{% endblock %}{% block content %}
 
 
+<section class="view-recipe">
+	<div class="container recipe-view">
+		<div class="row card view-recipe-card">
+			<div class="col s12 center">
+				<h3>Hi <span class="teal-text">{{session["user"]|capitalize}}</span>!</h3>
+			</div>
+			<div class="row">
+				<div class="col s12 text center">
+					<p>Username: <span style="text-transform:capitalize;">{{user.username|capitalize}}</span></p>
+					<p>Email: <span class="icon-color">{{ user.email }}</span></p>
+					<p>Date of Birth: <span class="icon-color">{{ user.dob }}</span></p>
 
-<p>{{user.username}}</p>
-<p>{{user.email}}</p>
-<p>{{user.dob}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<h4>Your Recipes</h4> {% for recipe in recipes %}
-<p>{{recipe.name}}</p>
-<p>{{recipe.description}}</p>
+	<section class="row container profile-recipe-card">
+		<h4>Your Recipes </h4>
+		<div class="row">
+			{% for recipe in recipes %}
+			<div class="col s5 m5 l3">
+				<div class="card">
+					<div class="card-image">
+						<a class="waves-effect waves-light" href="{{url_for('view_recipe', slug=recipe.slug)}}">
+							{% if recipe.image_url %}
+							<img src="{{ recipe.image_url }}" class="responsive-img" alt="{{ recipe.name }}" height="400" width="375">
+          {% else %}
+							<img src="{{ url_for('static', filename='img/default-recipe-img.jpg') }}" alt="{{ recipe.name }}">
+          {% endif %}
+		</a>
 
-{% endfor %}
-<p>
-    {% if session['user'] == user.username %}
-    <a href="{{url_for('edit_profile', username=user.username)}}" id="edit-btn" class="waves-effect waves-light btn btn_small light-blue darken-1">Edit</a> {% endif %}
-</p>
+							<a href="{{url_for('view_recipe', slug=recipe.slug)}}" class="card-label">
+								{{ recipe.category_name }}</a>
+					</div>
+					<div class="card-content">
+						<a class="waves-effect waves-light" href="{{url_for('view_recipe', slug=recipe.slug)}}">
+							<span class="black-text card-title">{{ recipe.name|title }}</span></a>
+						<p class="teal-text cooking-text">{{ recipe.cooking_time}} minutes<p>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</section>
+
+	<div class="divider pink"></div>
+	<div class="text center">
+		<h6 class="text center"><b>Add a Recipe</b></h6>
+		<a href="{{ url_for('create_recipe') }}" class="waves-effect waves-light btn btn_small"
+			id="profile-recipe-btn">Add a Recipe Now</a>
+		<div class="divider pink"></div>
+	</div>
+</section>
+</br>
+<div class="text center">
+	{% if session['user'] == user.username %}
+	<a href="{{url_for('edit_profile', username=user.username)}}" id="edit-btn"
+		class="waves-effect waves-light btn btn_small light-blue darken-1">Edit Your Profile</a> {% endif %}
+</div>
+</br>
 
 {% endblock %}

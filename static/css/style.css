@@ -117,6 +117,7 @@ h4 {
 
 .card-title {
     size: 1em;
+     color: black!important;
 }
 
 .card-header {
@@ -405,6 +406,22 @@ background-color:#E0E5E7;
     background-color:#627A8E!important;
     text-align: center;
     }
+
+/*                                                  PROFILE PAGE */
+
+
+.profile-recipe-card{
+    text-align: center;
+    }
+
+#add-recipe-btn {
+    margin: 1em;
+}
+
+#profile-recipe-btn {
+    background-color: #CCA1E5!important;
+    margin: 1em;
+}
 
 /*                                                  CREATE CATEGORY PAGE */
 
