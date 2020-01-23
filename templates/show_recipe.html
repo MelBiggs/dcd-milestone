@@ -3,13 +3,13 @@
 <section class="view-recipe">
 	<div class="container recipe-view">
 		<div class="row card view-recipe-card">
-			<div class="col s8 l3 center-align card-image recipe-img">
+			<div class="col s4 l3 center-align card-image recipe-img">
 				{% if recipe.image_url %}
 				<img height="400" width="375" src="{{recipe.image_url}}" alt="recipe image" class="responsive-img materialboxed"> {% else %}
 				<img height="400" width="375" src="{{ url_for('static', filename='img/default-recipe-img.jpg') }}" alt="recipe image" class="responsive-img materialboxed"> {% endif %}
             </div>
 
-				<div class="col s12 l8 left-align">
+				<div class="col s6 l8 left-align">
 					<div class="recipe-header center-align">
 						<h4>{{ recipe.name|title }}</h4>
 					</div>
