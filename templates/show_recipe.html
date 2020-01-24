@@ -5,7 +5,7 @@
 		<div class="row card view-recipe-card">
 			<div class="col s4 l3 center-align card-image recipe-img">
 				{% if recipe.image_url %}
-				<img height="400" width="375" src="{{recipe.image_url}}" alt="recipe image" class="responsive-img materialboxed"> {% else %}
+				<img height="400" width="375" src="{{recipe.image_url}}" alt="recipe-image" class="responsive-img materialboxed"> {% else %}
 				<img height="400" width="375" src="{{ url_for('static', filename='img/default-recipe-img.jpg') }}" alt="recipe image" class="responsive-img materialboxed"> {% endif %}
             </div>
 
