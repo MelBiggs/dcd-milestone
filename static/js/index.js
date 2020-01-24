@@ -1,8 +1,13 @@
 $(document).ready(function () {
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+        yearRange: [1920, 2025],
+        changeMonth: true,
+        changeYear: true,
+    });
     $('.sidenav').sidenav();
     $(".dropdown-trigger").dropdown();
     $('select').formSelect();
+    $('.tooltipped').tooltip();
     $('.modal').modal({
         onOpenStart: function (modal, trigger) {
             $('#delete-link').attr("href", trigger.dataset.recipeDeleteUrl);
