@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>The Constant Cookbook {%block title %}{% endblock %}</title>
 
-   
+
 	<!-- Materialize CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<!-- Font Awesome -->
@@ -17,11 +17,11 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Favicons -->
 	<link rel="shortcut icon" type="image/png" href="static/img/favicon-32x32.png" />
-    <link rel="icon" type="image/png" href="static/img/favicon-32x32.png" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="static/img/favicon-32x32.png">
-    <!-- CSS  -->
+	<link rel="icon" type="image/png" href="static/img/favicon-32x32.png" sizes="192x192">
+	<link rel="apple-touch-icon" sizes="180x180" href="static/img/favicon-32x32.png">
+	<!-- CSS  -->
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-    
+
 </head>
 
 <body>
@@ -41,7 +41,7 @@
 					<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
 					<li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
 					<li><a href="{{url_for('about')}}">About</a></li>
-                    <li><a href="{{url_for('logout')}}">Log Out</a></li>
+					<li><a href="{{url_for('logout')}}">Log Out</a></li>
 
 
 					<!-- If the user is logged in as Admin, show users and categories -->
@@ -49,7 +49,7 @@
 
 					<li><a href="{{url_for('get_users')}}">All Users</a></li>
 					<li><a href="{{url_for('get_categories')}}">Categories</a></li>
-                    <li><a href="{{url_for('logout')}}">Log Out</a></li>
+					<li><a href="{{url_for('logout')}}">Log Out</a></li>
 					{%endif%}
 
 					<!-- Otherwise show the below -->
@@ -67,12 +67,12 @@
 
 		<ul class="sidenav" id="mobile-demo">
 			{% if session["user"] %}
-            <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+			<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
 			<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
 			<li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
 			<li><a href="{{url_for('logout')}}">Log Out</a></li>
 			{%else%}
-            <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
+			<li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
 			<li><a href="{{url_for('login')}}">Log In</a></li>
 			<li><a href="{{url_for('register_user')}}">Register</a></li>
 			{% endif %}

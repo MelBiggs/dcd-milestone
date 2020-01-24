@@ -1,37 +1,37 @@
-{% extends 'base.html' %} {%block title %}| Register{% endblock %}{% block content %} 
+{% extends 'base.html' %} {%block title %}| Register{% endblock %}{% block content %}
 
 <div class="page_heading">Register</div>
-    <div class="row center">
-        <!-- if the user registration details are incorrect,display an error message  -->
-        {% with messages = get_flashed_messages() %} 
-        {% if errors|length > 0 %} {% for error in errors %}
-        <p class="red-text">{{error}}</p>
-        {% endfor %} {% endif %} {% endwith %}
-    </div>
+<div class="row center">
+	<!-- if the user registration details are incorrect,display an error message  -->
+	{% with messages = get_flashed_messages() %}
+	{% if errors|length > 0 %} {% for error in errors %}
+	<p class="red-text">{{error}}</p>
+	{% endfor %} {% endif %} {% endwith %}
+</div>
 
 <section class='register-form'>
-<form class="col s12" method="POST" action="{{ url_for('register_user') }}">
+	<form class="col s12" method="POST" action="{{ url_for('register_user') }}">
 
-    <label for="username">Username</label>
-    <input id="username" id="username" name="username" value="{{data.username}}" required>
+		<label for="username">Username</label>
+		<input id="username" id="username" name="username" value="{{data.username}}" required>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" value="{{data.email}}" required>
+		<label for="email">Email</label>
+		<input type="email" id="email" name="email" value="{{data.email}}" required>
 
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" required>
 
-    <label for="repeat_password">Repeat Password</label>
-    <input type="password" id="repeat_password" name="repeat_password" required>
+		<label for="repeat_password">Repeat Password</label>
+		<input type="password" id="repeat_password" name="repeat_password" required>
 
-    <label for="dob">Date of Birth</label>
-    <input type="text" class="datepicker" id="dob" name="dob" value="{{data.dob}}" required>
+		<label for="dob">Date of Birth</label>
+		<input type="text" class="datepicker" id="dob" name="dob" value="{{data.dob}}" required>
 
-     <button class="btn waves-effect waves-light btn-small" type="submit" name="action">Register
+		<button class="btn waves-effect waves-light btn-small" type="submit" name="action">Register
             <i class="material-icons right">send</i>
         </button>
 
-</form>
+	</form>
 </section>
 
 {% endblock %}

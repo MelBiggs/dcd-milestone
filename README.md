@@ -56,9 +56,9 @@ My website consists of the following features:
 
 * **Flash Messages**: flash messages communicate to the user regarding their interactions. 
 
-* **Registration**: While a user is free to use the site as a guest, some features are not available unless logged in.I have built-in authentication to check certain criteria is met before an account is validated. All passwords are hashed for security purposes.
+* **Registration**: While a user is free to use the site as a guest, some features are not available unless logged in. I have built-in authentication to check certain criteria is met before an account is validated. All passwords are hashed for security purposes.
 
-* **Log-in/Logout**:The login page has an input form where the users can enter their username and password. If the password is incorrect an error message will appear. New users can click on the link "Register here" to get redirected to the register page. Clicking the logout button will log the user out of the account. 
+* **Log-in/Logout**: The login page has an input form where the users can enter their username and password. If the password is incorrect an error message will appear. New users can click on the link "Register here" to get redirected to the register page. Clicking the logout button will log the user out of the account. 
 
 * **Recipes Page**: On this page, the user can view all recipes on this page, and can go to a particular meal type if they click on the category buttons. They can also search through the recipes on this page. 
 
@@ -79,6 +79,7 @@ My website consists of the following features:
 
 In the future, I would like to add more features to this website, such as:
 
+I would like to add pagination to the Recipe page to improve the user experience and break down how many recipes they see at one time. 
 Offering users the chance to 'Favourite' a recipe and having that added to their profile page for their ease. 
 Allowing the users to leave comments on particular recipe pages. 
 I would like the recipe images to be uploaded from the users PC rather than through a URL. While it worked fine for this project, I would like to add that ability as I feel it is more professional. 
@@ -149,11 +150,11 @@ I used this to take a screenshot of my project for my README file
 
 * As a user of an older age, I want it to be as easily navigated as possible and attractive on a desktop or tablet. I believe it is laid out in a clear way and they will find what they need easily. 
 
-* A younger person who wants to have the information presented in the most understandable way will find the website pleasant to use. A card on the landing page also explains the function of the site. 
+* A younger person who wants to have the information presented in the most understandable way, they will find the website pleasant to use. A card on the landing page also explains the function of the site. 
 
 I have tested the site throughout development and after to ensure all worked fine and linked to the database correctly. My friends and family were kind enough to also test the site for me on their own devices and were able to move through it with ease. 
 
-However, during development, there was a bug with deploying to Heroku. Despite deploying successfully it would not create the application and gave an error stating it could not bind to the PORT. With the help of tutor support, we changed the Procfile to `web: gunicorn app:app` from `python3 app.py`. This allowed the application to display then on Heroku. 
+However, during development, there was a bug with deploying to Heroku. Despite deploying successfully, it would not create the application and gave an error stating it could not bind to the PORT. With the help of tutor support, we changed the Procfile to `web: gunicorn app:app` from `python3 app.py`. This allowed the application to display then on Heroku. 
 
 ### Code Validation
 
@@ -180,6 +181,27 @@ To deploy my app onto Heroku, I completed the following steps from Gitpod, after
 6. In Heroku after setting up my new application, I entered my config vars to match what I had made them in my env.py file.
 7. On Heroku's dashboard I chose Deploy and chose Github as my deployment method. 
 8. I linked Heroku to the correct Github repository and clicked "Deploy" from the master branch. 
+
+## Local Deployment
+
+To run this project locally on your own computer, you will need to install the following:
+
+* Python3
+* PIP 
+* An IDE 
+* Git
+* MongoDB or MongoDB Atlas
+
+* Then complete the following steps: 
+* Clone this GitHub repository by entering the following into the Git CLI terminal: `git clone https://github.com/MelBiggs/dcd-milestone.git`
+* Navigate to the correct file location after unpacking the files - `cd <path to folder>`
+* Create a virtual environment, using python -m venv venv where the 2nd venv is the environment name
+* Activate the virtual environment with venv\Scripts\activate
+* Install any required modules with pip install -r requirements.txt
+* Within the file `app.py` change the line `app.config['SECRET_KEY'] = os.getenv('SECRET')` to `app.config['SECRET_KEY'] = os.getenv('SECRET', '<your_key>)` where `<your_key>` is a secret key of your choosing.
+* Then change `app.config["MONGO_URI"] = os.getenv('MONGO_URI')` to `app.config["MONGO_URI"] = os.getenv('MONGO_URI', )` where is the string points to your own MongoDB URI.
+* Your database should be named recipesDB with collections `categories`, `recipes` and `users`.
+* You can then run it from app.py 
 
 ## Credits
 

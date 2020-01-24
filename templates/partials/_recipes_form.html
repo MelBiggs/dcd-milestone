@@ -7,7 +7,8 @@
 	<label for="image">Recipe Photo Url</label>
 	<input id="image" name="image_url" value="{{recipe.image_url}}" placeholder="https://images.mummypages.ie/images/1209/60/3/1_15/chilli-con-carne.jpg" required />
 
-	<label for="slug">Url Slug</label> <a class="tooltipped" data-position="right" data-tooltip="This will identify your recipe in the URL!"><i class="fas fa-question-circle"></i></a>
+	<label for="slug">Url Slug</label> <a class="tooltipped" data-position="right"
+		data-tooltip="This will identify your recipe in the URL!"><i class="fas fa-question-circle"></i></a>
 	<input id="slug" name="slug" value="{{recipe.slug}}" placeholder="chilli_con_carne" required/>
 
 	<label for="description">Description</label>
@@ -26,10 +27,10 @@
 
 		{% if recipe.ingredients %} {% for ingredient in recipe.ingredients %}
 
-     <div class="ingredient-list-item">
-		<input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>{% if loop.index > 1 %}
-		<a class="remove-btn orange-text">Remove Line</a> {% endif %}
-        </div>
+		<div class="ingredient-list-item">
+			<input id="ingredients" class="ingredients" name="ingredients[]" type="text" value="{{ingredient}}"/>{% if loop.index > 1 %}
+			<a class="remove-btn orange-text" href="#">Remove Line</a> {% endif %}
+		</div>
 
 		{% endfor %} {% else %}
 
@@ -37,7 +38,7 @@
 			<input id="ingredients" class="ingredients" name="ingredients[]" type="text" placeholder="1 large onion, diced" />
         </div>
 			{% endif %}
-	</div>
+		</div>
 
 		<a class="waves-effect waves-light btn" id="add-ingredient">Add Line</a>
 
@@ -50,23 +51,23 @@
 
 			<div class="step-list-item">
 				<input id="steps" class="steps" name="steps[]" type="text" value="{{step}}" /> {% if loop.index > 1 %}
-				<a class="remove-btn orange-text">Remove Line</a> {% endif %}
-				</div>
+				<a class="remove-btn orange-text" href="#">Remove Line</a> {% endif %}
+			</div>
 
-				{% endfor %} {% else %}
+			{% endfor %} {% else %}
 
-				<div class="step-list-item">
-					<input id="steps" class="steps" name="steps[]" type="text" />
+			<div class="step-list-item">
+				<input id="steps" class="steps" name="steps[]" type="text" />
         </div>
 
-					{% endif %}
+				{% endif %}
 
-				</div>
+			</div>
 
-				<a class="waves-effect waves-light btn" id="add-step">Add Line</a>
+			<a class="waves-effect waves-light btn" id="add-step">Add Line</a>
 
-				<div class="input-field">
-					<select id="category" name="category_name">
+			<div class="input-field">
+				<select id="category" name="category_name">
             <option value="" disabled selected>What kind of meal is this?</option>
             {% for category in categories %} {% if(recipe.category_name == category.name) %}
             <option value="{{category.name}}" selected>{{category.name}}</option>
@@ -74,18 +75,18 @@
             <option value="{{category.name}}">{{category.name}}</option>
             {% endif %} {% endfor %}
         </select>
-				</div>
 			</div>
+		</div>
 
-			<!-- If adding new recipe, say Submit. If editing, say Save -->
+		<!-- If adding new recipe, say Submit. If editing, say Save -->
 
 
-			<div class="save-recipe-button">
-				{% if recipe %}
-				<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Save
+		<div class="save-recipe-button">
+			{% if recipe %}
+			<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Save
         </button>
-				{% else %}
-				<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Submit
+			{% else %}
+			<button class="btn waves-effect waves-light btn-small" id="recipe-save" type="submit" name="action">Submit
         </button>
-				{% endif %}
-			</div>
+			{% endif %}
+		</div>
