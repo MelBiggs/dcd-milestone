@@ -41,12 +41,15 @@
 					<li><a href="{{url_for('create_recipe')}}">Add a recipe</a></li>
 					<li><a href="{{url_for('user_profile', username=session['user'])}}">Your Profile</a></li>
 					<li><a href="{{url_for('about')}}">About</a></li>
+                    <li><a href="{{url_for('logout')}}">Log Out</a></li>
+
 
 					<!-- If the user is logged in as Admin, show users and categories -->
 					{% if session['user'] == 'Admin' %}
 
 					<li><a href="{{url_for('get_users')}}">All Users</a></li>
 					<li><a href="{{url_for('get_categories')}}">Categories</a></li>
+                    <li><a href="{{url_for('logout')}}">Log Out</a></li>
 					{%endif%}
 
 					<!-- Otherwise show the below -->

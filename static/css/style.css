@@ -88,8 +88,8 @@ nav ul a {
 
 .brand-logo {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em!important;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 2em!important;
+    margin-left: 10px;
 }
 
 /* Footer */
@@ -245,6 +245,9 @@ nav ul a {
     background-color: #627A8E;
 }
 
+.datepicker-date-display{
+    background-color: #59C1D7;
+}
 
 /*                                                     REUSEABLE CSS */
 
@@ -274,8 +277,8 @@ button, input, optgroup, select, textarea {
 }
 
 /*                                                     RECIPES SEARCH PAGE */
-
-.label-icon :active {
+.
+.label-icon i :active {
     padding-bottom: 1em;
 }
 
@@ -339,6 +342,11 @@ margin: 0 auto 0;
     font-size: 3em;
     font-weight: 500;
     text-align: center;
+}
+
+.back-btn i{
+    font-size: 2em;
+    margin: 1em;
 }
 
 /*                                                  VIEW INDIVIDUAL RECIPE PAGE */
@@ -496,7 +504,7 @@ background-color:#E0E5E7;
 
 /* For Mobile  */
 
-@media (max-width: 450px) {
+@media (max-width: 513px) {
 .card-header {
     font-size: 1.5em;
 }
@@ -505,11 +513,15 @@ background-color:#E0E5E7;
 }
 .brand-logo{
     font-size: .8em!important;
+    margin-left: 1px;
 }
 }
 
 /* For Tablet */
 
-@media (max-width:1025px) {
- 
+@media (min-width:514px) and (max-width:685px) {
+ .brand-logo{
+    font-size: 1.5em!important;
+    margin-left: 1px;
+}
 }
