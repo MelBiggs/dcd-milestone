@@ -192,7 +192,8 @@ To run this project locally on your own computer, you will need to install the f
 * Git
 * MongoDB or MongoDB Atlas
 
-* Then complete the following steps: 
+Then complete the following steps: 
+
 * Clone this GitHub repository by entering the following into the Git CLI terminal: `git clone https://github.com/MelBiggs/dcd-milestone.git`
 * Navigate to the correct file location after unpacking the files - `cd <path to folder>`
 * Create a virtual environment, using python -m venv venv where the 2nd venv is the environment name
